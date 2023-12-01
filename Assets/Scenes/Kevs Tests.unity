@@ -341,6 +341,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300f9f21d280d884dbc75b963348e27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftBorderX: -50
+  offsetY: -2
+  MapLength: 200
 --- !u!68 &1924004178
 EdgeCollider2D:
   m_ObjectHideFlags: 0
