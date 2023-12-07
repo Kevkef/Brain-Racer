@@ -18,9 +18,14 @@ public class ShopHandler : MonoBehaviour
     {
         coins = PlayerPrefs.GetInt("Coins");
     }
-    public void showPanel(ShopItemSO[] shopItemSO, GameObject[] shopPanelsOO, ShopTemplate[] shopTemplate){
+    public void showPanel(ShopItemSO[] shopItemSO, GameObject[] shopPanelsOO, ShopTemplate[] shopTemplate, string specification){
          for(int i = 0; i< shopItemSO.Length; i++){
-           shopPanelsOO[i].SetActive(true);
+            if(PlayerPrefs.GetInt("Skin" + specification + i.ToString()) == 1){
+                shopPanelsOO[i].SetActive(false);
+            }
+            else{
+                 shopPanelsOO[i].SetActive(true);
+            }
             LoadPanels(shopItemSO,shopTemplate);
             UpdateCoins();
         }

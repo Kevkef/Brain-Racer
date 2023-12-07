@@ -18,7 +18,7 @@ public class SubHandler : MonoBehaviour
     void Start()
     {
         shopHandler = GameObject.Find("Shop").GetComponent<ShopHandler>();
-        shopHandler.showPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin);
+        shopHandler.showPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification);
         if(shopHandler){
             Debug.Log("All is well");
         }
@@ -30,5 +30,6 @@ public class SubHandler : MonoBehaviour
     }
     public void Purchase (int btnNr){
         shopHandler.Purchase(btnNr, shopItemSkinSO, specification);
+         shopHandler.showPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification);
     }
 }
