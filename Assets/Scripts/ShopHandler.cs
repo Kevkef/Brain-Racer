@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting.FullSerializer;
+using Unity.VisualScripting;
+
 
 public class ShopHandler : MonoBehaviour
 {
@@ -18,32 +20,28 @@ public class ShopHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        coins = PlayerPrefs.GetInt("Coins");
         for(int i = 0; i< shopItemSO.Length; i++){
            shopPanelsOO[i].SetActive(true);
-            cost.text = "Coins:" + coins.ToString();
             LoadPanels();
-            CheckPurchaseable();
+            UpdateCoins();
 
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
     public void AddCoins(){
         coins++;
+        PlayerPrefs.SetInt("Coins", coins);
         UpdateCoins();
     }
     private void UpdateCoins(){
-         cost.text = "Coins:" + coins;
+        cost.text = "Coins:" + PlayerPrefs.GetInt("Coins");
         CheckPurchaseable();
     }
     public void Purchase(int btnNr){
         if(coins >= shopItemSO[btnNr].baseCost){
             coins = coins - shopItemSO[btnNr].baseCost;
+            PlayerPrefs.SetInt("Coins", coins);
             UpdateCoins();
         }
     }
