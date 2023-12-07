@@ -5,29 +5,26 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting.FullSerializer;
 using Unity.VisualScripting;
+using System;
 
 
 public class ShopHandler : MonoBehaviour
 {
     public int coins;
     public TMP_Text cost;
-    public ShopItemSO[] shopItemSO;
-    public GameObject[] shopPanelsOO; // the same as shopPanels.gameObject
-    public ShopTemplate[] shopPanels;
-    public Button[] myPurchaseBtns;
-
     
     // Start is called before the first frame update
     void Start()
     {
         coins = PlayerPrefs.GetInt("Coins");
-        for(int i = 0; i< shopItemSO.Length; i++){
+    }
+    public void showPanel(ShopItemSO[] shopItemSO, GameObject[] shopPanelsOO, ShopTemplate[] shopTemplate){
+         for(int i = 0; i< shopItemSO.Length; i++){
            shopPanelsOO[i].SetActive(true);
-            LoadPanels();
+            LoadPanels(shopItemSO,shopTemplate);
             UpdateCoins();
         }
     }
- 
     public void AddCoins(){
         coins++;
         PlayerPrefs.SetInt("Coins", coins);
@@ -35,17 +32,17 @@ public class ShopHandler : MonoBehaviour
     }
     private void UpdateCoins(){
         cost.text = "Coins:" + PlayerPrefs.GetInt("Coins");
-        CheckPurchaseable();
     }
-    public void Purchase(int btnNr){
+    public void Purchase(int btnNr, ShopItemSO[] shopItemSO, String submenu){
         if(coins >= shopItemSO[btnNr].baseCost){
             coins = coins - shopItemSO[btnNr].baseCost;
             PlayerPrefs.SetInt("Coins", coins);
+            PlayerPrefs.SetInt("Skin" + submenu+ btnNr.ToString(), 1);
             UpdateCoins();
         }
     }
 
-    public void CheckPurchaseable(){
+    public void CheckPurchaseable(ShopItemSO[] shopItemSO, Button[] myPurchaseBtns){
         for(int i = 0; i < shopItemSO.Length; i++)
             {
                 if(shopItemSO[i].baseCost <= PlayerPrefs.GetInt("Coins")){
@@ -57,11 +54,10 @@ public class ShopHandler : MonoBehaviour
             }
     }
 
-    public void LoadPanels(){
+    public void LoadPanels(ShopItemSO[] shopItemSO, ShopTemplate[] shopPanels){
         for(int i = 0; i < shopItemSO.Length; i++){
             shopPanels[i].title.text = shopItemSO[i].title;
             shopPanels[i].description.text = shopItemSO[i].description; 
             shopPanels[i].cost.text = "Coins: " + shopItemSO[i].baseCost.ToString();  
         }
-    }
-}
+    }}
