@@ -7,46 +7,51 @@ public class btn_lines : MonoBehaviour
     // Reference to the TMP text component.
     // The TMP_Text class is the base class for both TMP text components.
     // These are <TextMeshPro> and <TextMeshProUGUI>
-
-    public TMP_Text Cars_TMP;
+    public GameObject Car_Items;
+    public GameObject Upgrade_Items;
+    public GameObject Skins_Items;
+    public GameObject Coins_Items;
+    public TMP_Text Car_TMP;
     public TMP_Text Upgrade_TMP;
     public TMP_Text Skins_TMP;
     public TMP_Text Coins_TMP;
 
-    private void awake( TMP_Text TextComponent)
+    private void awake( TMP_Text TextComponent, GameObject gameObject)
     {
         // Assign the underline style to the text component.
         TextComponent.fontStyle = FontStyles.Underline;
+        gameObject.SetActive(true);
     }
 
-    private void sleep(TMP_Text TextComponent)
+    private void sleep(TMP_Text TextComponent, GameObject gameObject)
     {
          TextComponent.fontStyle &= ~FontStyles.Underline;
+         gameObject.SetActive(false);
     }
 
     public void click_skins(){
-        click(Skins_TMP, Upgrade_TMP);
+        click(Skins_TMP, Upgrade_TMP, Skins_Items, Upgrade_Items);
         if(Coins_TMP.fontStyle != FontStyles.Underline)
         {
-            awake(Cars_TMP);
+            awake(Car_TMP, Car_Items);
         }
     }
-    public void click_cars(){
-        click(Cars_TMP,Coins_TMP);
+    public void click_Car(){
+        click(Car_TMP,Coins_TMP, Car_Items, Coins_Items);
     }
 
     public void click_coins(){
-        click(Coins_TMP, Cars_TMP);
+        click(Coins_TMP, Car_TMP, Coins_Items, Car_Items);
     }
 
     public void click_upgrade()
     {
-        click(Upgrade_TMP, Skins_TMP);
+        click(Upgrade_TMP, Skins_TMP, Upgrade_Items, Skins_Items);
     }
 
-    private void click(TMP_Text AwakeComponent, TMP_Text SleepComponent){
-        awake(AwakeComponent);
-        sleep(SleepComponent);
+    private void click(TMP_Text AwakeComponent, TMP_Text SleepComponent, GameObject awakeObject, GameObject sleepObject){
+        awake(AwakeComponent, awakeObject);
+        sleep(SleepComponent, sleepObject);
     }
 }
  
