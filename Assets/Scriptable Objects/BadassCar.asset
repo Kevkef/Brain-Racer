@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Badass Car
   description: Your brai   should be cooking lookig at this.
-  baseCost: 100
+  baseCost: 10
   look: {fileID: 21300000, guid: 65aff19aa5bb4064493f848660e07c8a, type: 3}

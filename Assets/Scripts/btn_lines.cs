@@ -16,14 +16,14 @@ public class btn_lines : MonoBehaviour
     public TMP_Text Skins_TMP;
     public TMP_Text Coins_TMP;
 
-    private void awake( TMP_Text TextComponent, GameObject gameObject)
+    private void Show(TMP_Text TextComponent, GameObject gameObject)
     {
         // Assign the underline style to the text component.
         TextComponent.fontStyle = FontStyles.Underline;
         gameObject.SetActive(true);
     }
 
-    private void sleep(TMP_Text TextComponent, GameObject gameObject)
+    private void Sleep(TMP_Text TextComponent, GameObject gameObject)
     {
          TextComponent.fontStyle &= ~FontStyles.Underline;
          gameObject.SetActive(false);
@@ -33,7 +33,7 @@ public class btn_lines : MonoBehaviour
         click(Skins_TMP, Upgrade_TMP, Skins_Items, Upgrade_Items);
         if(Coins_TMP.fontStyle != FontStyles.Underline)
         {
-            awake(Car_TMP, Car_Items);
+            Show(Car_TMP, Car_Items);
         }
     }
     public void click_Car(){
@@ -49,9 +49,9 @@ public class btn_lines : MonoBehaviour
         click(Upgrade_TMP, Skins_TMP, Upgrade_Items, Skins_Items);
     }
 
-    private void click(TMP_Text AwakeComponent, TMP_Text SleepComponent, GameObject awakeObject, GameObject sleepObject){
-        awake(AwakeComponent, awakeObject);
-        sleep(SleepComponent, sleepObject);
+    private void click(TMP_Text ShowComponent, TMP_Text SleepComponent, GameObject ShowObject, GameObject sleepObject){
+        Show(ShowComponent, ShowObject);
+        Sleep(SleepComponent, sleepObject);
     }
 }
  

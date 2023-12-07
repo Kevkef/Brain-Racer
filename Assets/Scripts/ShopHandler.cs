@@ -25,7 +25,6 @@ public class ShopHandler : MonoBehaviour
            shopPanelsOO[i].SetActive(true);
             LoadPanels();
             UpdateCoins();
-
         }
     }
  
@@ -49,7 +48,7 @@ public class ShopHandler : MonoBehaviour
     public void CheckPurchaseable(){
         for(int i = 0; i < shopItemSO.Length; i++)
             {
-                if(shopItemSO[i].baseCost <= coins){
+                if(shopItemSO[i].baseCost <= PlayerPrefs.GetInt("Coins")){
                     myPurchaseBtns[i].interactable = true;
                 }
                 else{
