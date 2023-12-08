@@ -51,7 +51,7 @@ public class TestScript4Terrain : MonoBehaviour
         }
         spriteCtrl.spline.InsertPointAt(eegData.Length, new Vector3(leftBorderX+eegData.Length, -25, 0)); //bottom right corner
         spriteCtrl.spline.SetTangentMode(eegData.Length, ShapeTangentMode.Continuous);
-        spriteCtrl.spline.SetLeftTangent(eegData.Length, new Vector3(0.3f, 0, 0));
+        spriteCtrl.spline.SetLeftTangent(eegData.Length, new Vector3(-0.3f, 0, 0));
         spriteCtrl.spline.SetRightTangent(eegData.Length, new Vector3(0.3f, 0, 0));
     }
 
