@@ -19,9 +19,6 @@ public class SubHandler : MonoBehaviour
     {
         shopHandler = GameObject.Find("Shop").GetComponent<ShopHandler>();
         shopHandler.showPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification);
-        if(shopHandler){
-            Debug.Log("All is well");
-        }
         CheckPurchaseable();      
     }
 
