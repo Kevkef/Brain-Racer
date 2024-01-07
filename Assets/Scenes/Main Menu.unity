@@ -3863,8 +3863,8 @@ Transform:
   m_GameObject: {fileID: 850947352}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 186.99998, y: -27.999977, z: -1.2740984}
-  m_LocalScale: {x: 149.99998, y: 149.99998, z: 1}
+  m_LocalPosition: {x: 186.99998, y: -27.999977, z: 1}
+  m_LocalScale: {x: 149.99998, y: 149.99998, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1941242786}
@@ -3885,6 +3885,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 415fb493b306be2458678f2dbe4ffd8f, type: 3}
   - {fileID: 21300000, guid: dad5fccb0e611714d9c46831f5281488, type: 3}
   - {fileID: 21300000, guid: 25c5b6b82a624df44af9216d438bbc80, type: 3}
+  gameObject: Square
+  specification: Coins
+  display: {fileID: 850947352}
 --- !u!212 &850947355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5099,7 +5102,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 102.969185
+  orthographic size: 400
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5124,9 +5127,9 @@ Transform:
   m_GameObject: {fileID: 973247539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 550, y: 300, z: -1}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

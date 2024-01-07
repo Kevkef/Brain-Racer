@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DisplayHandler : MonoBehaviour
 {
-    public void setDisplay( Sprite[] sprites, string gameObjectName, string spezification, GameObject display){
+    public void setDisplay( Sprite[] sprites, string spezification, GameObject display){
         int i = PlayerPrefs.GetInt("Selected"+ spezification);
         display.GetComponent<SpriteRenderer>().sprite = sprites[i];
     }
