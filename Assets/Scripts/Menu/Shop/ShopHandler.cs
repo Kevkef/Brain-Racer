@@ -63,6 +63,7 @@ public class ShopHandler : MonoBehaviour
         for(int i = 0; i < shopItemSO.Length; i++){
             shopPanels[i].title.text = shopItemSO[i].title;
             shopPanels[i].description.text = shopItemSO[i].description; 
+            shopPanels[i].sprite.GetComponent<SpriteRenderer>().sprite = shopItemSO[i].look;
             shopPanels[i].cost.text = "Coins: " + shopItemSO[i].baseCost.ToString();  
         }
     }}

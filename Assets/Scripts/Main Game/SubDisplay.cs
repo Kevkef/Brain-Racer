@@ -7,7 +7,7 @@ public class SubDisplay : MonoBehaviour
 {
     DisplayHandler displayHandler;
     public Sprite[] sprites;
-    public String specification;
+    public string specification;
     public GameObject display;
     public void Start(){
       displayHandler = GameObject.Find("Display").GetComponent<DisplayHandler>();

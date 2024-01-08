@@ -12,11 +12,14 @@ public class InventoryHandler : MonoBehaviour
     public Image deselectedImg;
     public Image selectedImg;
     // Start is called before the first frame update
-    public GameObject square;
-    SubDisplay subDisplay;
+    public GameObject coinSprite;
+    public GameObject carSprite;
+    SubDisplay subDisplayCoins;
+    SubDisplay subDisplayCars;
     void Start()
     {
-        subDisplay = square.GetComponent<SubDisplay>();
+        subDisplayCoins = coinSprite.GetComponent<SubDisplay>();
+        subDisplayCars = carSprite.GetComponent<SubDisplay>();
     }
     public void showPanel(InventoryItemSO[] InventoryItemSO, GameObject[] InventoryPanelsOO, InventoryTemplate[] InventoryTemplate, string specification){
          for(int i = 0; i< InventoryItemSO.Length; i++){
@@ -45,6 +48,13 @@ public class InventoryHandler : MonoBehaviour
         InventoryPanelsOO[deselect].GetComponent<Button>().image.color = Color.white;
         PlayerPrefs.SetInt("Selected" + specification, btnNr);
         InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.blue;
-        subDisplay.Start();
+        switch(specification){
+            case "Coins":
+                subDisplayCoins.Start();
+                break;
+            case "Cars":
+                subDisplayCars.Start();
+                break;
+        }
     }
 }
