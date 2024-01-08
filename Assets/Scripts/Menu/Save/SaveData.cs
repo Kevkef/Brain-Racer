@@ -8,6 +8,7 @@ public class SaveData : MonoBehaviour
     public void Start(){
         SaveToJson();
     }
+    
     public void SaveToJson(){
         string slotData = JsonUtility.ToJson(saveSlots);
         string filePath = Application.persistentDataPath + "/SlotData.json";
