@@ -31,7 +31,7 @@ public class TestScript4Terrain : MonoBehaviour
 
         for(int i = 0; i < eegData.Length; i++)
         {
-            eegData[i] = Random.Range(0f, 3f);
+            eegData[i] = Random.Range(2, 3);
         }
     }
 

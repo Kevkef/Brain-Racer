@@ -27,6 +27,6 @@ public class SubHandler : MonoBehaviour
     }
     public void Purchase (int btnNr){
         shopHandler.Purchase(btnNr, shopItemSkinSO, specification);
-         shopHandler.showPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification);
+        shopHandler.showPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification);
     }
 }
