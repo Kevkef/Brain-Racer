@@ -21,7 +21,61 @@ public class EEGData : MonoBehaviour
     }
     #endregion
 
+    private bool autoread;
     private int connectionID;
+    private int latestAttentionValue;
+
+    void Start()
+    {
+        //autoread = false;
+    }
+
+    void Update()
+    {
+        if (autoread)
+        {
+            int errCode = 0;
+            //errCode = NativeThinkGear.MWM15_setFilterType(connectionID, NativeThinkGear.FilterType.MWM15_FILTER_TYPE_60HZ);
+            /* Get and save the updated Attention value */
+            //latestAttentionValue = (int)NativeThinkGear.TG_GetValue(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION);
+
+            errCode = NativeThinkGear.TG_ReadPackets(connectionID, 1);
+            Console.WriteLine("TG_ReadPackets returned: " + errCode);
+            /* If TG_ReadPackets() was able to read a complete Packet of data... */
+            if (errCode == 1)
+            {
+
+                /* If attention value has been updated by TG_ReadPackets()... */
+                if (NativeThinkGear.TG_GetValueStatus(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION) != 0)
+                {
+
+                    /* Get and print out the updated attention value */
+                    latestAttentionValue = (int)NativeThinkGear.TG_GetValue(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION);
+                    Debug.Log(latestAttentionValue);
+
+                } /* end "If attention value has been updated..." */
+
+            } /* end "If a Packet of data was read..." */
+        }
+    }
+
+    public void startAutoRead()
+    {
+        int errCode = 0;
+        //errCode = NativeThinkGear.TG_EnableAutoRead(connectionID, 1);
+        if (errCode == 0)
+        {
+            Debug.Log("Autoread enabled");
+            autoread = true;
+        }
+    }
+
+    public void stopAutoRead()
+    {
+        //NativeThinkGear.TG_EnableAutoRead(connectionID, 0);
+        autoread = false;
+        Debug.Log("Autoread disabled");
+    }
     public bool Connect()
     {
         int errCode = 0;
@@ -45,7 +99,7 @@ public class EEGData : MonoBehaviour
 
         errCode = NativeThinkGear.TG_Connect(connectionID,
                       comPortName,
-                      NativeThinkGear.Baudrate.TG_BAUD_1200, //may be changed to higher value (Baudrate)
+                      NativeThinkGear.Baudrate.TG_BAUD_57600, //may be changed to higher value (Baudrate)
                       NativeThinkGear.SerialDataFormat.TG_STREAM_PACKETS);
         if (errCode < 0)
         {
@@ -55,7 +109,13 @@ public class EEGData : MonoBehaviour
         return true;
     }
 
-    public int[] readAttentionValues(int amount) {
+    public int nextAttentionValue()
+    {
+        return latestAttentionValue;
+    }
+
+    public int[] readAttentionValues(int amount)
+    {
         int errCode = 0;
         /* Read 10 ThinkGear Packets from the connection, 1 Packet at a time */
         int packetsRead = 0;
@@ -73,7 +133,7 @@ public class EEGData : MonoBehaviour
                 if (NativeThinkGear.TG_GetValueStatus(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION) != 0)
                 {
 
-                    /* Get and print out the updated attention value */
+                    /* Get and add the updated attention value */
                     results[packetsRead] = (int)NativeThinkGear.TG_GetValue(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION);
                     packetsRead++;
 
@@ -85,12 +145,12 @@ public class EEGData : MonoBehaviour
         return results;
     }
 
-    public bool Disconnect() {
+    public bool Disconnect()
+    {
         try
         {
-            NativeThinkGear.TG_Disconnect(connectionID); // disconnect test
+            NativeThinkGear.TG_Disconnect(connectionID);
 
-            /* Clean up */
             NativeThinkGear.TG_FreeConnection(connectionID);
         }
         catch (Exception e)

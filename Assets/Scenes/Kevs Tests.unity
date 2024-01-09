@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ec7aeb5b07259408f25f380a87b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  concentration: 8
+  concentration: 0
   airresistance: 0.1
 --- !u!50 &471116633
 Rigidbody2D:
@@ -454,6 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 654638959}
   - component: {fileID: 654638958}
+  - component: {fileID: 654638960}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -488,6 +489,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &654638960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654638957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4967bda82493ecd498a27e9736c2edff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &730772171
 GameObject:
   m_ObjectHideFlags: 0

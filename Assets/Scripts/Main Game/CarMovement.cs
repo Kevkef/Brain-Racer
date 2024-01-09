@@ -13,12 +13,18 @@ public class CarMovement : MonoBehaviour
     void Start()
     {
 // TODO: add Error handling
-        //EEGData.instance.Connect();
+        EEGData.instance.Connect();
+        EEGData.instance.startAutoRead();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        int nextAttentionValue = EEGData.instance.nextAttentionValue();
+        if (nextAttentionValue >= 0)
+        {
+            concentration = 0.1f * nextAttentionValue;
+        }
         if (grounded)
         {
             gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(concentration, 0));
@@ -28,7 +34,6 @@ public class CarMovement : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(-(gameObject.GetComponent<Rigidbody2D>().velocity.x * airresistance), 0));
         }
-        //concentration = 0.1f * EEGData.instance.readAttentionValues(1)[0];
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
