@@ -12,6 +12,8 @@ public class CarMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+// TODO: add Error handling
+        //EEGData.instance.Connect();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class CarMovement : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(-(gameObject.GetComponent<Rigidbody2D>().velocity.x * airresistance), 0));
         }
+        //concentration = 0.1f * EEGData.instance.readAttentionValues(1)[0];
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

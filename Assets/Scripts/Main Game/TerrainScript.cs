@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class TestScript4Terrain : MonoBehaviour
+public class TerrainScript : MonoBehaviour
 {
     public int leftBorderX = -50;
     public int offsetY = 5;
