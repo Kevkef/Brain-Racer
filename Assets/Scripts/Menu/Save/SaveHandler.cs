@@ -14,6 +14,7 @@ public class SaveHandler : MonoBehaviour
     public GameObject[] savePanelsOO; 
     public SaveTemplate[] saveTemplate;
     // Start is called before the first frame update
+    EEGData eegData;
     void Start()
     {
         ShowPanel(); 
@@ -47,6 +48,8 @@ public class SaveHandler : MonoBehaviour
         SaveSlots saveSlots = GetSaveSlots();
         SaveManager saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
         saveManager.setSlotDataScene(saveSlots.slotData[i]); //Game Scene will be requestig data from slotDataScene
+        eegData = GameObject.FindGameObjectWithTag("EEGManager").GetComponent<EEGData>();
+        eegData.Disconnect();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
