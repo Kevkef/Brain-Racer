@@ -19,24 +19,9 @@ public class TerrainScript : MonoBehaviour
         int length = MapLength;
         eegData = slotData.mapData.ToArray();
         Debug.Log(slotData.title);
-        if (eegData[0] == 0)
-        {
-           // createTestData();
-        }
         spriteCtrl = this.GetComponent<SpriteShapeController>();
         CreateShape();
     }
-
-    void createTestData()
-    {
-        Debug.Log("Test Data inserted");
-
-        for(int i = 0; i < eegData.Length; i++)
-        {
-            eegData[i] = 0;
-        }
-    }
-
     void CreateShape()
     {
         spriteCtrl.spline.Clear();

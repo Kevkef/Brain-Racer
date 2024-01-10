@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using Unity.VisualScripting;
@@ -28,6 +29,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayNewGame()
     {
+        Debug.Log(PlayerPrefs.GetInt("AvalibleSlots"));
         //Create a Saveslot for the new Game if  there are less then 10 saves
         if(PlayerPrefs.GetInt("AvalibleSlots") > 0){
             SlotData slotData = new SlotData
@@ -53,12 +55,7 @@ public class MainMenu : MonoBehaviour
                         slotData.coin = "Gold Car";
                         break;
                 }
-                for(int x = 0; x < 5; x++){
-                    slotData.mapData.Add(5);
-                }
-                for(int x = 5; x < 100; x++){
-                slotData.mapData.Add(Random.Range(1,10));
-                }
+                //slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
                 slotData.world = null;
                 try{
                     saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();

@@ -21,10 +21,6 @@ public class UpgradeHandler : MonoBehaviour
         showAcceleration();
         showAirResistance();
         showTankCapacity();
-        Debug.Log(PlayerPrefs.GetInt("MaxSpeed"));
-        Debug.Log(PlayerPrefs.GetInt("Acceleration"));
-        Debug.Log(PlayerPrefs.GetInt("AirResistance"));
-        Debug.Log(PlayerPrefs.GetInt("TankCapacity"));
     }
     public void upgrade(String specification){
         PlayerPrefs.SetInt(specification,PlayerPrefs.GetInt(specification)+1);
