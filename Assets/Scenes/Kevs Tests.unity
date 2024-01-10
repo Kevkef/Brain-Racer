@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ec7aeb5b07259408f25f380a87b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationMultiplier: 15
   concentration: 0
   airresistance: 0.1
 --- !u!50 &471116633
