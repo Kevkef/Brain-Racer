@@ -12,6 +12,7 @@ public class OptionHandler : MonoBehaviour
         level = canvasNr;
     }
     public void closeOptions(){
+        //open the canvas where Options was called from
         if(level == 0){
             MainMenu.SetActive(true);
         }

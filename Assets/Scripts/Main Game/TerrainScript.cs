@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class TestScript4Terrain : MonoBehaviour
+public class TerrainScript : MonoBehaviour
 {
     public int leftBorderX = -50;
     public int offsetY = 5;
     public int MapLength;
     private SpriteShapeController spriteCtrl;
-    private float[] eegData;
+    private int[] eegData;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        SlotData slotData = SaveManager.slotDataScene;
+        Debug.Log(slotData.mapData.ToArray().ToString());
         int length = MapLength;
-        eegData = new float[MapLength];
+        eegData = slotData.mapData.ToArray();
+        Debug.Log(slotData.title);
         if (eegData[0] == 0)
         {
-            createTestData();
+           // createTestData();
         }
         spriteCtrl = this.GetComponent<SpriteShapeController>();
         CreateShape();

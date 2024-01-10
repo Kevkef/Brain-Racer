@@ -7,6 +7,7 @@ TagManager:
   - Audio
   - settingsBtn
   - Shop
+  - Save
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Terrain
   - Water
   - UI
-  - 
+  - Sprite
   - 
   - 
   - 
@@ -43,4 +44,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer 1
+    uniqueID: 3401766571
+    locked: 0
+  - name: New Layer 2
+    uniqueID: 2235823287
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 1035696947
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 2393737293
+    locked: 0
+  - name: New Layer 5
+    uniqueID: 1173011477
+    locked: 0
+  - name: New Layer 6
+    uniqueID: 2594261393
     locked: 0

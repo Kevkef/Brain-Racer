@@ -11,22 +11,22 @@ using System.Runtime.CompilerServices;
 
 public class SaveHandler : MonoBehaviour
 {
-    public static SlotData slotDataScene;
     public GameObject[] savePanelsOO; 
     public SaveTemplate[] saveTemplate;
     // Start is called before the first frame update
     void Start()
     {
-        ShowPanel();
+        ShowPanel(); 
     }
 
     public SaveSlots GetSaveSlots(){
-        SaveData saveData = GameObject.Find("Save").GetComponent<SaveData>();
+        SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
         SaveSlots saveSlots = saveData.LoadFromJson();
         return saveSlots;
     }
-
-    public void ShowPanel(){
+  
+    public void ShowPanel(){    
+        PlayerPrefs.SetInt("AvalibleSlots",10 ); //Ist gerade nur fürs Testen eig muss das wo anderes gemacht werden!
         SaveSlots saveSlots = GetSaveSlots();
         for(int i = 0; i< 10; i++){
             if (saveSlots.slotData[i].title == "")
@@ -34,28 +34,28 @@ public class SaveHandler : MonoBehaviour
                 savePanelsOO[i].SetActive(false);
             }
             else{
-                 savePanelsOO[i].SetActive(true);
-                 saveTemplate[i].title.text = saveSlots.slotData[i].title;
-            saveTemplate[i].world.text = saveSlots.slotData[i].world;
+                savePanelsOO[i].SetActive(true);
+                saveTemplate[i].title.text = saveSlots.slotData[i].title;
+                saveTemplate[i].world.text = saveSlots.slotData[i].world;
+                PlayerPrefs.SetInt("AvalibleSlots",PlayerPrefs.GetInt("AvalibleSlots")-1);
+                Debug.Log(PlayerPrefs.GetInt("AvalibleSlots"));
             }
         }
     }
-
     public void loadSave(int i){
+        //load the spezified Save
         SaveSlots saveSlots = GetSaveSlots();
-        slotDataScene = saveSlots.slotData[i];
+        SaveManager saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
+        saveManager.setSlotDataScene(saveSlots.slotData[i]); //Game Scene will be requestig data from slotDataScene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void deleteSave(int i)
     {
-        SaveData saveData = GameObject.Find("Save").GetComponent<SaveData>();
-        SaveSlots saveSlots = GetSaveSlots();
-        saveSlots.slotData[i].title = "";
-        saveSlots.slotData[i].world = "";
-        saveSlots.slotData[i].car = "";
-        saveSlots.slotData[i].mapData = null;
-        saveData.SaveToJson();
+        //Sets save to default values
+        SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
+        saveData.deleteFromSaveSlots(i);
+        PlayerPrefs.SetInt("AvalibleSlots", PlayerPrefs.GetInt("AvalibleSlots")+1);
         ShowPanel();
     }
 
