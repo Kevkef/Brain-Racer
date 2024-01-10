@@ -48,8 +48,13 @@ public class SaveHandler : MonoBehaviour
         SaveSlots saveSlots = GetSaveSlots();
         SaveManager saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
         saveManager.setSlotDataScene(saveSlots.slotData[i]); //Game Scene will be requestig data from slotDataScene
-        eegData = GameObject.FindGameObjectWithTag("EEGManager").GetComponent<EEGData>();
-        eegData.Disconnect();
+        eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
+        try{
+            eegData.Disconnect();
+        }
+        catch{
+            Debug.Log("Not Disconnected");
+       }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

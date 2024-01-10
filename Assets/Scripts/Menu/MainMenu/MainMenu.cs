@@ -14,8 +14,13 @@ public class MainMenu : MonoBehaviour
     SaveManager saveManager;
     EEGData eegData;
     private void Start(){
-        eegData = GameObject.FindGameObjectWithTag("EEGManager").GetComponent<EEGData>();
-        eegData.Connect();
+        eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
+        try{
+            eegData.Connect();
+        }
+        catch{
+            Debug.Log("Not Connected");
+       }
     }
     private void Awake(){
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
@@ -66,8 +71,13 @@ public class MainMenu : MonoBehaviour
                 SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
                 saveData.addToSaveSlots(slotData);                                              //Save the new Save Slot to JSON
                 PlayerPrefs.SetInt("AvalibleSlots", PlayerPrefs.GetInt("AvalibleSlots")-1);
-                eegData = GameObject.FindGameObjectWithTag("EEGManager").GetComponent<EEGData>();
-                eegData.Disconnect();
+                eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
+                try{
+                    eegData.Disconnect();
+                }
+                catch{
+                    Debug.Log("Not Disconnected");
+                }
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else{
@@ -76,8 +86,14 @@ public class MainMenu : MonoBehaviour
    }
     public void QuitGame()
     {
-        eegData = GameObject.FindGameObjectWithTag("EEGManager").GetComponent<EEGData>();
-        eegData.Disconnect();
+        eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
+        
+        try{
+            eegData.Disconnect();
+        }
+        catch{
+            Debug.Log("Not Disconnected");
+       }
         Application.Quit();
     }
 }
