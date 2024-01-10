@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "dgSpecHash": "UXseHX0BN1dKXIxVVC2yxVMRnSHQQBGk27CTcHQP1XM9IVse6CILvI1Spf8Dz/KE80OPDxlVuxNgRHmy3GhlBw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kevin\\Documents\\Unity\\Brain Racer\\Brain-Racer\\Bluetooth C#\\UwpBluetooth\\UwpBluetooth.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.net.native.compiler\\2.1.8\\microsoft.net.native.compiler.2.1.8.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.net.uwpcoreruntimesdk\\2.1.2\\microsoft.net.uwpcoreruntimesdk.2.1.2.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.netcore.universalwindowsplatform\\6.1.7\\microsoft.netcore.universalwindowsplatform.6.1.7.nupkg.sha512",
+    "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-arm-aot.microsoft.netcore.universalwindowsplatform\\6.1.7\\runtime.win10-arm-aot.microsoft.netcore.universalwindowsplatform.6.1.7.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-arm.microsoft.net.native.compiler\\2.1.8\\runtime.win10-arm.microsoft.net.native.compiler.2.1.8.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-arm.microsoft.net.native.sharedlibrary\\2.1.8\\runtime.win10-arm.microsoft.net.native.sharedlibrary.2.1.8.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\\2.1.2\\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk.2.1.2.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-arm.microsoft.netcore.universalwindowsplatform\\6.1.7\\runtime.win10-arm.microsoft.netcore.universalwindowsplatform.6.1.7.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x64-aot.microsoft.netcore.universalwindowsplatform\\6.1.7\\runtime.win10-x64-aot.microsoft.netcore.universalwindowsplatform.6.1.7.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x64.microsoft.net.native.compiler\\2.1.8\\runtime.win10-x64.microsoft.net.native.compiler.2.1.8.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x64.microsoft.net.native.sharedlibrary\\2.1.8\\runtime.win10-x64.microsoft.net.native.sharedlibrary.2.1.8.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\\2.1.2\\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk.2.1.2.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\\6.1.7\\runtime.win10-x64.microsoft.netcore.universalwindowsplatform.6.1.7.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x86-aot.microsoft.netcore.universalwindowsplatform\\6.1.7\\runtime.win10-x86-aot.microsoft.netcore.universalwindowsplatform.6.1.7.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x86.microsoft.net.native.compiler\\2.1.8\\runtime.win10-x86.microsoft.net.native.compiler.2.1.8.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x86.microsoft.net.native.sharedlibrary\\2.1.8\\runtime.win10-x86.microsoft.net.native.sharedlibrary.2.1.8.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\\2.1.2\\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk.2.1.2.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\\6.1.7\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform.6.1.7.nupkg.sha512"
+  ],
+  "logs": []
+}

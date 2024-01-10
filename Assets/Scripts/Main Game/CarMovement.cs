@@ -12,11 +12,19 @@ public class CarMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+// TODO: add Error handling
+        EEGData.instance.Connect();
+        EEGData.instance.startAutoRead();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        int nextAttentionValue = EEGData.instance.nextAttentionValue();
+        if (nextAttentionValue >= 0)
+        {
+            concentration = 0.1f * nextAttentionValue;
+        }
         if (grounded)
         {
             gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(concentration, 0));
