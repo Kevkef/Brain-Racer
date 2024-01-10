@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,11 @@ public class MainMenu : MonoBehaviour
 {
     AudioManager audioManager;
     SaveManager saveManager;
-
+    EEGData eegData;
+    private void Start(){
+        eegData = GameObject.FindGameObjectWithTag("EEGManager").GetComponent<EEGData>();
+        eegData.Connect();
+    }
     private void Awake(){
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
@@ -61,6 +66,8 @@ public class MainMenu : MonoBehaviour
                 SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
                 saveData.addToSaveSlots(slotData);                                              //Save the new Save Slot to JSON
                 PlayerPrefs.SetInt("AvalibleSlots", PlayerPrefs.GetInt("AvalibleSlots")-1);
+                eegData = GameObject.FindGameObjectWithTag("EEGManager").GetComponent<EEGData>();
+                eegData.Disconnect();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else{
@@ -69,6 +76,8 @@ public class MainMenu : MonoBehaviour
    }
     public void QuitGame()
     {
+        eegData = GameObject.FindGameObjectWithTag("EEGManager").GetComponent<EEGData>();
+        eegData.Disconnect();
         Application.Quit();
     }
 }
