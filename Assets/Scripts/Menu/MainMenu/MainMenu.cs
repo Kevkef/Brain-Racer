@@ -14,7 +14,8 @@ public class MainMenu : MonoBehaviour
     AudioManager audioManager;
     SaveManager saveManager;
     EEGData eegData;
-    private void Start(){
+    private void Awake(){
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
         try{
             eegData.Connect();
@@ -22,9 +23,6 @@ public class MainMenu : MonoBehaviour
         catch{
             Debug.Log("Not Connected");
        }
-    }
-    private void Awake(){
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void PlayNewGame()
