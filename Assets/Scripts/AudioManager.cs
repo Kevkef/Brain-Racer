@@ -7,10 +7,11 @@ public class AudioManager : MonoBehaviour
     [Header("---AudioSource---")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource engineSource;
 
      [Header("---AudioClip---")]
     public AudioClip standard;
-    public AudioClip death;
+    public AudioClip engine;
     private void Awake(){
         DontDestroyOnLoad(gameObject);
     }
@@ -20,5 +21,9 @@ public class AudioManager : MonoBehaviour
     }
     public void PlaySFX(AudioClip clip){
         SFXSource.PlayOneShot(clip);
+    }
+    public void PlayEngine(){
+        engineSource.clip=engine;
+        engineSource.Play();
     }
 }

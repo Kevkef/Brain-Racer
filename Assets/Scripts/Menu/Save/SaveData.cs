@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SaveData : MonoBehaviour
 {
-    public SaveSlots saveSlots; //Used as a "puppet" to save to JSON
+    public SaveSlots saveSlots ; //Used as a "puppet" to save to JSON
     public void Start(){
     }
     public void addToSaveSlots(SlotData slotData){
