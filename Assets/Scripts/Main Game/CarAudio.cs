@@ -17,7 +17,7 @@ public class CarAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        audioSource.volume = EEGData.instance.nextAttentionValue() / 100f;
+        audioSource.volume = PlayerPrefs.GetFloat("EngineMultiplier")* EEGData.instance.nextAttentionValue() / 100f;
         audioSource.pitch = EEGData.instance.nextAttentionValue() /33.33f;
     }
 }
