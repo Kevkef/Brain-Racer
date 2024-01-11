@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class UIOverlay : MonoBehaviour
@@ -25,6 +26,7 @@ public class UIOverlay : MonoBehaviour
     public GameObject winScreen;
     public GameObject loseScreen;
     public GameObject pauseScreen;
+    public Slider fuelSlider;
     
     private int CoinAmount;
     private bool pause;
@@ -34,6 +36,8 @@ public class UIOverlay : MonoBehaviour
         CoinAmounttxt.text = "0";
         CoinAmount = 0;
         pause = false;
+        fuelSlider.maxValue = PlayerPrefs.GetInt("TankCapacity");
+        fuelSlider.value = PlayerPrefs.GetInt("TankCapacity");
     }
 
     public void addCoin()
@@ -54,6 +58,11 @@ public class UIOverlay : MonoBehaviour
         {
             loseScreen.SetActive(true);
         }
+    }
+
+    public void updatefuel(float fuel)
+    {
+        fuelSlider.value = fuel;
     }
     void Update()
     {

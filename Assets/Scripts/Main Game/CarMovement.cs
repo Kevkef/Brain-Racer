@@ -20,8 +20,7 @@ public class CarMovement : MonoBehaviour
         EEGData.instance.Connect();
         EEGData.instance.startAutoRead();
 
-        //fuel = PlayerPrefs.GetInt("TankCapacity");
-        fuel = 30.0f;
+        fuel = PlayerPrefs.GetInt("TankCapacity");
         starttime = Time.time;
     }
 
@@ -33,6 +32,7 @@ public class CarMovement : MonoBehaviour
         {
             concentration = 0.1f * nextAttentionValue;
             fuel -= Time.deltaTime;
+            UIOverlay.instance.updatefuel(fuel);
             attentionvalues.Add(nextAttentionValue);
         }
         if (grounded)
@@ -74,6 +74,11 @@ public class CarMovement : MonoBehaviour
         if (collision.gameObject.layer == 3)
         {
             grounded = true;
+        }
+        if (collision.gameObject.layer == 8)
+        {
+            Destroy(collision.gameObject.transform.parent.gameObject);
+            fuel = PlayerPrefs.GetInt("TankCapacity");
         }
     }
 

@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 3a0e58716a165f140b4cc8be1a61e417
   - enabled: 1
-    path: Assets/Scenes/Kevs Tests.unity
+    path: Assets/Scenes/Main Game.unity
     guid: 19f325418aef97d4dbc93df52d3724ce
   m_configObjects: {}
