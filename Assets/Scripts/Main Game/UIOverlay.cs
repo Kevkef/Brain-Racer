@@ -21,12 +21,19 @@ public class UIOverlay : MonoBehaviour
     }
     #endregion
     public TMP_Text CoinAmounttxt;
+    public GameObject endScreen;
+    public GameObject winScreen;
+    public GameObject loseScreen;
+    public GameObject pauseScreen;
+    
     private int CoinAmount;
+    private bool pause;
     // Start is called before the first frame update
     void Start()
     {
         CoinAmounttxt.text = "0";
         CoinAmount = 0;
+        pause = false;
     }
 
     public void addCoin()
@@ -36,8 +43,35 @@ public class UIOverlay : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    public void showEndScreen(bool win)
+    {
+        endScreen.SetActive(true);
+        if (win)
+        {
+            winScreen.SetActive(true);
+        } else
+        {
+            loseScreen.SetActive(true);
+        }
+    }
     void Update()
     {
+        if (Input.GetKeyDown("p"))
+        {
+            if (pause)
+            {
+                pause = false;
+                pauseScreen.SetActive(false);
+                Time.timeScale = 1.0f;
+            } else
+            {
+                pause = true;
+                pauseScreen.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+
+        }
         
     }
 }

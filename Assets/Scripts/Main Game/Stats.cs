@@ -5,6 +5,7 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     private int currCoins;
+    private int concentrationpoints;
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +34,26 @@ public class Stats : MonoBehaviour
         return PlayerPrefs.GetInt("Coins");
     }
 
-    public void ApplyCoins()
+    private void ApplyCoins()
     {
         int coins = PlayerPrefs.GetInt("Coins") + currCoins;
         PlayerPrefs.SetInt("Coins", coins);
+    }
+
+    private void ApplyPoints()
+    {
+        int points = PlayerPrefs.GetInt("Points") + concentrationpoints;
+        PlayerPrefs.SetInt("Points", points);
+    }
+
+    public void setConcentrationPoints(int points)
+    {
+        concentrationpoints = points;
+    }
+
+    public void save()
+    {
+        ApplyCoins();
+        ApplyPoints();
     }
 }

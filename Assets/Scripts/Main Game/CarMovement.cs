@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CarMovement : MonoBehaviour
@@ -9,25 +10,37 @@ public class CarMovement : MonoBehaviour
     public float airresistance = 0.1f;
 
     private bool grounded = false;
+    private float fuel = 30.0f;
+    private float starttime = 0;
+    private List<int> attentionvalues = new List<int>();
     // Start is called before the first frame update
     void Start()
     {
 // TODO: add Error handling
         EEGData.instance.Connect();
         EEGData.instance.startAutoRead();
+
+        //fuel = PlayerPrefs.GetInt("TankCapacity");
+        fuel = 30.0f;
+        starttime = Time.time;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         int nextAttentionValue = EEGData.instance.nextAttentionValue();
-        if (nextAttentionValue >= 0)
+        if (nextAttentionValue > 0)
         {
             concentration = 0.1f * nextAttentionValue;
+            fuel -= Time.deltaTime;
+            attentionvalues.Add(nextAttentionValue);
         }
         if (grounded)
         {
-            gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(concentration, 0));
+            if (fuel > 0.0f)
+            {
+                gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(concentration, 0));
+            }
         } else
         {
             if (Input.GetKey("a") || Input.GetKey("left"))
@@ -42,6 +55,15 @@ public class CarMovement : MonoBehaviour
         if (gameObject.GetComponent<Rigidbody2D>().velocity.x > 0)
         {
             gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(-(gameObject.GetComponent<Rigidbody2D>().velocity.x * airresistance), 0));
+        }
+
+        //EndConditions
+
+        if(fuel <= -5.0f) //-5 to have 5 seconds spare
+        {
+            GameObject.Find("GameManager").GetComponent<Stats>().setConcentrationPoints((int)((attentionvalues.Sum() / attentionvalues.Count) * (Time.time - starttime) * 0.001));
+            GameObject.Find("GameManager").GetComponent<Stats>().save();
+            UIOverlay.instance.showEndScreen(false);
         }
 
         
