@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
                         slotData.coin = "Gold Car";
                         break;
                 }
-                //slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
+                slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
                 slotData.world = null;
                 try{
                     saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();

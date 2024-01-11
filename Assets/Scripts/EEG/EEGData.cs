@@ -135,6 +135,7 @@ public class EEGData : MonoBehaviour
 
                     /* Get and add the updated attention value */
                     results[packetsRead] = (int)NativeThinkGear.TG_GetValue(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION);
+                    Debug.Log("Packets Read: " + packetsRead);
                     packetsRead++;
 
                 } /* end "If attention value has been updated..." */
