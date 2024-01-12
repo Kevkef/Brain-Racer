@@ -34,10 +34,10 @@ public class UpgradeHandler : MonoBehaviour
         PlayerPrefs.SetInt("AirResistance", save1); 
         PlayerPrefs.SetInt("Acceleration", save2); 
         PlayerPrefs.SetInt("TankCapacity", save3);
-        showMaxSpeed();
-        showAirResistance();
-        showAcceleration();
-        showTankCapacity();
+        show("MaxSpeed", costMaxSpeed, levelMaxSpeed ,coinMaxSpeed, btnMaxSpeed);
+        show("AirResistance",costAirResistance,levelAirResistance, coinAirResistance, btnAirResistance);
+        show("Acceleration", costAcceleration, levelAcceleration, coinAcceleration, btnAcceleration);
+        show("TankCapacity", costTankCapacity, levelTankCapacity, coinTankCapacity, btnTankCapacity);
     }
 
     private void Awake(){
@@ -53,16 +53,16 @@ public class UpgradeHandler : MonoBehaviour
         PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") -PlayerPrefs.GetInt("Cost"+specification));
         switch(specification){
             case "MaxSpeed": 
-                showMaxSpeed();
+                show(specification, costMaxSpeed, levelMaxSpeed ,coinMaxSpeed, btnMaxSpeed);
                 break;
             case "AirResistance": 
-                showAirResistance();
+                show(specification,costAirResistance,levelAirResistance, coinAirResistance, btnAirResistance);
                 break;
             case "Acceleration": 
-                showAcceleration();
+                show(specification, costAcceleration, levelAcceleration, coinAcceleration, btnAcceleration);
                 break;
             case "TankCapacity": 
-                showTankCapacity();
+                show(specification, costTankCapacity, levelTankCapacity, coinTankCapacity, btnTankCapacity);
                 break;
         }
         shopHandler = GameObject.Find("Shop").GetComponent<ShopHandler>();
@@ -72,40 +72,13 @@ public class UpgradeHandler : MonoBehaviour
             Debug.Log("No money"+ PlayerPrefs.GetInt("Coins"));
         }
     }
-    private void showMaxSpeed(){
-        Debug.Log(PlayerPrefs.GetInt("MaxSpeed"));
-        PlayerPrefs.SetInt("CostMaxSpeed",costMaxSpeed[PlayerPrefs.GetInt("MaxSpeed")]);
-        levelMaxSpeed.text = PlayerPrefs.GetInt("MaxSpeed").ToString() + "/10";
-        coinMaxSpeed.text = PlayerPrefs.GetInt("CostMaxSpeed").ToString();
-        if(PlayerPrefs.GetInt("MaxSpeed") == 10){
-            btnMaxSpeed.enabled = false;
-        }
-    }
-    private void showAirResistance(){
-        PlayerPrefs.SetInt("CostAirResistance",costAirResistance[PlayerPrefs.GetInt("AirResistance")]);
-        levelAirResistance.text = PlayerPrefs.GetInt("AirResistance").ToString() + "/10";
-        Debug.Log(PlayerPrefs.GetInt("AirResistance"));
-        coinAirResistance.text = PlayerPrefs.GetInt("CostAirResistance").ToString();
-        if(PlayerPrefs.GetInt("AirResistance") == 10){
-            btnAirResistance.enabled = false;
-        }
-    }
-    private void showAcceleration(){
-        PlayerPrefs.SetInt("CostAcceleration",costAcceleration[PlayerPrefs.GetInt("Acceleration")]);
-        levelAcceleration.text = PlayerPrefs.GetInt("Acceleration").ToString() + "/10";
-        Debug.Log(PlayerPrefs.GetInt("Acceleration"));
-        coinAcceleration.text = PlayerPrefs.GetInt("CostAcceleration").ToString();
-        if(PlayerPrefs.GetInt("Acceleration") == 10){
-            btnAcceleration.enabled = false;
-        }
-    }
-    private void showTankCapacity(){
-        PlayerPrefs.SetInt("CostTankCapacity",costTankCapacity[PlayerPrefs.GetInt("TankCapacity")]);
-        levelTankCapacity.text = PlayerPrefs.GetInt("TankCapacity").ToString() + "/10";
-        Debug.Log(PlayerPrefs.GetInt("TankCapacity"));
-        coinTankCapacity.text = PlayerPrefs.GetInt("CostTankCapacity").ToString();
-        if(PlayerPrefs.GetInt("TankCapacity") == 10){
-            btnTankCapacity.enabled = false;
+
+    private void show(string spezification, int[] cost, TMP_Text level, TMP_Text coin, Button btn){
+        PlayerPrefs.SetInt("Cost"+spezification,cost[PlayerPrefs.GetInt(spezification)]);
+        level.text = PlayerPrefs.GetInt(spezification).ToString() + "/10";
+        coin.text = PlayerPrefs.GetInt("Cost"+ spezification).ToString();
+        if(PlayerPrefs.GetInt(spezification) == 10){
+            btn.enabled = false;
         }
     }
 }
