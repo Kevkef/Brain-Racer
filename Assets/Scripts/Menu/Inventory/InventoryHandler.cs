@@ -16,8 +16,11 @@ public class InventoryHandler : MonoBehaviour
     public GameObject carSprite;
     SubDisplay subDisplayCoins;
     SubDisplay subDisplayCars;
-    void Start()
+    SpriteRenderer spriteRenderer;
+    void OnEnable()
     {
+       changeLayer(coinSprite, 0);
+       changeLayer(carSprite, 0);
         subDisplayCoins = coinSprite.GetComponent<SubDisplay>();
         subDisplayCars = carSprite.GetComponent<SubDisplay>();
     }
@@ -56,5 +59,13 @@ public class InventoryHandler : MonoBehaviour
                 subDisplayCars.Start();
                 break;
         }
+    }
+    public void closeInventory(){
+        changeLayer(coinSprite, 1);
+        changeLayer(carSprite, 1);
+    }
+    private void changeLayer(GameObject gameObject, int position){
+        spriteRenderer =  gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = position;
     }
 }

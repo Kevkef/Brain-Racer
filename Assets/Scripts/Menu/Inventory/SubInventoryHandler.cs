@@ -14,7 +14,7 @@ public class SubInventoryHandler : MonoBehaviour
    // Start is called before the first frame update
     void Start()
     {
-        inventoryHandler = GameObject.Find("Inventory").GetComponent<InventoryHandler>();
+        inventoryHandler = GameObject.FindWithTag("Inventory").GetComponent<InventoryHandler>();
         inventoryHandler.showPanel(inventoryItemSO, inventoryPanelsOO ,inventoryPanels, specification);
     }
 
