@@ -35,7 +35,7 @@ public class ShopHandler : MonoBehaviour
         PlayerPrefs.SetInt("Coins", coins);
         UpdateCoins();
     }
-    private void UpdateCoins(){
+    public void UpdateCoins(){
         cost.text = "Coins:" + PlayerPrefs.GetInt("Coins");
     }
     public void Purchase(int btnNr, ShopItemSO[] shopItemSO, String submenu){
