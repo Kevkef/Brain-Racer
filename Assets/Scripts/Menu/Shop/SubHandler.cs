@@ -8,6 +8,7 @@ using System;
 public class SubHandler : MonoBehaviour
 {
     public string specification;
+    public string currency;
     public ShopItemSO[] shopItemSkinSO;
     public GameObject[] shopPanelsSkinOO; // the same as shopPanels.gameObject
     public ShopTemplate[] shopPanelsSkin;
@@ -18,15 +19,19 @@ public class SubHandler : MonoBehaviour
     void Start()
     {
         shopHandler = GameObject.Find("Shop").GetComponent<ShopHandler>();
-        shopHandler.showPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification);
+        shopHandler.ShowPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification, currency);
         CheckPurchaseable();      
     }
 
     public void CheckPurchaseable(){
-        shopHandler.CheckPurchaseable(shopItemSkinSO,myPurchaseSkinBtns);
+        shopHandler.CheckPurchaseable(shopItemSkinSO,myPurchaseSkinBtns, currency);
     }
-    public void Purchase (int btnNr){
-        shopHandler.Purchase(btnNr, shopItemSkinSO, specification);
-        shopHandler.showPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification);
+    public void PurchaseCoins(int btnNr){
+        shopHandler.PurchaseCoins(btnNr, shopItemSkinSO, specification);
+        shopHandler.ShowPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification, currency);
+    }
+    public void PurchasePoints(int btnNr){
+        shopHandler.PurchasePoints(btnNr, shopItemSkinSO, specification);
+        shopHandler.ShowPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification, currency);
     }
 }
