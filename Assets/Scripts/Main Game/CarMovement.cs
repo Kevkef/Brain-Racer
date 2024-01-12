@@ -38,6 +38,7 @@ public class CarMovement : MonoBehaviour
             concentration = acceleration * nextAttentionValue;
             fuel -= Time.deltaTime;
             UIOverlay.instance.updatefuel(fuel);
+            UIOverlay.instance.updateAttention(nextAttentionValue);
             attentionvalues.Add(nextAttentionValue);
         }
         if (grounded)

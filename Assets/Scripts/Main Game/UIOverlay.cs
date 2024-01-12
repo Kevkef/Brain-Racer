@@ -27,6 +27,8 @@ public class UIOverlay : MonoBehaviour
     public GameObject loseScreen;
     public GameObject pauseScreen;
     public Slider fuelSlider;
+    public Slider attentionSlider;
+    public TMP_Text attentiontxt;
     
     private int CoinAmount;
     private bool pause;
@@ -63,6 +65,12 @@ public class UIOverlay : MonoBehaviour
     public void updatefuel(float fuel)
     {
         fuelSlider.value = fuel;
+    }
+
+    public void updateAttention( int attention)
+    {
+        attentionSlider.value = attention;
+        attentiontxt.text = (attention + "%");
     }
     void Update()
     {
