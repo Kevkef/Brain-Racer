@@ -7,10 +7,12 @@ public class CarMovement : MonoBehaviour
 {
     public int rotationMultiplier = 10;
     public float concentration = 0.4f;
-    public float airresistance = 0.1f;
 
     private bool grounded = false;
     private float fuel = 30.0f;
+    private float maxSpeed;
+    private float airresistance;
+    private float acceleration;
     private float starttime = 0;
     private List<int> attentionvalues = new List<int>();
     // Start is called before the first frame update
@@ -21,6 +23,9 @@ public class CarMovement : MonoBehaviour
         EEGData.instance.startAutoRead();
 
         fuel = PlayerPrefs.GetInt("TankCapacity");
+        maxSpeed = PlayerPrefs.GetInt("MaxSpeed");
+        airresistance = PlayerPrefs.GetInt("AirResistance");
+        acceleration = PlayerPrefs.GetInt("Acceleration");
         starttime = Time.time;
     }
 
@@ -30,14 +35,14 @@ public class CarMovement : MonoBehaviour
         int nextAttentionValue = EEGData.instance.nextAttentionValue();
         if (nextAttentionValue > 0)
         {
-            concentration = 0.1f * nextAttentionValue;
+            concentration = acceleration * nextAttentionValue;
             fuel -= Time.deltaTime;
             UIOverlay.instance.updatefuel(fuel);
             attentionvalues.Add(nextAttentionValue);
         }
         if (grounded)
         {
-            if (fuel > 0.0f)
+            if (fuel > 0.0f && gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
             {
                 gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(concentration, 0));
             }
