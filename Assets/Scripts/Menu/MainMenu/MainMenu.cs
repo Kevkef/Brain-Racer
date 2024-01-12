@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using TMPro;
+using Unity.Loading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,7 @@ public class MainMenu : MonoBehaviour
     AudioManager audioManager;
     SaveManager saveManager;
     EEGData eegData;
+    public GameObject LoadingScreen;
     private void Awake(){
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
@@ -30,6 +32,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log(PlayerPrefs.GetInt("AvalibleSlots"));
         //Create a Saveslot for the new Game if  there are less then 10 saves
         if(PlayerPrefs.GetInt("AvalibleSlots") > 0){
+            LoadingScreen.SetActive(true);
             SlotData slotData = new SlotData
             {
                 title = DateTime.Now.ToString()
