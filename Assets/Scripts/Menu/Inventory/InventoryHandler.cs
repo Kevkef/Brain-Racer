@@ -46,7 +46,7 @@ public class InventoryHandler : MonoBehaviour
     }
     public void select(int btnNr, string specification,GameObject[] InventoryPanelsOO)
     { 
-        //change color of selected Inventory field
+        //change color of selected Inventory field 
         int deselect = PlayerPrefs.GetInt("Selected"+ specification);
         InventoryPanelsOO[deselect].GetComponent<Button>().image.color = Color.white;
         PlayerPrefs.SetInt("Selected" + specification, btnNr);

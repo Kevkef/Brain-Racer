@@ -8,6 +8,8 @@ TagManager:
   - settingsBtn
   - Shop
   - Save
+  - Engine
+  - Inventory
   layers:
   - Default
   - TransparentFX
