@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,25 +7,32 @@ using UnityEngine;
 public class SaveData : MonoBehaviour
 {
     public SaveSlots saveSlots ; //Used as a "puppet" to save to JSON
+    public int saveSlotNumber;
     public void Start(){
+    }
+    private void Awake(){
+        DontDestroyOnLoad(gameObject);
     }
     public void addToSaveSlots(SlotData slotData){
         //Called from Main Menu and used to save the new Game
-        int i = 0;
-        while(saveSlots.slotData[i].title != ""){
-            i++;
+        saveSlotNumber = 0;
+        while(saveSlots.slotData[saveSlotNumber].title != ""){
+            saveSlotNumber++;
         }
-        saveSlots.slotData[i] = slotData;
+        saveSlots.slotData[saveSlotNumber] = slotData;
         SaveToJson();
     }
     public void deleteFromSaveSlots(int btnNr){
         //Delete a spezified Slot from JSON data
-         saveSlots.slotData[btnNr].title = "";
+        saveSlots.slotData[btnNr].title = "";
         saveSlots.slotData[btnNr].world = "";
         saveSlots.slotData[btnNr].car = "";
         saveSlots.slotData[btnNr].coin = "";
         saveSlots.slotData[btnNr].mapData = null;
         SaveToJson();
+    }
+    public void updateSaveSlotdataMap(int[] newData){
+        saveSlots.slotData[saveSlotNumber].mapData.AddRange(newData.ToList());
     }
     public void SaveToJson(){
         //Save the Slotes to JSON

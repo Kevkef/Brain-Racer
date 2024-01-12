@@ -49,6 +49,8 @@ public class SaveHandler : MonoBehaviour
         SaveManager saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
         saveManager.setSlotDataScene(saveSlots.slotData[i]); //Game Scene will be requestig data from slotDataScene
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
+        SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
+        saveData.saveSlotNumber = i;
         try{
             eegData.Disconnect();
         }
