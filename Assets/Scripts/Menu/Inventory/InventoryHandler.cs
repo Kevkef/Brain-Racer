@@ -35,7 +35,7 @@ public class InventoryHandler : MonoBehaviour
             LoadPanels(InventoryItemSO,InventoryTemplate);
         }
         int Nr = PlayerPrefs.GetInt("Selected" + specification);
-        InventoryPanelsOO[Nr].GetComponent<Button>().image.color = Color.blue;
+        InventoryPanelsOO[Nr].GetComponent<Button>().image.color = Color.yellow;
     }
 
     public void LoadPanels(InventoryItemSO[] InventoryItemSO, InventoryTemplate[] InventoryPanels){
@@ -50,7 +50,7 @@ public class InventoryHandler : MonoBehaviour
         int deselect = PlayerPrefs.GetInt("Selected"+ specification);
         InventoryPanelsOO[deselect].GetComponent<Button>().image.color = Color.white;
         PlayerPrefs.SetInt("Selected" + specification, btnNr);
-        InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.blue;
+        InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.yellow;
         switch(specification){
             case "Coins":
                 subDisplayCoins.Start();
