@@ -16,7 +16,6 @@ public class TerrainScript : MonoBehaviour
     void Start()
     {
         SlotData slotData = SaveManager.slotDataScene;
-        Debug.Log(slotData.mapData.ToArray().ToString());
         eegData = slotData.mapData.ToArray();
         MapLength = eegData.Length * stretchData;  
         Debug.Log(slotData.title);
