@@ -28,7 +28,6 @@ public class AudioSubHandler : SubHandler
             image.sprite = play;
             Debug.Log("In wrong colume");
         }
-        
     }
     IEnumerator playForSeconds(int btnNr)
     {
