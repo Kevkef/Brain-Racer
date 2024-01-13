@@ -25,6 +25,9 @@ public class SaveData : MonoBehaviour
     public void deleteFromSaveSlots(int btnNr){
         //Delete a spezified Slot from JSON data
         saveSlots.slotData[btnNr].title = "";
+        saveSlots.slotData[btnNr].world = "";
+        saveSlots.slotData[btnNr].car = "";
+        saveSlots.slotData[btnNr].coin = "";
         saveSlots.slotData[btnNr].mapData = null;
         SaveToJson();
     }

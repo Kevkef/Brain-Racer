@@ -51,8 +51,11 @@ public class InventoryHandler : MonoBehaviour
     { 
         //change color of selected Inventory field 
         if(specification != "Minigames"){
+            try{
             int deselect = PlayerPrefs.GetInt("Selected"+ specification);
             InventoryPanelsOO[deselect].GetComponent<Button>().image.color = Color.white;
+            }
+            catch{}
             PlayerPrefs.SetInt("Selected" + specification, btnNr);
             InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.yellow;
         }
