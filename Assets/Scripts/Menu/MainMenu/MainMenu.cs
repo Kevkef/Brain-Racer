@@ -37,27 +37,7 @@ public class MainMenu : MonoBehaviour
             {
                 title = DateTime.Now.ToString()
             };
-           switch (PlayerPrefs.GetInt("SelectedCars")){
-                    case 0:
-                        slotData.car = "Basic Car";
-                        break;
-                    case 1:
-                        slotData.car = "Badass Car";
-                        break;
-                }
-                switch(PlayerPrefs.GetInt("SelectedCoins")){
-                    case 0:
-                        slotData.coin = "Bronze Coin";
-                        break;
-                    case 1:
-                        slotData.coin = "Silver Car";
-                        break;
-                    case 2:
-                        slotData.coin = "Gold Car";
-                        break;
-                }
                 slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
-                slotData.world = null;
                 try{
                     saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
                     Debug.Log("Success");

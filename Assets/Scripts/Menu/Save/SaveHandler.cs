@@ -38,7 +38,6 @@ public class SaveHandler : MonoBehaviour
             else{
                 savePanelsOO[i].SetActive(true);
                 saveTemplate[i].title.text = saveSlots.slotData[i].title;
-                saveTemplate[i].world.text = saveSlots.slotData[i].world;
                 PlayerPrefs.SetInt("AvalibleSlots",PlayerPrefs.GetInt("AvalibleSlots")-1);
                 Debug.Log(PlayerPrefs.GetInt("AvalibleSlots"));
             }
