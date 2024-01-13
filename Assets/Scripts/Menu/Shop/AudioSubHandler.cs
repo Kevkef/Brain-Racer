@@ -19,7 +19,7 @@ public class AudioSubHandler : SubHandler
     }
     public void Click(int btnNr){
         image = square[btnNr].GetComponent<Image>();
-        if(image.sprite == play){
+        if(image.sprite == play){ //
             image.sprite = pause;
             StartCoroutine(playForSeconds(btnNr));
         }
@@ -32,6 +32,7 @@ public class AudioSubHandler : SubHandler
     }
     IEnumerator playForSeconds(int btnNr)
     {
+        //Playes a SFX for 10 seconds before music starts playing again
         audioManager.PlaySFX(audioItemSOs[btnNr].audioClip);
         audioManager.pauseMusic();
         yield return new WaitForSeconds(10);
