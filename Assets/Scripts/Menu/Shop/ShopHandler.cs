@@ -14,7 +14,8 @@ public class ShopHandler : MonoBehaviour
     public int points;
     public TMP_Text costCoins;
     public TMP_Text costPoints;
-    
+    public GameObject boughtEverything;
+    int noActive;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +23,20 @@ public class ShopHandler : MonoBehaviour
         points = PlayerPrefs.GetInt("Points");
     }
     public void ShowPanel(ShopItemSO[] shopItemSO, GameObject[] shopPanelsOO, ShopTemplate[] shopTemplate, string specification, string currency){
+        noActive = 0;
          for(int i = 0; i< shopItemSO.Length; i++){
-            Debug.Log(shopItemSO.Length +"+" +PlayerPrefs.GetInt(specification + i));
             if(PlayerPrefs.GetInt(specification + i.ToString()) == 1){
                 shopPanelsOO[i].SetActive(false);
             }
             else{
-                 shopPanelsOO[i].SetActive(true);
+                noActive++;
+                shopPanelsOO[i].SetActive(true);
+            }
+            if(noActive == 0){
+                boughtEverything.SetActive(true);
+            }
+            else{
+                boughtEverything.SetActive(false);
             }
             LoadPanels(shopItemSO,shopTemplate,currency);
             switch(currency){

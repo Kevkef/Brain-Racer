@@ -12,10 +12,10 @@ public class AudioSubHandler : SubHandler
     public Sprite pause;
     public GameObject[] square;
     Image image;
-    public void Start(){
+    public void OnEnable(){
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         base.shopItemSkinSO = audioItemSOs;
-        base.Start();
+        base.OnEnable();
     }
     public void Click(int btnNr){
         image = square[btnNr].GetComponent<Image>();
