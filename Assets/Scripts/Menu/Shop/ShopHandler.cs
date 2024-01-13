@@ -23,6 +23,7 @@ public class ShopHandler : MonoBehaviour
     }
     public void ShowPanel(ShopItemSO[] shopItemSO, GameObject[] shopPanelsOO, ShopTemplate[] shopTemplate, string specification, string currency){
          for(int i = 0; i< shopItemSO.Length; i++){
+            Debug.Log(shopItemSO.Length +"+" +PlayerPrefs.GetInt(specification + i));
             if(PlayerPrefs.GetInt(specification + i.ToString()) == 1){
                 shopPanelsOO[i].SetActive(false);
             }

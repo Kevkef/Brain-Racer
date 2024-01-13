@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Bizim
   description: Relaxing Sounds
   baseCost: 10
-  look: {fileID: 0}
+  look: {fileID: 21300000, guid: f282c524207bdb144aabbe360b099434, type: 3}
   audioClip: {fileID: 8300000, guid: c61dd32b97bc6ca44a8d0f7c1a8bb7b2, type: 3}

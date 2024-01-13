@@ -16,7 +16,7 @@ public class SubHandler : MonoBehaviour
     ShopHandler shopHandler;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         shopHandler = GameObject.Find("Shop").GetComponent<ShopHandler>();
         shopHandler.ShowPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification, currency);

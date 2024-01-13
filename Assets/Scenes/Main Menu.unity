@@ -3092,6 +3092,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3761917578154223857, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761917578154223857, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f282c524207bdb144aabbe360b099434, type: 3}
     - target: {fileID: 3969912068002023701, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
       propertyPath: m_Layer
       value: 1
@@ -3156,12 +3164,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5863317334384201848, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 1116240058}
     - target: {fileID: 8623158378058255007, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
       propertyPath: m_Name
       value: Audio Template
       objectReference: {fileID: 0}
+    - target: {fileID: 8623158378058255007, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 3473082983476748830, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -11709,7 +11725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1387017640
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11733,7 +11749,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 14, y: 10}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1387017641
 MonoBehaviour:
@@ -13379,7 +13395,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -15306,17 +15322,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722346622}
   m_CullTransparentMesh: 1
---- !u!114 &1725572331 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5863317334384201848, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
-  m_PrefabInstance: {fileID: 360298489}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9885bdb0c4a7fba4391153c09ae7e743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1742214822 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5509233117453582062, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
@@ -19239,7 +19244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1969563799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19261,7 +19266,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 14, y: 10}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1969563801
 MonoBehaviour:
@@ -19323,7 +19328,7 @@ MonoBehaviour:
   - {fileID: 1962517339}
   - {fileID: 1347055415}
   shopPanelsSkin:
-  - {fileID: 1725572331}
+  - {fileID: 0}
   - {fileID: 934911583}
   - {fileID: 475808958}
   - {fileID: 186249337}
@@ -19334,13 +19339,10 @@ MonoBehaviour:
   - {fileID: 18685865}
   audioItemSOs:
   - {fileID: 11400000, guid: 1ce0dbd8ba2fee14ead511149e948b76, type: 2}
-  play: {fileID: 21300000, guid: 835f9ee7e8087414db410ffdbef75890, type: 3}
-  pause: {fileID: 21300000, guid: a82d55f7a65dd9c4194d4cda31519ca5, type: 3}
+  play: {fileID: 21300000, guid: f282c524207bdb144aabbe360b099434, type: 3}
+  pause: {fileID: 21300000, guid: 07aff993ea251f346b13639ff2b55077, type: 3}
   square:
   - {fileID: 1116240058}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &1969563804
 MonoBehaviour:
   m_ObjectHideFlags: 0

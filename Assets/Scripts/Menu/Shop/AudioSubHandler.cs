@@ -7,23 +7,21 @@ using UnityEngine.UI;
 public class AudioSubHandler : SubHandler
 {
     AudioManager audioManager;
-    ShopItemSO[] shopItemSO;
     public ShopAudioSO[] audioItemSOs;
     public Sprite play;
     public Sprite pause;
     public GameObject[] square;
     Image image;
     public void Start(){
-        shopItemSO = audioItemSOs;
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        base.shopItemSkinSO = audioItemSOs;
+        base.Start();
     }
     public void click(int btnNr){
-        Debug.Log("It clicked");
         image = square[btnNr].GetComponent<Image>();
         if(image.sprite == play){
             image.sprite = pause;
             StartCoroutine(playForSeconds(btnNr));
-            
         }
         else{
             audioManager.StopSFX();
