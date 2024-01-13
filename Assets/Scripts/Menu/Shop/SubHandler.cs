@@ -20,7 +20,9 @@ public class SubHandler : MonoBehaviour
     {
         shopHandler = GameObject.Find("Shop").GetComponent<ShopHandler>();
         shopHandler.ShowPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification, currency);
-        CheckPurchaseable();      
+        CheckPurchaseable();
+        shopHandler.UpdateCoins();
+        shopHandler.UpdatePoints();      
     }
 
     public void CheckPurchaseable(){

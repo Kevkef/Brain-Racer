@@ -16,6 +16,7 @@ public class UpgradeHandler : MonoBehaviour
     public TMP_Text coinAirResistance;
     public TMP_Text coinAcceleration;
     public TMP_Text coinTankCapacity;
+    public GameObject boughtEverything;
     public Button btnMaxSpeed;
     public Button btnAirResistance;
     public Button btnAcceleration;
@@ -29,7 +30,8 @@ public class UpgradeHandler : MonoBehaviour
     int save1 = 0;
     int save2= 0;
     int save3= 0;
-    private void Start(){
+    private void OnEnable(){
+        boughtEverything.SetActive(false);
         PlayerPrefs.SetInt("MaxSpeed", save0);
         PlayerPrefs.SetInt("AirResistance", save1); 
         PlayerPrefs.SetInt("Acceleration", save2); 
