@@ -17,7 +17,7 @@ public class AudioSubHandler : SubHandler
         base.shopItemSkinSO = audioItemSOs;
         base.Start();
     }
-    public void click(int btnNr){
+    public void Click(int btnNr){
         image = square[btnNr].GetComponent<Image>();
         if(image.sprite == play){
             image.sprite = pause;
@@ -37,5 +37,6 @@ public class AudioSubHandler : SubHandler
         yield return new WaitForSeconds(10);
         audioManager.StopSFX();
         audioManager.startMusic();
+        image.sprite = play;
     }
 }

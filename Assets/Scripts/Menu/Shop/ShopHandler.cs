@@ -89,7 +89,12 @@ public class ShopHandler : MonoBehaviour
         for(int i = 0; i < shopItemSO.Length; i++){
             shopPanels[i].title.text = shopItemSO[i].title;
             shopPanels[i].description.text = shopItemSO[i].description; 
+            try{
             shopPanels[i].sprite.GetComponent<SpriteRenderer>().sprite = shopItemSO[i].look;
+            }
+            catch{
+                //Audio Component does not have a Sprite so thatline should not activate then
+            }
             shopPanels[i].cost.text = currency + ": " + shopItemSO[i].baseCost.ToString();  
         }
     }
