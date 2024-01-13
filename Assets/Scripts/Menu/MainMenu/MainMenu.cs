@@ -16,6 +16,22 @@ public class MainMenu : MonoBehaviour
     SaveManager saveManager;
     EEGData eegData;
     public GameObject LoadingScreen;
+     private float startAcceleration= 0.1f;
+    private float startTankCapacity = 5;
+    private float startMaxSpeed = 4f;
+    private float startAirResistance = 0.1f;
+    private void Start(){
+        setPlayerPrefsFirst("Acceleration", startAcceleration);
+        setPlayerPrefsFirst("TankCapacity", startTankCapacity);
+        setPlayerPrefsFirst("MaxSpeed", startMaxSpeed);
+        setPlayerPrefsFirst("AirResistance", startAirResistance);
+        Debug.Log(PlayerPrefs.GetFloat("MaxSpeed"));
+    }
+    private void setPlayerPrefsFirst(string stat, float firstTime){
+        if(PlayerPrefs.GetFloat(stat) == 0){
+            PlayerPrefs.SetFloat(stat, firstTime);
+        }
+    }
     private void Awake(){
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
