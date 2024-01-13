@@ -33,10 +33,10 @@ public class AudioSubHandler : SubHandler
     {
         //Playes a SFX for 10 seconds before music starts playing again
         audioManager.PlaySFX(audioItemSOs[btnNr].audioClip);
-        audioManager.pauseMusic();
+        audioManager.PauseMusic();
         yield return new WaitForSeconds(10);
         audioManager.StopSFX();
-        audioManager.startMusic();
+        audioManager.StartMusic();
         image.sprite = play;
     }
 }

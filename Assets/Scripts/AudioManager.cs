@@ -19,11 +19,15 @@ public class AudioManager : MonoBehaviour
         musicSource.clip=standard;
         musicSource.Play();
     }
-    public void pauseMusic(){
+    public void PauseMusic(){
         musicSource.Pause();
     }
-     public void startMusic(){
+     public void StartSpezificMusic(AudioClip audioClip){
+        musicSource.clip= audioClip;
         musicSource.Play();
+    }
+    public void StartMusic(){
+         musicSource.Play();
     }
     public void PlaySFX(AudioClip clip){
         SFXSource.PlayOneShot(clip);

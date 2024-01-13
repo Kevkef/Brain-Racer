@@ -9,24 +9,27 @@ using Unity.VisualScripting;
 
 public class InventoryHandler : MonoBehaviour
 {
-    public Image deselectedImg;
-    public Image selectedImg;
+    Image deselectedImg;
+    Image selectedImg;
     // Start is called before the first frame update
     public GameObject coinSprite;
     public GameObject carSprite;
     SubDisplay subDisplayCoins;
     SubDisplay subDisplayCars;
     SpriteRenderer spriteRenderer;
+    AudioManager audioManager;
+    public AudioClip[] audioClips;
     void OnEnable()
     {
-       changeLayer(coinSprite, 0);
-       changeLayer(carSprite, 0);
+        audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
+        changeLayer(coinSprite, 0);
+        changeLayer(carSprite, 0);
         subDisplayCoins = coinSprite.GetComponent<SubDisplay>();
         subDisplayCars = carSprite.GetComponent<SubDisplay>();
     }
     public void showPanel(InventoryItemSO[] InventoryItemSO, GameObject[] InventoryPanelsOO, InventoryTemplate[] InventoryTemplate, string specification){
          for(int i = 0; i< InventoryItemSO.Length; i++){
-            if(PlayerPrefs.GetInt("Skin" + specification + i.ToString()) == 1){
+            if(PlayerPrefs.GetInt(specification + i.ToString()) == 1){
                 InventoryPanelsOO[i].SetActive(true);
             }
             else{
@@ -47,15 +50,33 @@ public class InventoryHandler : MonoBehaviour
     public void select(int btnNr, string specification,GameObject[] InventoryPanelsOO)
     { 
         //change color of selected Inventory field 
-        int deselect = PlayerPrefs.GetInt("Selected"+ specification);
-        InventoryPanelsOO[deselect].GetComponent<Button>().image.color = Color.white;
-        PlayerPrefs.SetInt("Selected" + specification, btnNr);
-        InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.yellow;
+        if(specification != "Minigames"){
+            int deselect = PlayerPrefs.GetInt("Selected"+ specification);
+            InventoryPanelsOO[deselect].GetComponent<Button>().image.color = Color.white;
+            PlayerPrefs.SetInt("Selected" + specification, btnNr);
+            InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.yellow;
+        }
+        else{
+            if(InventoryPanelsOO[btnNr].GetComponent<Button>().image.color == Color.yellow)
+            {
+                InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.white;
+                 PlayerPrefs.SetInt(specification +btnNr,0);
+            }
+            else{
+                 PlayerPrefs.SetInt(specification +btnNr,1);
+                InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.yellow;
+            }
+        }
+        if(specification =="Audio"){
+            Debug.Log("TestingTestingtesting");
+            audioManager.PauseMusic();
+            audioManager.StartSpezificMusic(audioClips[btnNr]);
+        }
         switch(specification){
-            case "Coins":
+            case "SkinCoins":
                 subDisplayCoins.Start();
                 break;
-            case "Cars":
+            case "SkinCars":
                 subDisplayCars.Start();
                 break;
         }
