@@ -18,7 +18,6 @@ public class InventoryHandler : MonoBehaviour
     SubDisplay subDisplayCars;
     SpriteRenderer spriteRenderer;
     AudioManager audioManager;
-    public AudioClip[] audioClips;
     void OnEnable()
     {
         audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
@@ -29,12 +28,14 @@ public class InventoryHandler : MonoBehaviour
     }
     public void showPanel(InventoryItemSO[] InventoryItemSO, GameObject[] InventoryPanelsOO, InventoryTemplate[] InventoryTemplate, string specification){
          for(int i = 0; i< InventoryItemSO.Length; i++){
-            if(PlayerPrefs.GetInt(specification + i.ToString()) == 1){
+            if(PlayerPrefs.GetInt(specification + (i-1).ToString()) == 1){
                 InventoryPanelsOO[i].SetActive(true);
             }
             else{
                  InventoryPanelsOO[i].SetActive(false);
             }
+            Debug.Log(specification + (i-1).ToString());
+            Debug.Log(PlayerPrefs.GetInt(specification + (i-1).ToString()));
             LoadPanels(InventoryItemSO,InventoryTemplate);
         }
         int Nr = PlayerPrefs.GetInt("Selected" + specification);
@@ -71,9 +72,8 @@ public class InventoryHandler : MonoBehaviour
             }
         }
         if(specification =="Audio"){
-            Debug.Log("TestingTestingtesting");
             audioManager.PauseMusic();
-            audioManager.StartSpezificMusic(audioClips[btnNr]);
+            audioManager.StartSpezificMusic();
         }
         switch(specification){
             case "SkinCoins":

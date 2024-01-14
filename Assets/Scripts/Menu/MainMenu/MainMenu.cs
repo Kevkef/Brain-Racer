@@ -21,15 +21,22 @@ public class MainMenu : MonoBehaviour
     private float startMaxSpeed = 4f;
     private float startAirResistance = 0.1f;
     private void Start(){
-        setPlayerPrefsFirst("Acceleration", startAcceleration);
-        setPlayerPrefsFirst("TankCapacity", startTankCapacity);
-        setPlayerPrefsFirst("MaxSpeed", startMaxSpeed);
-        setPlayerPrefsFirst("AirResistance", startAirResistance);
-        Debug.Log(PlayerPrefs.GetFloat("MaxSpeed"));
+        setPlayerPrefsFloat("Acceleration", startAcceleration);
+        setPlayerPrefsFloat("TankCapacity", startTankCapacity);
+        setPlayerPrefsFloat("MaxSpeed", startMaxSpeed);
+        setPlayerPrefsFloat("AirResistance", startAirResistance);
+        setPlayerPrefsInt("SkinCars-1", 1);
+        setPlayerPrefsInt("SkinCoins-1", 1);
+        setPlayerPrefsInt("Audio-1", 1);
     }
-    private void setPlayerPrefsFirst(string stat, float firstTime){
+    private void setPlayerPrefsFloat(string stat, float firstTime){
         if(PlayerPrefs.GetFloat(stat) == 0){
             PlayerPrefs.SetFloat(stat, firstTime);
+        }
+    }
+    private void setPlayerPrefsInt(string stat, int standard){
+        if(PlayerPrefs.GetInt(stat) == 0){
+            PlayerPrefs.SetInt(stat, standard);
         }
     }
     private void Awake(){

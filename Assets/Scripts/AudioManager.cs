@@ -10,20 +10,20 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource engineSource;
 
      [Header("---AudioClip---")]
-    public AudioClip standard;
     public AudioClip engine;
+    public AudioClip[] audioClips;
     private void Awake(){
         DontDestroyOnLoad(gameObject);
     }
     private void Start(){
-        musicSource.clip=standard;
+        musicSource.clip=audioClips[PlayerPrefs.GetInt("SelectedAudio")];
         musicSource.Play();
     }
     public void PauseMusic(){
         musicSource.Pause();
     }
-     public void StartSpezificMusic(AudioClip audioClip){
-        musicSource.clip= audioClip;
+     public void StartSpezificMusic(){
+        musicSource.clip= musicSource.clip=audioClips[PlayerPrefs.GetInt("SelectedAudio")];;
         musicSource.Play();
     }
     public void StartMusic(){

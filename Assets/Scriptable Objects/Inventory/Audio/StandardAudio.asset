@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 629a614bfb22aa744b9964d11ff213a3, type: 3}
-  m_Name: InventoryMenu
+  m_Name: StandardAudio
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  title: 
+  title: Standard
