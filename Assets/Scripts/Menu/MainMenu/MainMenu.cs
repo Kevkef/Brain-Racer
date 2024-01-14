@@ -21,15 +21,22 @@ public class MainMenu : MonoBehaviour
     private float startMaxSpeed = 4f;
     private float startAirResistance = 0.1f;
     private void Start(){
-        setPlayerPrefsFirst("Acceleration", startAcceleration);
-        setPlayerPrefsFirst("TankCapacity", startTankCapacity);
-        setPlayerPrefsFirst("MaxSpeed", startMaxSpeed);
-        setPlayerPrefsFirst("AirResistance", startAirResistance);
-        Debug.Log(PlayerPrefs.GetFloat("MaxSpeed"));
+        setPlayerPrefsFloat("Acceleration", startAcceleration);
+        setPlayerPrefsFloat("TankCapacity", startTankCapacity);
+        setPlayerPrefsFloat("MaxSpeed", startMaxSpeed);
+        setPlayerPrefsFloat("AirResistance", startAirResistance);
+        setPlayerPrefsInt("SkinCars-1", 1);
+        setPlayerPrefsInt("SkinCoins-1", 1);
+        setPlayerPrefsInt("Audio-1", 1);
     }
-    private void setPlayerPrefsFirst(string stat, float firstTime){
+    private void setPlayerPrefsFloat(string stat, float firstTime){
         if(PlayerPrefs.GetFloat(stat) == 0){
             PlayerPrefs.SetFloat(stat, firstTime);
+        }
+    }
+    private void setPlayerPrefsInt(string stat, int standard){
+        if(PlayerPrefs.GetInt(stat) == 0){
+            PlayerPrefs.SetInt(stat, standard);
         }
     }
     private void Awake(){
@@ -53,25 +60,6 @@ public class MainMenu : MonoBehaviour
             {
                 title = DateTime.Now.ToString()
             };
-           switch (PlayerPrefs.GetInt("SelectedCars")){
-                    case 0:
-                        slotData.car = "Basic Car";
-                        break;
-                    case 1:
-                        slotData.car = "Badass Car";
-                        break;
-                }
-                switch(PlayerPrefs.GetInt("SelectedCoins")){
-                    case 0:
-                        slotData.coin = "Bronze Coin";
-                        break;
-                    case 1:
-                        slotData.coin = "Silver Car";
-                        break;
-                    case 2:
-                        slotData.coin = "Gold Car";
-                        break;
-                }
                 slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
                 slotData.world = null;
                 try{

@@ -13,7 +13,7 @@ public class SubInventoryHandler : MonoBehaviour
     public Button[] mySelectBtns;
     InventoryHandler inventoryHandler;
    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         inventoryHandler = GameObject.FindWithTag("Inventory").GetComponent<InventoryHandler>();
         inventoryHandler.showPanel(inventoryItemSO, inventoryPanelsOO ,inventoryPanels, specification);
