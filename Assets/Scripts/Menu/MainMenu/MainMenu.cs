@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
     private int startTankCapacity = 5;
     private int startMaxSpeed = 4;
     private float startAirResistance = 0.1f;
+    public GameObject loadingScreen;
     private void Start(){
         setPlayerPrefsFloat("Acceleration", startAcceleration);
         setPlayerPrefsInt("TankCapacity", startTankCapacity);
@@ -85,6 +86,8 @@ public class MainMenu : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else{
+            
+            loadingScreen.SetActive(false);
             Debug.Log("Bitte einen Saveslot vorher löschen und diese Nachrricht dem Nutzer anzeigen");
         }
    }
