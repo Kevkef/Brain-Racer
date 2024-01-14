@@ -18,6 +18,12 @@ public class AudioSubHandler : SubHandler
         base.OnEnable();
     }
     public void Click(int btnNr){
+        for(int i = 0; i <4; i++){
+            image = image = square[i].GetComponent<Image>();
+            image.sprite = play;
+            audioManager.StopSFX();
+        }
+        StopCoroutine("playForSeconds");
         image = square[btnNr].GetComponent<Image>();
         if(image.sprite == play){ //
             image.sprite = pause;
