@@ -15,28 +15,29 @@ public class MainMenu : MonoBehaviour
     AudioManager audioManager;
     SaveManager saveManager;
     EEGData eegData;
-    public GameObject LoadingScreen;
+    public SpriteRenderer[] spriteRenderer;
      private float startAcceleration= 0.1f;
-    private float startTankCapacity = 5;
-    private float startMaxSpeed = 4f;
+    private int startTankCapacity = 5;
+    private int startMaxSpeed = 4;
     private float startAirResistance = 0.1f;
     private void Start(){
         setPlayerPrefsFloat("Acceleration", startAcceleration);
-        setPlayerPrefsFloat("TankCapacity", startTankCapacity);
-        setPlayerPrefsFloat("MaxSpeed", startMaxSpeed);
+        setPlayerPrefsInt("TankCapacity", startTankCapacity);
+        setPlayerPrefsInt("MaxSpeed", startMaxSpeed);
         setPlayerPrefsFloat("AirResistance", startAirResistance);
         setPlayerPrefsInt("SkinCars-1", 1);
         setPlayerPrefsInt("SkinCoins-1", 1);
         setPlayerPrefsInt("Audio-1", 1);
+        setPlayerPrefsInt("AvalibleSlots", 10);
     }
-    private void setPlayerPrefsFloat(string stat, float firstTime){
+    private void setPlayerPrefsFloat(string stat, float startValue){
         if(PlayerPrefs.GetFloat(stat) == 0){
-            PlayerPrefs.SetFloat(stat, firstTime);
+            PlayerPrefs.SetFloat(stat, startValue);
         }
     }
-    private void setPlayerPrefsInt(string stat, int standard){
+    private void setPlayerPrefsInt(string stat, int startValue){
         if(PlayerPrefs.GetInt(stat) == 0){
-            PlayerPrefs.SetInt(stat, standard);
+            PlayerPrefs.SetInt(stat, startValue);
         }
     }
     private void Awake(){
@@ -52,15 +53,16 @@ public class MainMenu : MonoBehaviour
 
     public void PlayNewGame()
     {
-        Debug.Log(PlayerPrefs.GetInt("AvalibleSlots"));
         //Create a Saveslot for the new Game if  there are less then 10 saves
-        if(PlayerPrefs.GetInt("AvalibleSlots") > 0){
-            LoadingScreen.SetActive(true);
+            if(PlayerPrefs.GetInt("AvalibleSlots") > 0){
+            for(int i = 0; i<4; i++){
+                spriteRenderer[i].sortingOrder = 0;
+            }
             SlotData slotData = new SlotData
             {
                 title = DateTime.Now.ToString()
             };
-                slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
+              //  slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
                 slotData.world = null;
                 try{
                     saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();

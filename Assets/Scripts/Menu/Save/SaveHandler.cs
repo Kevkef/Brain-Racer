@@ -13,9 +13,10 @@ public class SaveHandler : MonoBehaviour
 {
     public GameObject[] savePanelsOO; 
     public SaveTemplate[] saveTemplate;
+    public GameObject noSaveSlotPanel;
     // Start is called before the first frame update
-    public GameObject LoadingScreen;
     EEGData eegData;
+    Boolean noSaveSlot;
     void Start()
     {
         ShowPanel(); 
@@ -28,6 +29,7 @@ public class SaveHandler : MonoBehaviour
     }
   
     public void ShowPanel(){    
+        noSaveSlot = true;
         PlayerPrefs.SetInt("AvalibleSlots",10 ); //Ist gerade nur fürs Testen eig muss das wo anderes gemacht werden!
         SaveSlots saveSlots = GetSaveSlots();
         for(int i = 0; i< 10; i++){
@@ -36,6 +38,7 @@ public class SaveHandler : MonoBehaviour
                 savePanelsOO[i].SetActive(false);
             }
             else{
+                noSaveSlot = false;
                 savePanelsOO[i].SetActive(true);
                 saveTemplate[i].title.text = saveSlots.slotData[i].title;
                 saveTemplate[i].world.text = saveSlots.slotData[i].world;
@@ -43,10 +46,15 @@ public class SaveHandler : MonoBehaviour
                 Debug.Log(PlayerPrefs.GetInt("AvalibleSlots"));
             }
         }
+        if(noSaveSlot == true){
+            noSaveSlotPanel.SetActive(true);
+        }
+        else{
+             noSaveSlotPanel.SetActive(false);
+        }
     }
     public void loadSave(int i){
         //load the spezified Save
-        LoadingScreen.SetActive(true);
         SaveSlots saveSlots = GetSaveSlots();
         SaveManager saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
         saveManager.setSlotDataScene(saveSlots.slotData[i]); //Game Scene will be requestig data from slotDataScene

@@ -24,8 +24,8 @@ public class CarMovement : MonoBehaviour
 
         fuel = PlayerPrefs.GetInt("TankCapacity");
         maxSpeed = PlayerPrefs.GetInt("MaxSpeed");
-        airresistance = PlayerPrefs.GetInt("AirResistance");
-        acceleration = PlayerPrefs.GetInt("Acceleration");
+        airresistance = PlayerPrefs.GetFloat("AirResistance");
+        acceleration = PlayerPrefs.GetFloat("Acceleration");
         starttime = Time.time;
     }
 
