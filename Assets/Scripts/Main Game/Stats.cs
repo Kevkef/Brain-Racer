@@ -55,6 +55,5 @@ public class Stats : MonoBehaviour
     {
         ApplyCoins();
         ApplyPoints();
-        EEGData.instance.Disconnect();
     }
 }

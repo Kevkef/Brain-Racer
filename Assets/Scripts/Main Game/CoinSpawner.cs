@@ -6,7 +6,9 @@ public class CoinSpawner : MonoBehaviour
 {
     public GameObject CoinPrefab;
     public int CoinAmount;
+    public Sprite[] coinSkins;
 
+    private Sprite coinSkin;
     private TerrainScript terrainScript;
     private int xleftBorder;
     private int xrightBorder;
@@ -14,6 +16,8 @@ public class CoinSpawner : MonoBehaviour
     void Start()
     {
         terrainScript = this.gameObject.GetComponent<TerrainScript>();
+        coinSkin = coinSkins[PlayerPrefs.GetInt("SelectedSkinCoins")];
+        CoinPrefab.GetComponent<SpriteRenderer>().sprite = coinSkin;
 
         xleftBorder = terrainScript.leftBorderX + 5;
         xrightBorder = terrainScript.leftBorderX + terrainScript.MapLength - 5;

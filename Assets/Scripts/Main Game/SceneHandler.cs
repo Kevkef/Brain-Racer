@@ -9,5 +9,6 @@ public class SceneHandler : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(name);
+        EEGData.instance.Disconnect();
     }
 }

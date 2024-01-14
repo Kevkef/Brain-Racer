@@ -4128,6 +4128,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoinPrefab: {fileID: 2014750292338827782, guid: 259703a2cbe8c0b4f906f3e2707d6037, type: 3}
   CoinAmount: 50
+  coinSkins:
+  - {fileID: 21300000, guid: 415fb493b306be2458678f2dbe4ffd8f, type: 3}
+  - {fileID: 21300000, guid: dad5fccb0e611714d9c46831f5281488, type: 3}
+  - {fileID: 21300000, guid: 25c5b6b82a624df44af9216d438bbc80, type: 3}
 --- !u!114 &1924004183
 MonoBehaviour:
   m_ObjectHideFlags: 0
