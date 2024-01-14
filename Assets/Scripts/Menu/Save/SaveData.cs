@@ -31,8 +31,8 @@ public class SaveData : MonoBehaviour
         saveSlots.slotData[btnNr].mapData = null;
         SaveToJson();
     }
-    public void updateSaveSlotdataMap(int[] newData){
-        saveSlots.slotData[saveSlotNumber].mapData.AddRange(newData.ToList());
+    public void updateSaveSlotdataMap(int newData){
+        saveSlots.slotData[saveSlotNumber].mapData.Add(newData);
     }
     public void SaveToJson(){
         //Save the Slotes to JSON

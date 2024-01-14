@@ -16,7 +16,23 @@ public class TerrainScript : MonoBehaviour
     void Start()
     {
         SlotData slotData = SaveManager.slotDataScene;
-        eegData = slotData.mapData.ToArray();
+        int index = gameObject.GetComponentInParent<TerrainGroup>().getIndex();
+        List<int> mapData = new List<int>();
+        int start = 0;
+        if (index == 1)
+        {
+            start = (index - 1) * 20;
+        } else
+        {
+            start = ((index - 1) * 20) - 1;
+        }
+        for(int i = start; i < index * 20; i++)
+        {
+            Debug.Log(i);
+            mapData.Add(slotData.mapData[i]);
+        }
+        leftBorderX = ((index - 1) * 500) - ((index - 1) * 25);
+        eegData = mapData.ToArray();
         MapLength = eegData.Length * stretchData;  
         Debug.Log(slotData.title);
         spriteCtrl = this.GetComponent<SpriteShapeController>();
