@@ -45,7 +45,6 @@ public class SaveData : MonoBehaviour
     public SaveSlots LoadFromJson(){
         //get the saved Data
         string filePath = Application.persistentDataPath + "/SlotData.json";
-        Debug.Log(filePath);
     	string slotData = System.IO.File.ReadAllText(filePath);
         return saveSlots = JsonUtility.FromJson<SaveSlots>(slotData);
     }

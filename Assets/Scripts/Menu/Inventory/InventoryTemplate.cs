@@ -5,6 +5,6 @@ using TMPro;
 
 public class InventoryTemplate : MonoBehaviour
 {
-    public Sprite sprite;
+    public GameObject sprite;
      public TMP_Text title;
 }

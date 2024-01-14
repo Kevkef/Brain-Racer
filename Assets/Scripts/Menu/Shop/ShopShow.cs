@@ -63,8 +63,8 @@ public class ShopShow : MonoBehaviour
     private void click(TMP_Text showComponent, TMP_Text sleepComponent0, GameObject showObject, GameObject sleepObject0, TMP_Text sleepComponent1, GameObject sleepObject1,TMP_Text sleepComponent2, GameObject sleepObject2){
         Show(showComponent, showObject);
         Sleep(sleepComponent0, sleepObject0);
-         Sleep(sleepComponent1, sleepObject1);
-          Sleep(sleepComponent2, sleepObject2);
+        Sleep(sleepComponent1, sleepObject1);
+        Sleep(sleepComponent2, sleepObject2);
     }
 }
  

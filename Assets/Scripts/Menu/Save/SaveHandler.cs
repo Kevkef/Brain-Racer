@@ -30,7 +30,6 @@ public class SaveHandler : MonoBehaviour
   
     public void ShowPanel(){    
         noSaveSlot = true;
-        PlayerPrefs.SetInt("AvalibleSlots",10 ); //Ist gerade nur fürs Testen eig muss das wo anderes gemacht werden!
         SaveSlots saveSlots = GetSaveSlots();
         for(int i = 0; i< 10; i++){
             if (saveSlots.slotData[i].title == "")

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629a614bfb22aa744b9964d11ff213a3, type: 3}
   m_Name: InventoryMenu
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 415fb493b306be2458678f2dbe4ffd8f, type: 3}
   title: Bronze

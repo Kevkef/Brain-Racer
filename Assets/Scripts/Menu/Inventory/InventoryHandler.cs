@@ -45,7 +45,7 @@ public class InventoryHandler : MonoBehaviour
     public void LoadPanels(InventoryItemSO[] InventoryItemSO, InventoryTemplate[] InventoryPanels){
         for(int i = 0; i < InventoryItemSO.Length; i++){
             InventoryPanels[i].title.text = InventoryItemSO[i].title;
-           // InventoryPanels[i].sprite = InventoryItemSO[i].sprite; 
+            InventoryPanels[i].sprite.GetComponent<SpriteRenderer>().sprite = InventoryItemSO[i].sprite; 
         }
     }
     public void select(int btnNr, string specification,GameObject[] InventoryPanelsOO)

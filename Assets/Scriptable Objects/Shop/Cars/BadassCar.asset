@@ -15,4 +15,4 @@ MonoBehaviour:
   title: Badass Car
   description: Your brai   should be cooking lookig at this.
   baseCost: 10
-  look: {fileID: 21300000, guid: 0c3354e44632fd645a311ae346ab54d8, type: 3}
+  look: {fileID: 21300000, guid: f2f8301f7bab94b428816eb2a269156e, type: 3}
