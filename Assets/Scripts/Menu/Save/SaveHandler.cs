@@ -19,7 +19,7 @@ public class SaveHandler : MonoBehaviour
     Boolean noSaveSlot;
     void Start()
     {
-        ShowPanel(); 
+        ShowPanel();
     }
 
     public SaveSlots GetSaveSlots(){
@@ -41,8 +41,6 @@ public class SaveHandler : MonoBehaviour
                 savePanelsOO[i].SetActive(true);
                 saveTemplate[i].title.text = saveSlots.slotData[i].title;
                 saveTemplate[i].world.text = saveSlots.slotData[i].world;
-                PlayerPrefs.SetInt("AvalibleSlots",PlayerPrefs.GetInt("AvalibleSlots")-1);
-                Debug.Log(PlayerPrefs.GetInt("AvalibleSlots"));
             }
         }
         if(noSaveSlot == true){

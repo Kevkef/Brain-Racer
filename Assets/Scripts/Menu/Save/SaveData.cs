@@ -15,6 +15,7 @@ public class SaveData : MonoBehaviour
     }
     public void addToSaveSlots(SlotData slotData){
         //Called from Main Menu and used to save the new Game
+        saveSlots = LoadFromJson();
         saveSlotNumber = 0;
         while(saveSlots.slotData[saveSlotNumber].title != ""){
             saveSlotNumber++;

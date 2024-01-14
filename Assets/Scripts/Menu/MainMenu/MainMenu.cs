@@ -71,8 +71,8 @@ public class MainMenu : MonoBehaviour
                 catch{
                     Debug.Log("Not working");
                 }
-                saveManager.setSlotDataScene(slotData);
                 SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
+                saveManager.setSlotDataScene(slotData);
                 saveData.addToSaveSlots(slotData);                                              //Save the new Save Slot to JSON
                 PlayerPrefs.SetInt("AvalibleSlots", PlayerPrefs.GetInt("AvalibleSlots")-1);
                 eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();

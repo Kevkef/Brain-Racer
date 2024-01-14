@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 public class SaveManager : MonoBehaviour
 {
     public static SlotData slotDataScene;
-    // Start is called before the first frame update
+    // Start is called before the first frame update, slotDataScene is used in multible Scences
     void Start()
     {
     }
