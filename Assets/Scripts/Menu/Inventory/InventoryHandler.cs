@@ -41,6 +41,7 @@ public class InventoryHandler : MonoBehaviour
         int Nr = PlayerPrefs.GetInt("Selected" + specification);
         InventoryPanelsOO[Nr].GetComponent<Button>().image.color = Color.yellow;
     }
+    
 
     public void LoadPanels(InventoryItemSO[] InventoryItemSO, InventoryTemplate[] InventoryPanels){
         for(int i = 0; i < InventoryItemSO.Length; i++){
@@ -48,6 +49,7 @@ public class InventoryHandler : MonoBehaviour
             InventoryPanels[i].sprite.GetComponent<SpriteRenderer>().sprite = InventoryItemSO[i].sprite; 
         }
     }
+
     public void select(int btnNr, string specification,GameObject[] InventoryPanelsOO)
     { 
         //change color of selected Inventory field 
