@@ -15,13 +15,21 @@ public class CarMovement : MonoBehaviour
     private float acceleration;
     private float starttime = 0;
     private List<int> attentionvalues = new List<int>();
+    private int nextAttentionValue;
     // Start is called before the first frame update
     void Start()
     {
+        //4 testing only
+        /*PlayerPrefs.SetFloat("AirResistance",0.1f);
+        PlayerPrefs.SetFloat("Acceleration",0.1f);
+        PlayerPrefs.SetInt("MaxSpeed", 100);
+        PlayerPrefs.SetInt("TankCapacity",10);*/
+
+
+        nextAttentionValue = 0;
 // TODO: add Error handling
         EEGData.instance.Connect();
         EEGData.instance.startAutoRead();
-
         fuel = PlayerPrefs.GetInt("TankCapacity");
         maxSpeed = PlayerPrefs.GetInt("MaxSpeed");
         airresistance = PlayerPrefs.GetFloat("AirResistance");
@@ -32,7 +40,12 @@ public class CarMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        int nextAttentionValue = EEGData.instance.nextAttentionValue();
+        int previousAttentionValue = nextAttentionValue;
+        nextAttentionValue = EEGData.instance.nextAttentionValue();
+        if (nextAttentionValue != previousAttentionValue)
+        {
+            GameObject.Find("SaveManager").GetComponent<SaveData>().updateSaveSlotdataMap(nextAttentionValue);
+        }
         if (nextAttentionValue > 0)
         {
             concentration = acceleration * nextAttentionValue;

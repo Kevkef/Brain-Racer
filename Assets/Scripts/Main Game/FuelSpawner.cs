@@ -23,7 +23,8 @@ public class FuelSpawner : MonoBehaviour
         int x = xleftBorder + distance;
         while(x <= xleftBorder + terrainScript.MapLength)
         {
-            Instantiate(FuelPrefab, new Vector2(x, 50), Quaternion.identity);
+            GameObject fuel = Instantiate(FuelPrefab, new Vector2(x, 50), Quaternion.identity);
+            fuel.transform.parent = this.gameObject.transform;
             x += distance;
         }
     }
