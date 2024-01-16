@@ -1773,7 +1773,7 @@ MonoBehaviour:
   bodysprites:
   - {fileID: 21300000, guid: e1790d112d8af0e44bf429934a5b585a, type: 3}
   - {fileID: 21300000, guid: f2f8301f7bab94b428816eb2a269156e, type: 3}
-  prewarmtime: 5
+  prewarmtime: 1
 --- !u!1 &937167164
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class CarMovement : MonoBehaviour
 // TODO: add Error handling
         EEGData.instance.Connect();
         EEGData.instance.startAutoRead();
-        fuel = PlayerPrefs.GetInt("TankCapacity") + 5;
+        fuel = PlayerPrefs.GetInt("TankCapacity");
         maxSpeed = PlayerPrefs.GetInt("MaxSpeed");
         airresistance = PlayerPrefs.GetFloat("AirResistance");
         acceleration = PlayerPrefs.GetFloat("Acceleration");
