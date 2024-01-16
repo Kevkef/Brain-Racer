@@ -9,6 +9,13 @@ public class SaveData : MonoBehaviour
     public SaveSlots saveSlots ; //Used as a "puppet" to save to JSON
     public int saveSlotNumber;
     public void Start(){
+        try{
+            saveSlots = LoadFromJson();
+        }
+        catch{
+            saveSlots = new SaveSlots();
+            SaveToJson();
+        }
     }
     private void Awake(){
         DontDestroyOnLoad(gameObject);
