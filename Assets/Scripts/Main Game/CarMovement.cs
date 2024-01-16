@@ -20,10 +20,10 @@ public class CarMovement : MonoBehaviour
     void Start()
     {
         //4 testing only
-        /*PlayerPrefs.SetFloat("AirResistance",0.1f);
-        PlayerPrefs.SetFloat("Acceleration",0.1f);
+        PlayerPrefs.SetFloat("AirResistance",0.1f);
+        PlayerPrefs.SetFloat("Acceleration",0.17f);
         PlayerPrefs.SetInt("MaxSpeed", 100);
-        PlayerPrefs.SetInt("TankCapacity",10);*/
+        PlayerPrefs.SetInt("TankCapacity",10);
 
 
         nextAttentionValue = 0;
