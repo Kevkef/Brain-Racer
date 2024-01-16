@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,28 +16,41 @@ public class TerrainScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    public bool generateMap(int index)
+    {
         SlotData slotData = SaveManager.slotDataScene;
-        int index = gameObject.GetComponentInParent<TerrainGroup>().getIndex();
         List<int> mapData = new List<int>();
         int start = 0;
         if (index == 1)
         {
             start = (index - 1) * 20;
-        } else
-        {
-            start = ((index - 1) * 20) - 1;
         }
-        for(int i = start; i < index * 20; i++)
+        else
         {
-            Debug.Log(i);
-            mapData.Add(slotData.mapData[i]);
+            start = ((index - 1) * 20) - (index - 1);
+        }
+        for (int i = start; i < index * 20; i++)
+        {
+            try
+            {
+                mapData.Add(slotData.mapData[i]);
+            }
+            catch (Exception e)
+            {
+                UIOverlay.instance.pauseGame(true, true);
+                return false;
+            }
         }
         leftBorderX = ((index - 1) * 500) - ((index - 1) * 25);
         eegData = mapData.ToArray();
-        MapLength = eegData.Length * stretchData;  
+        MapLength = eegData.Length * stretchData;
         Debug.Log(slotData.title);
         spriteCtrl = this.GetComponent<SpriteShapeController>();
         CreateShape();
+        UIOverlay.instance.pauseGame(false);
+        return true;
     }
     void CreateShape()
     {

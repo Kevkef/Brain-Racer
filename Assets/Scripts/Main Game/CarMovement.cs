@@ -16,36 +16,49 @@ public class CarMovement : MonoBehaviour
     private float starttime = 0;
     private List<int> attentionvalues = new List<int>();
     private int nextAttentionValue;
+    private int previousAttentionValue;
     // Start is called before the first frame update
     void Start()
     {
         //4 testing only
         PlayerPrefs.SetFloat("AirResistance",0.1f);
-        PlayerPrefs.SetFloat("Acceleration",0.17f);
+        PlayerPrefs.SetFloat("Acceleration",0.12f);
         PlayerPrefs.SetInt("MaxSpeed", 100);
-        PlayerPrefs.SetInt("TankCapacity",10);
+        PlayerPrefs.SetInt("TankCapacity",20);
 
 
         nextAttentionValue = 0;
 // TODO: add Error handling
         EEGData.instance.Connect();
         EEGData.instance.startAutoRead();
-        fuel = PlayerPrefs.GetInt("TankCapacity");
+        fuel = PlayerPrefs.GetInt("TankCapacity") + 5;
         maxSpeed = PlayerPrefs.GetInt("MaxSpeed");
         airresistance = PlayerPrefs.GetFloat("AirResistance");
         acceleration = PlayerPrefs.GetFloat("Acceleration");
         starttime = Time.time;
     }
 
+    private void Update()
+    {
+        previousAttentionValue = nextAttentionValue;
+        nextAttentionValue = EEGData.instance.nextAttentionValue();
+        if (nextAttentionValue == 0)
+        {
+            UIOverlay.instance.pauseGame(true, true);
+        }
+        else
+        {
+            UIOverlay.instance.pauseGame(false);
+            if (nextAttentionValue != previousAttentionValue)
+            {
+                GameObject.Find("SaveManager").GetComponent<SaveData>().updateSaveSlotdataMap(nextAttentionValue);
+            }
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        int previousAttentionValue = nextAttentionValue;
-        nextAttentionValue = EEGData.instance.nextAttentionValue();
-        if (nextAttentionValue != previousAttentionValue)
-        {
-            GameObject.Find("SaveManager").GetComponent<SaveData>().updateSaveSlotdataMap(nextAttentionValue);
-        }
         if (nextAttentionValue > 0)
         {
             concentration = acceleration * nextAttentionValue;

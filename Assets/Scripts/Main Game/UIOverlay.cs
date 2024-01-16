@@ -26,6 +26,7 @@ public class UIOverlay : MonoBehaviour
     public GameObject winScreen;
     public GameObject loseScreen;
     public GameObject pauseScreen;
+    public GameObject eegWarning;
     public Slider fuelSlider;
     public Slider attentionSlider;
     public TMP_Text attentiontxt;
@@ -78,17 +79,37 @@ public class UIOverlay : MonoBehaviour
         {
             if (pause)
             {
-                pause = false;
-                pauseScreen.SetActive(false);
-                Time.timeScale = 1.0f;
+                pauseGame(false);
             } else
             {
-                pause = true;
-                pauseScreen.SetActive(true);
-                Time.timeScale = 0.0f;
+                pauseGame(true);
             }
 
         }
         
+    }
+
+    public void pauseGame(bool pause, bool eegDataMissing = false)
+    {
+        if (!pause)
+        {
+            this.pause = false;
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            this.pause = true;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0.0f;
+            if (eegDataMissing)
+            {
+                eegWarning.SetActive(true);
+            }
+            else
+            {
+                eegWarning.SetActive(false);
+            }
+        }
     }
 }
