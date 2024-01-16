@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using TMPro;
+using Unity.Burst.CompilerServices;
 using Unity.Loading;
 using Unity.VisualScripting;
 using UnityEngine;
