@@ -29,6 +29,15 @@ public class EEGData : MonoBehaviour
     void Start()
     {
         //autoread = false;
+        int type = PlayerPrefs.GetInt("Datatype");
+        if (type == 0)
+        {
+            datatype = NativeThinkGear.DataType.TG_DATA_ATTENTION;
+        }
+        else if (type == 1)
+        {
+            datatype = NativeThinkGear.DataType.TG_DATA_MEDITATION;
+        }
     }
 
     void Update()
