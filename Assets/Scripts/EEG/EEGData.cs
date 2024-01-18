@@ -24,6 +24,7 @@ public class EEGData : MonoBehaviour
     private bool autoread;
     private int connectionID;
     private int latestAttentionValue;
+    private NativeThinkGear.DataType datatype = NativeThinkGear.DataType.TG_DATA_ATTENTION;
 
     void Start()
     {
@@ -46,16 +47,28 @@ public class EEGData : MonoBehaviour
             {
 
                 /* If attention value has been updated by TG_ReadPackets()... */
-                if (NativeThinkGear.TG_GetValueStatus(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION) != 0)
+                if (NativeThinkGear.TG_GetValueStatus(connectionID, datatype) != 0)
                 {
 
                     /* Get and print out the updated attention value */
-                    latestAttentionValue = (int)NativeThinkGear.TG_GetValue(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION);
+                    latestAttentionValue = (int)NativeThinkGear.TG_GetValue(connectionID, datatype);
                     Debug.Log(latestAttentionValue);
 
                 } /* end "If attention value has been updated..." */
 
             } /* end "If a Packet of data was read..." */
+        }
+    }
+
+    public void updateDatatype()
+    {
+        int type = PlayerPrefs.GetInt("Datatype");
+        if(type == 0)
+        {
+            datatype = NativeThinkGear.DataType.TG_DATA_ATTENTION;
+        } else if(type == 1)
+        {
+            datatype = NativeThinkGear.DataType.TG_DATA_MEDITATION;
         }
     }
 
@@ -130,11 +143,11 @@ public class EEGData : MonoBehaviour
             if (errCode == 1)
             {
                 /* If attention value has been updated by TG_ReadPackets()... */
-                if (NativeThinkGear.TG_GetValueStatus(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION) != 0)
+                if (NativeThinkGear.TG_GetValueStatus(connectionID, datatype) != 0)
                 {
 
                     /* Get and add the updated attention value */
-                    int attention = (int)NativeThinkGear.TG_GetValue(connectionID, NativeThinkGear.DataType.TG_DATA_ATTENTION);
+                    int attention = (int)NativeThinkGear.TG_GetValue(connectionID, datatype);
                     if (attention > 0)
                     {
                         results[packetsRead] = attention;
