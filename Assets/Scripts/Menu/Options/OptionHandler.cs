@@ -11,6 +11,13 @@ public class OptionHandler : MonoBehaviour
     public  TMP_Text BtnText;
     public  TMP_Text ChangeText;
     private int level;
+
+    void Start(){
+        if(PlayerPrefs.GetInt("Datatype") == 1){
+            BtnText.text = "Attention";
+            ChangeText.text = "Meditation";
+        }
+    }
     public void SetLevel(int canvasNr){
         level = canvasNr;
     }
