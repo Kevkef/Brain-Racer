@@ -30,7 +30,6 @@ public class MainMenu : MonoBehaviour
         setPlayerPrefsInt("SkinCars-1", 1);
         setPlayerPrefsInt("SkinCoins-1", 1);
         setPlayerPrefsInt("Audio-1", 1);
-        setPlayerPrefsInt("AvalibleSlots", 10);
     }
     private void setPlayerPrefsFloat(string stat, float startValue){
         if(PlayerPrefs.GetFloat(stat) == 0){
@@ -56,7 +55,7 @@ public class MainMenu : MonoBehaviour
     public void PlayNewGame()
     {
         //Create a Saveslot for the new Game if  there are less then 10 saves
-            if(PlayerPrefs.GetInt("AvalibleSlots") > 0){
+            if(PlayerPrefs.GetInt("NotAvalibleSlots") < 10){
             for(int i = 0; i<4; i++){
                 spriteRenderer[i].sortingOrder = 0;
             }
@@ -64,7 +63,7 @@ public class MainMenu : MonoBehaviour
             {
                 title = DateTime.Now.ToString()
             };
-                slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
+               // slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
                 slotData.world = null;
                 try{
                     saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
@@ -76,7 +75,7 @@ public class MainMenu : MonoBehaviour
                 SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
                 saveManager.setSlotDataScene(slotData);
                 saveData.addToSaveSlots(slotData);                                              //Save the new Save Slot to JSON
-                PlayerPrefs.SetInt("AvalibleSlots", PlayerPrefs.GetInt("AvalibleSlots")-1);
+                PlayerPrefs.SetInt("NotAvalibleSlots", PlayerPrefs.GetInt("NotAvalibleSlots")+1);
                 eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
                 try{
                     eegData.Disconnect();

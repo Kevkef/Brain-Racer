@@ -72,7 +72,7 @@ public class SaveHandler : MonoBehaviour
         //Sets save to default values
         SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
         saveData.deleteFromSaveSlots(i);
-        PlayerPrefs.SetInt("AvalibleSlots", PlayerPrefs.GetInt("AvalibleSlots")+1);
+        PlayerPrefs.SetInt("NotAvalibleSlots", PlayerPrefs.GetInt("NotAvalibleSlots")-1);
         ShowPanel();
     }
 

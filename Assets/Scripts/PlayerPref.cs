@@ -29,7 +29,6 @@ public class PlayerPref : MonoBehaviour
     }
     public void DeleteData()
     {
-        //    PlayerPref.DeleteData(key);
         PlayerPrefs.DeleteAll();
     }
 }

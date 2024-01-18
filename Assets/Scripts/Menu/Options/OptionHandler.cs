@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class OptionHandler : MonoBehaviour
@@ -7,6 +8,8 @@ public class OptionHandler : MonoBehaviour
     public GameObject MainMenu;
     public  GameObject Shop;
     public GameObject Save;
+    public  TMP_Text BtnText;
+    public  TMP_Text ChangeText;
     private int level;
     public void SetLevel(int canvasNr){
         level = canvasNr;
@@ -25,5 +28,17 @@ public class OptionHandler : MonoBehaviour
         else {
             Debug.Log("Error while closing options");
         }
+    }
+     public void changeDatatype(){
+        ChangeText.text = BtnText.text;
+       if(BtnText.text == "Attention"){
+            BtnText.text = "Meditation";
+            PlayerPrefs.SetInt("Datatype",0);
+       }
+       else{
+            BtnText.text = "Attention";
+            PlayerPrefs.SetInt("Datatype",1);
+       }
+
     }
 }
