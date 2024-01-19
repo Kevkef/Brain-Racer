@@ -30,6 +30,7 @@ public class UIOverlay : MonoBehaviour
     public Slider fuelSlider;
     public Slider attentionSlider;
     public TMP_Text attentiontxt;
+    public GameObject mathmode;
     
     private int CoinAmount;
     private bool pause;
@@ -41,6 +42,12 @@ public class UIOverlay : MonoBehaviour
         pause = false;
         fuelSlider.maxValue = PlayerPrefs.GetInt("TankCapacity");
         fuelSlider.value = PlayerPrefs.GetInt("TankCapacity");
+        if(PlayerPrefs.GetInt("Mathmode") == 1) {
+            mathmode.SetActive(true);
+        } else
+        {
+            mathmode.SetActive(false);
+        }
     }
 
     public void addCoin()
