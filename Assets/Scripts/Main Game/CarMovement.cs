@@ -17,6 +17,7 @@ public class CarMovement : MonoBehaviour
     private List<int> attentionvalues = new List<int>();
     private int nextAttentionValue;
     private int previousAttentionValue;
+    private bool hasEnded = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,11 +92,29 @@ public class CarMovement : MonoBehaviour
 
         //EndConditions
 
-        if(fuel <= -5.0f) //-5 to have 5 seconds spare
+        if(fuel <= -5.0f && !hasEnded) //-5 to have 5 seconds spare
         {
             GameObject.Find("GameManager").GetComponent<Stats>().setConcentrationPoints((int)((attentionvalues.Sum() / attentionvalues.Count) * (Time.time - starttime) * 0.001));
             GameObject.Find("GameManager").GetComponent<Stats>().save();
-            UIOverlay.instance.showEndScreen(false);
+            int averageA = attentionvalues.Sum() / attentionvalues.Count;
+            int peakA = 0;
+            int lowA = 100;
+            float time = Time.time - starttime;
+            int points = (int)((attentionvalues.Sum() / attentionvalues.Count) * (Time.time - starttime) * 0.001);
+            int coins = GameObject.Find("GameManager").GetComponent<Stats>().getCurrCoins();
+            foreach (int i in attentionvalues)
+            {
+                if(peakA < i)
+                {
+                    peakA = i;
+                }
+                if(lowA > i)
+                {
+                    lowA = i;
+                }
+            }
+            UIOverlay.instance.showEndScreen(averageA, peakA, lowA, time, points, coins);
+            hasEnded = true;
         }
 
         

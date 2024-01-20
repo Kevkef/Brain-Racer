@@ -31,7 +31,13 @@ public class UIOverlay : MonoBehaviour
     public Slider attentionSlider;
     public TMP_Text attentiontxt;
     public GameObject mathmode;
-    
+    public TMP_Text endAttentionavg;
+    public TMP_Text endAttentionpeak;
+    public TMP_Text endAttentionlow;
+    public TMP_Text endTime;
+    public TMP_Text endPoints;
+    public TMP_Text endCoins;
+
     private int CoinAmount;
     private bool pause;
     // Start is called before the first frame update
@@ -58,16 +64,15 @@ public class UIOverlay : MonoBehaviour
 
     // Update is called once per frame
 
-    public void showEndScreen(bool win)
+    public void showEndScreen(float averageAttention, int peakAttention, int floorAttention, float time, int points, int coins)
     {
         endScreen.SetActive(true);
-        if (win)
-        {
-            winScreen.SetActive(true);
-        } else
-        {
-            loseScreen.SetActive(true);
-        }
+        endAttentionavg.text = averageAttention.ToString() + "%";
+        endAttentionpeak.text = peakAttention.ToString() + "%";
+        endAttentionlow.text = floorAttention.ToString() + "%";
+        endTime.text = "Total time: " + time.ToString() + " sec";
+        endPoints.text = "Total attention Points: " + points.ToString();
+        endCoins.text = "Total Coins: " + coins.ToString();
     }
 
     public void updatefuel(float fuel)
