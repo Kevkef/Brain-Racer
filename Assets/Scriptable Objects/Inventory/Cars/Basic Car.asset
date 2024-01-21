@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629a614bfb22aa744b9964d11ff213a3, type: 3}
   m_Name: Basic Car
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d9cba3328cc108b47b107d1c79abd2cb, type: 3}
+  sprite: {fileID: 21300000, guid: 1b3791b762ed5664ba38e76d40388925, type: 3}
   title: Basic Car
