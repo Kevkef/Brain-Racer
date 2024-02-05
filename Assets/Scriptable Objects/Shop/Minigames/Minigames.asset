@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 629a614bfb22aa744b9964d11ff213a3, type: 3}
-  m_Name: MinigamesInventoryItem 3
+  m_Script: {fileID: 11500000, guid: 39a66d8dfccebc34e9d4b83a9655f179, type: 3}
+  m_Name: Minigames
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
   title: 
+  description: 
+  baseCost: 0
+  look: {fileID: 0}

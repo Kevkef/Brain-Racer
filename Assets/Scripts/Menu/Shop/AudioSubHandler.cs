@@ -18,9 +18,8 @@ public class AudioSubHandler : SubHandler
         base.OnEnable();
     }
     public void Click(int btnNr){
-        for(int i = 0; i <4; i++){
+        for(int i = 0; i < 4; i++){
             image = image = square[i].GetComponent<Image>();
-            image.sprite = play;
             audioManager.StopSFX();
         }
         StopCoroutine("playForSeconds");
@@ -32,7 +31,6 @@ public class AudioSubHandler : SubHandler
         else{
             audioManager.StopSFX();
             image.sprite = play;
-            Debug.Log("In wrong colume");
         }
     }
     IEnumerator playForSeconds(int btnNr)
