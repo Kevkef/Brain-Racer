@@ -27,15 +27,23 @@ public class InventoryHandler : MonoBehaviour
         subDisplayCars = carSprite.GetComponent<SubDisplay>();
     }
     public void showPanel(InventoryItemSO[] InventoryItemSO, GameObject[] InventoryPanelsOO, InventoryTemplate[] InventoryTemplate, string specification){
-         for(int i = 0; i< InventoryItemSO.Length; i++){
+         for(int i = 0; i< InventoryItemSO.Length+1; i++){
+            if(specification != "Minigames"){
             if(PlayerPrefs.GetInt(specification + (i-1).ToString()) == 1){
                 InventoryPanelsOO[i].SetActive(true);
             }
             else{
                  InventoryPanelsOO[i].SetActive(false);
             }
-            Debug.Log(specification + (i-1).ToString());
-            Debug.Log(PlayerPrefs.GetInt(specification + (i-1).ToString()));
+            }
+            else {
+                    if(PlayerPrefs.GetInt(specification + (i).ToString()) == 1){
+                    InventoryPanelsOO[i].SetActive(true);
+                }
+                else{
+                    InventoryPanelsOO[i].SetActive(false);
+                }
+            }
             LoadPanels(InventoryItemSO,InventoryTemplate);
         }
         int Nr = PlayerPrefs.GetInt("Selected" + specification);
@@ -66,10 +74,10 @@ public class InventoryHandler : MonoBehaviour
             if(InventoryPanelsOO[btnNr].GetComponent<Button>().image.color == Color.yellow)
             {
                 InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.white;
-                 PlayerPrefs.SetInt(specification +btnNr,0);
+                PlayerPrefs.SetInt("Mathmode",0);
             }
             else{
-                 PlayerPrefs.SetInt(specification +btnNr,1);
+                PlayerPrefs.SetInt("Mathmode",1);
                 InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.yellow;
             }
         }
