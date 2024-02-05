@@ -15,7 +15,6 @@ public class SubHandler : MonoBehaviour
     public Button[] myPurchaseSkinBtns;
     ShopHandler shopHandler;
 
-    // Start is called before the first frame update
     public void OnEnable()
     {
         shopHandler = GameObject.Find("Shop").GetComponent<ShopHandler>();
