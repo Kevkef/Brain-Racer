@@ -14,7 +14,7 @@ public class SaveHandler : MonoBehaviour
     public GameObject[] savePanelsOO; 
     public SaveTemplate[] saveTemplate;
     public GameObject noSaveSlotPanel;
-    // Start is called before the first frame update
+   
     EEGData eegData;
     Boolean noSaveSlot;
     void Start()
