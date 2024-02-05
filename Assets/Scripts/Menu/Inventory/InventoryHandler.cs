@@ -27,7 +27,7 @@ public class InventoryHandler : MonoBehaviour
         subDisplayCars = carSprite.GetComponent<SubDisplay>();
     }
     public void showPanel(InventoryItemSO[] InventoryItemSO, GameObject[] InventoryPanelsOO, InventoryTemplate[] InventoryTemplate, string specification){
-         for(int i = 0; i< InventoryItemSO.Length+1; i++){
+         for(int i = 0; i< InventoryItemSO.Length; i++){
             if(specification != "Minigames"){
             if(PlayerPrefs.GetInt(specification + (i-1).ToString()) == 1){
                 InventoryPanelsOO[i].SetActive(true);
@@ -37,7 +37,7 @@ public class InventoryHandler : MonoBehaviour
             }
             }
             else {
-                    if(PlayerPrefs.GetInt(specification + (i).ToString()) == 1){
+                if(PlayerPrefs.GetInt(specification + (i).ToString()) == 1){
                     InventoryPanelsOO[i].SetActive(true);
                 }
                 else{
