@@ -491,6 +491,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 646719151583904051, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6868548
+      objectReference: {fileID: 0}
+    - target: {fileID: 646719151583904051, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
+      propertyPath: m_Color.g
+      value: 0.74818105
+      objectReference: {fileID: 0}
+    - target: {fileID: 646719151583904051, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
     - target: {fileID: 1176015444501177468, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -665,19 +677,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8222399822987824910, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
       propertyPath: m_fontColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8222399822987824910, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
       propertyPath: m_fontColor.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8222399822987824910, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
       propertyPath: m_fontColor.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8222399822987824910, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4278190080
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 9043784254310658782, guid: 0cffb11abcee27647879fa06ce126962, type: 3}
       propertyPath: sprite
