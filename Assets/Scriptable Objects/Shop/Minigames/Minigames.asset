@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a66d8dfccebc34e9d4b83a9655f179, type: 3}
   m_Name: Minigames
   m_EditorClassIdentifier: 
-  title: 
-  description: 
-  baseCost: 0
-  look: {fileID: 0}
+  title: Math
+  description: Fun math problems
+  baseCost: 200
+  look: {fileID: 21300000, guid: b9affd0f8dd86a646834bcc69876f6d1, type: 3}

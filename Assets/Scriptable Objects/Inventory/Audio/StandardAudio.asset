@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629a614bfb22aa744b9964d11ff213a3, type: 3}
   m_Name: StandardAudio
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: f40838d3f83eeb84dae8a4b06559af74, type: 3}
+  sprite: {fileID: 21300000, guid: 64fe99c597d73c34f96f11d4f33b3100, type: 3}
   title: Standard

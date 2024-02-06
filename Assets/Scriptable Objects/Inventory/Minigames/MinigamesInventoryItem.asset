@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629a614bfb22aa744b9964d11ff213a3, type: 3}
   m_Name: MinigamesInventoryItem
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  title: 
+  sprite: {fileID: 21300000, guid: b9affd0f8dd86a646834bcc69876f6d1, type: 3}
+  title: Math
