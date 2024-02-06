@@ -99,12 +99,25 @@ public class InventoryHandler : MonoBehaviour
         changeLayer(carSprite, 1);
     }
     private void changeLayer(GameObject gameObject, int position){
-        image =  gameObject.GetComponent<Image>();
-        if(position == 1){
-        image.color = new Color(255,255,255,255);
+        if(gameObject != carSprite){
+            image =  gameObject.GetComponent<Image>();
+            if(position == 1){
+                image.color = new Color(255,255,255,255);
+             }
+            else {
+                image.color = new Color(255,255,255,0);
+            }
         }
         else {
-            image.color = new Color(255,255,255,0);
+            SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+            if(position == 1){
+                sprite.color = new Color(255,255,255,255);
+             }
+            else {
+                sprite.color = new Color(255,255,255,0);
+            }
         }
+
+        
     }
 }
