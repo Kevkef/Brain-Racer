@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Prewarm : MonoBehaviour
 {
     public GameObject car;
-    public Sprite[] bodysprites;
+    public GameObject[] bodymodels;
     public float prewarmtime = 5f;
 
-    private GameObject skinbody;
     // Start is called before the first frame update
     void Start()
     {
         car.GetComponent<Rigidbody2D>().freezeRotation = true;
-        skinbody = GameObject.Find("body");
-        skinbody.GetComponent<SpriteRenderer>().sprite = bodysprites[PlayerPrefs.GetInt("SelectedSkinCars")];
+        GameObject model = GameObject.Find("Model");
+        Destroy(model);
+        print(PlayerPrefs.GetInt("SelectedSkinCars") + model.name);
+        GameObject newModel = (GameObject) PrefabUtility.InstantiatePrefab(bodymodels[PlayerPrefs.GetInt("SelectedSkinCars")]);
+        newModel.transform.parent = car.transform;
+        newModel.transform.position = car.transform.position;
     }
 
     // Update is called once per frame
