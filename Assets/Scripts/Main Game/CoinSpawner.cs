@@ -29,7 +29,7 @@ public class CoinSpawner : MonoBehaviour
     {
         for (int i = 0; i < CoinAmount; i++) {
             float x = Random.Range((float)xleftBorder, (float)xrightBorder);
-            GameObject coin = Instantiate(CoinPrefab, new Vector2(x, 50), Quaternion.identity);
+            GameObject coin = Instantiate(CoinPrefab, new Vector2(x, 70), Quaternion.identity);
             coin.transform.parent = this.gameObject.transform;
         }
     }

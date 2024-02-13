@@ -19,7 +19,7 @@ public class TerrainGroup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(car.transform.position.x > 500 * (indexTerrain - 1) - 50 || waiting)
+        if(car.transform.position.x > 500 * (indexTerrain - 1) - 100 || waiting)
         {
             Debug.Log("next Terrain");
             nextTerrain();

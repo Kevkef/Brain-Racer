@@ -57,24 +57,28 @@ public class TerrainScript : MonoBehaviour
         spriteCtrl.spline.Clear();
         spriteCtrl.spline.InsertPointAt(0, new Vector3(leftBorderX, offsetY-25, 0)); //bottom left corner
         spriteCtrl.spline.SetTangentMode(0, ShapeTangentMode.Continuous);
-        spriteCtrl.spline.SetLeftTangent(0, new Vector3(-5f, 0, 0));
-        spriteCtrl.spline.SetRightTangent(0, new Vector3(5f, 0, 0));
+        spriteCtrl.spline.SetLeftTangent(0, new Vector3(-5f, 0.1f, 0.1f));
+        spriteCtrl.spline.SetRightTangent(0, new Vector3(5f, 0.1f, 0.1f));
         for (int i = 0; i < eegData.Length; i++)
         {  
-            spriteCtrl.spline.InsertPointAt(i, new Vector3(leftBorderX + i * stretchData, (offsetY + eegData[i]) / 2, 0));
+            spriteCtrl.spline.InsertPointAt(i, new Vector3(leftBorderX + i * stretchData, (offsetY + eegData[i]) / 2, 0.1f));
             spriteCtrl.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
-            spriteCtrl.spline.SetLeftTangent(i, new Vector3(-5f, 0, 0));
-            spriteCtrl.spline.SetRightTangent(i, new Vector3(5f, 0, 0));
+            spriteCtrl.spline.SetLeftTangent(i, new Vector3(-5f, 0.1f, 0.1f));
+            spriteCtrl.spline.SetRightTangent(i, new Vector3(5f, 0.1f, 0.1f));
         }
         spriteCtrl.spline.InsertPointAt(eegData.Length, new Vector3(leftBorderX+eegData.Length * stretchData, -25, 0)); //bottom right corner
         spriteCtrl.spline.SetTangentMode(eegData.Length, ShapeTangentMode.Continuous);
-        spriteCtrl.spline.SetLeftTangent(eegData.Length, new Vector3(-5f, 0, 0));
-        spriteCtrl.spline.SetRightTangent(eegData.Length, new Vector3(5f, 0, 0));
+        spriteCtrl.spline.SetLeftTangent(eegData.Length, new Vector3(-5f, 0.1f, 0.1f));
+        spriteCtrl.spline.SetRightTangent(eegData.Length, new Vector3(5f, 0.1f, 0.1f));
+        spriteCtrl.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!spriteCtrl.enabled)
+        {
+            spriteCtrl.enabled = true;
+        }
     }
 }
