@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     AudioManager audioManager;
     SaveManager saveManager;
     EEGData eegData;
-    public SpriteRenderer[] spriteRenderer;
+    public GameObject cars;
      private float startAcceleration= 0.1f;
     private int startTankCapacity = 5;
     private int startMaxSpeed = 4;
@@ -56,14 +56,11 @@ public class MainMenu : MonoBehaviour
     {
         //Create a Saveslot for the new Game if  there are less then 10 saves
             if(PlayerPrefs.GetInt("NotAvalibleSlots") < 10){
-            for(int i = 0; i<4; i++){
-                spriteRenderer[i].sortingOrder = 0;
-            }
             SlotData slotData = new SlotData
             {
                 title = DateTime.Now.ToString()
             };
-               // slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
+               slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
                 slotData.world = null;
                 try{
                     saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
@@ -74,7 +71,7 @@ public class MainMenu : MonoBehaviour
                 }
                 SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
                 saveManager.setSlotDataScene(slotData);
-                saveData.addToSaveSlots(slotData);                                              //Save the new Save Slot to JSON
+                saveData.addToSaveSlots(slotData);    //Save the new Save Slot to JSON
                 PlayerPrefs.SetInt("NotAvalibleSlots", PlayerPrefs.GetInt("NotAvalibleSlots")+1);
                 eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
                 try{
@@ -83,6 +80,7 @@ public class MainMenu : MonoBehaviour
                 catch{
                     Debug.Log("Not Disconnected");
                 }
+                cars.SetActive(false);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else{
