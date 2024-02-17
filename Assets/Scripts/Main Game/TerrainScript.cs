@@ -39,7 +39,7 @@ public class TerrainScript : MonoBehaviour
             }
             catch (Exception e)
             {
-                UIOverlay.instance.pauseGame(true, true);
+                UIOverlay.instance.pauseGame(true, false);
                 return false;
             }
         }

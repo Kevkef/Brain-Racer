@@ -18,6 +18,7 @@ public class CarMovement : MonoBehaviour
     private int nextAttentionValue;
     private int previousAttentionValue;
     private bool hasEnded = false;
+    private ParticleSystem particleSys;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +74,8 @@ public class CarMovement : MonoBehaviour
             if (fuel > 0.0f && gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
             {
                 gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(concentration, 0));
+                ParticleSystem.EmissionModule eM = GameObject.Find("Exhaust").GetComponent<ParticleSystem>().emission;
+                eM.rateOverTime = (5.0f * concentration);
             }
         } else
         {
