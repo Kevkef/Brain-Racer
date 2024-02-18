@@ -1241,6 +1241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationMultiplier: 15
   concentration: 0
+  audioClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
 --- !u!50 &471116633
 Rigidbody2D:
   serializedVersion: 4
@@ -1296,6 +1297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d988aaba13ca4ea4980fef9c57489939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
 --- !u!114 &471116636
 MonoBehaviour:
   m_ObjectHideFlags: 0

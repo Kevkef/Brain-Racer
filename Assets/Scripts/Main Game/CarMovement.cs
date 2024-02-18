@@ -18,6 +18,8 @@ public class CarMovement : MonoBehaviour
     private int nextAttentionValue;
     private int previousAttentionValue;
     private bool hasEnded = false;
+    public AudioClip audioClip;
+    AudioManager audioManager;
     private ParticleSystem particleSys;
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class CarMovement : MonoBehaviour
         PlayerPrefs.SetFloat("Acceleration",0.12f);
         PlayerPrefs.SetInt("MaxSpeed", 100);
         PlayerPrefs.SetInt("TankCapacity",20);
-
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         nextAttentionValue = 0;
 // TODO: add Error handling
@@ -131,6 +133,7 @@ public class CarMovement : MonoBehaviour
         }
         if (collision.gameObject.layer == 8)
         {
+            audioManager.PlaySFX(audioClip);
             Destroy(collision.gameObject.transform.parent.gameObject);
             fuel = PlayerPrefs.GetInt("TankCapacity");
         }
