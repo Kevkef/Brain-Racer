@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour
     private int startMaxSpeed = 4;
     private float startAirResistance = 0.1f;
     public GameObject loadingScreen;
+    public GameObject carSkins;
     private void Start(){
         setPlayerPrefsFloat("Acceleration", startAcceleration);
         setPlayerPrefsInt("TankCapacity", startTankCapacity);
@@ -54,13 +55,19 @@ public class MainMenu : MonoBehaviour
 
     public void PlayNewGame()
     {
+        loadingScreen.SetActive(true);
+        carSkins.SetActive(false);
+        RemoteSettings.ForceUpdate();
         //Create a Saveslot for the new Game if  there are less then 10 saves
             if(PlayerPrefs.GetInt("NotAvalibleSlots") < 10){
             SlotData slotData = new SlotData
             {
                 title = DateTime.Now.ToString()
             };
-               slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
+               //slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
+               for(int i = 0; i<20; i++){
+               slotData.mapData.Add(0);
+               }
                 slotData.world = null;
                 try{
                     saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
@@ -84,7 +91,7 @@ public class MainMenu : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else{
-            
+            carSkins.SetActive(true);
             loadingScreen.SetActive(false);
             Debug.Log("Bitte einen Saveslot vorher löschen und diese Nachrricht dem Nutzer anzeigen");
         }
