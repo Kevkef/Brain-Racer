@@ -28,7 +28,7 @@ public class SaveHandler : MonoBehaviour
         return saveSlots;
     }
   
-    public void ShowPanel(){    
+    public void ShowPanel(){
         noSaveSlot = true;
         SaveSlots saveSlots = GetSaveSlots();
         for(int i = 0; i< 10; i++){
