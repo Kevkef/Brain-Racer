@@ -7303,39 +7303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &669340003
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 669340004}
-  m_Layer: 0
-  m_Name: DontDestroyOnLoad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &669340004
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669340003}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 514.4174, y: 259.76245, z: -24.155437}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1260470381}
-  - {fileID: 822242845}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &670230858
 GameObject:
   m_ObjectHideFlags: 0
@@ -7937,11 +7904,11 @@ Transform:
   m_GameObject: {fileID: 822242842}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -139.05722, y: 17.237549, z: 26.348005}
+  m_LocalPosition: {x: 375.3602, y: 277, z: 2.1925678}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 669340004}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &828748229
 GameObject:
@@ -13167,14 +13134,14 @@ Transform:
   m_GameObject: {fileID: 1260470379}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -44.020966, y: 17.264343, z: 15.434393}
+  m_LocalPosition: {x: 470.39645, y: 277.0268, z: -8.721045}
   m_LocalScale: {x: 1, y: 1, z: 0.94022197}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2136361169}
   - {fileID: 1828165669}
   - {fileID: 965122405}
-  m_Father: {fileID: 669340004}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1281556972 stripped
 MonoBehaviour:
@@ -24452,4 +24419,5 @@ SceneRoots:
   - {fileID: 957850002}
   - {fileID: 1076397028}
   - {fileID: 550328473}
-  - {fileID: 669340004}
+  - {fileID: 822242845}
+  - {fileID: 1260470381}

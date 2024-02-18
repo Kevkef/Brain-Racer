@@ -64,10 +64,7 @@ public class MainMenu : MonoBehaviour
             {
                 title = DateTime.Now.ToString()
             };
-               //slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
-               for(int i = 0; i<20; i++){
-               slotData.mapData.Add(0);
-               }
+               slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
                 slotData.world = null;
                 try{
                     saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
