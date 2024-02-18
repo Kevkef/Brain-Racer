@@ -73,11 +73,15 @@ public class CarMovement : MonoBehaviour
         }
         if (grounded)
         {
+            ParticleSystem.EmissionModule eM = GameObject.Find("Exhaust").GetComponent<ParticleSystem>().emission;
             if (fuel > 0.0f && gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
             {
                 gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(concentration, 0));
-                ParticleSystem.EmissionModule eM = GameObject.Find("Exhaust").GetComponent<ParticleSystem>().emission;
                 eM.rateOverTime = (5.0f * concentration);
+            }
+            if(fuel < 0.0f)
+            {
+                eM.rateOverTime = 0.0f;
             }
         } else
         {
