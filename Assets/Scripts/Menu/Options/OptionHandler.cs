@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OptionHandler : MonoBehaviour
 {
     public GameObject MainMenu;
     public  GameObject Shop;
     public GameObject Save;
-    public  TMP_Text BtnText;
-    public  TMP_Text ChangeText;
+    
+    public Toggle toggleMeditation;
+    public Toggle toggleAttention;
+
     private int level;
 
     void Start(){
         if(PlayerPrefs.GetInt("Datatype") == 1){
-            BtnText.text = "Attention";
-            ChangeText.text = "Meditation";
+            toggleMeditation.isOn = true;
+            toggleAttention.isOn = false;
         }
     }
     public void SetLevel(int canvasNr){
@@ -37,14 +40,17 @@ public class OptionHandler : MonoBehaviour
         }
     }
      public void changeDatatype(){
-        ChangeText.text = BtnText.text;
-       if(BtnText.text == "Attention"){
-            BtnText.text = "Meditation";
-            PlayerPrefs.SetInt("Datatype",0);
+       if(PlayerPrefs.GetInt("Datatype") == 0){
+            toggleMeditation.isOn = true;
+            toggleAttention.isOn = false;
+            PlayerPrefs.SetInt("Datatype",1);
+            Debug.Log("Test1");
        }
        else{
-            BtnText.text = "Attention";
-            PlayerPrefs.SetInt("Datatype",1);
+            toggleMeditation.isOn = false;
+            toggleAttention.isOn = true;
+            PlayerPrefs.SetInt("Datatype",0);
+            Debug.Log("Test2");
        }
 
     }
