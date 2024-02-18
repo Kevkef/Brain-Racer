@@ -56,11 +56,9 @@ public class MainMenu : MonoBehaviour
 
     public void PlayNewGame()
     {
-        loadingScreen.SetActive(true);
-        carSkins.SetActive(false);
-        RemoteSettings.ForceUpdate();
         //Create a Saveslot for the new Game if  there are less then 10 saves
             if(PlayerPrefs.GetInt("NotAvalibleSlots") < 10){
+                StartCoroutine(ShowLoading());
             SlotData slotData = new SlotData
             {
                 title = DateTime.Now.ToString()
@@ -94,6 +92,13 @@ public class MainMenu : MonoBehaviour
             Debug.Log("Bitte einen Saveslot vorher löschen und diese Nachrricht dem Nutzer anzeigen");
         }
    }
+
+    private IEnumerator ShowLoading()
+    {
+        loadingScreen.SetActive(true);
+        carSkins.SetActive(false);
+        yield return null;
+    }
     public void QuitGame()
     {
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
@@ -106,4 +111,5 @@ public class MainMenu : MonoBehaviour
        }
         Application.Quit();
     }
+
 }
