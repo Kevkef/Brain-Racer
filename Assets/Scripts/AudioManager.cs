@@ -46,4 +46,8 @@ public class AudioManager : MonoBehaviour
         engineSource.clip=engine;
         engineSource.Play();
     }
+
+    public void StopEngine(){
+        engineSource.Stop();
+    }
 }

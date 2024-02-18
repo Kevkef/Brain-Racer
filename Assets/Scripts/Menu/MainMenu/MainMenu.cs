@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     public GameObject loadingScreen;
     public GameObject carSkins;
     private void Start(){
+        audioManager.StopEngine();
         setPlayerPrefsFloat("Acceleration", startAcceleration);
         setPlayerPrefsInt("TankCapacity", startTankCapacity);
         setPlayerPrefsInt("MaxSpeed", startMaxSpeed);
