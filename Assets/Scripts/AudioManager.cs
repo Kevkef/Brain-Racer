@@ -12,8 +12,15 @@ public class AudioManager : MonoBehaviour
      [Header("---AudioClip---")]
     public AudioClip engine;
     public AudioClip[] audioClips;
+    private static AudioManager instance;
     private void Awake(){
-        DontDestroyOnLoad(gameObject);
+       if (instance != null && instance != this) {
+            Destroy(gameObject);
+        }
+        else {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
     }
     private void Start(){
         musicSource.clip=audioClips[PlayerPrefs.GetInt("SelectedAudio")];
