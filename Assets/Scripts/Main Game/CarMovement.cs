@@ -82,6 +82,7 @@ public class CarMovement : MonoBehaviour
             if(fuel < 0.0f)
             {
                 eM.rateOverTime = 0.0f;
+                GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>().StopEngine();
             }
         } else
         {
@@ -140,6 +141,7 @@ public class CarMovement : MonoBehaviour
             audioManager.PlaySFX(audioClip);
             Destroy(collision.gameObject.transform.parent.gameObject);
             fuel = PlayerPrefs.GetInt("TankCapacity");
+            GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>().PlayEngine();
         }
     }
 
