@@ -33,6 +33,9 @@ public class SaveData : MonoBehaviour
         saveSlotNumber = 0;
         while(saveSlots.slotData[saveSlotNumber].title != ""){
             saveSlotNumber++;
+            if(saveSlotNumber == 10){
+                break;
+            }
         }
         saveSlots.slotData[saveSlotNumber] = slotData;
         SaveToJson();
