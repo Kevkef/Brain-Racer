@@ -10,6 +10,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using System.Threading;
 
 public class MainMenu : MonoBehaviour
 {
@@ -23,7 +24,11 @@ public class MainMenu : MonoBehaviour
     private float startAirResistance = 0.1f;
     public GameObject loadingScreen;
     public GameObject carSkins;
+
+    private bool newGame;
+    private SlotData slotData;
     private void Start(){
+        newGame = false;
         audioManager.StopEngine();
         setPlayerPrefsFloat("Acceleration", startAcceleration);
         setPlayerPrefsInt("TankCapacity", startTankCapacity);
@@ -58,47 +63,29 @@ public class MainMenu : MonoBehaviour
     {
         //Create a Saveslot for the new Game if  there are less then 10 saves
             if(PlayerPrefs.GetInt("NotAvalibleSlots") < 10){
-                StartCoroutine(ShowLoading());
-            SlotData slotData = new SlotData
+                loadingScreen.SetActive(true);
+                carSkins.SetActive(false);
+            slotData = new SlotData
             {
                 title = DateTime.Now.ToString()
             };
-               slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
-                slotData.world = null;
-                try{
-                    saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
-                    Debug.Log("Success");
-                }
-                catch{
-                    Debug.Log("Not working");
-                }
-                SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
-                saveManager.setSlotDataScene(slotData);
-                saveData.addToSaveSlots(slotData);    //Save the new Save Slot to JSON
-                PlayerPrefs.SetInt("NotAvalibleSlots", PlayerPrefs.GetInt("NotAvalibleSlots")+1);
-                eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
-                try{
-                    eegData.Disconnect();
-                }
-                catch{
-                    Debug.Log("Not Disconnected");
-                }
-                cars.SetActive(false);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        else{
-            carSkins.SetActive(true);
-            loadingScreen.SetActive(false);
-            Debug.Log("Bitte einen Saveslot vorher löschen und diese Nachrricht dem Nutzer anzeigen");
-        }
+            eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
+            new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
+                    slotData.world = null;
+                    newGame = true;
+            }).Start();
+            cars.SetActive(false);   
+            }
+            else{
+                carSkins.SetActive(true);
+                loadingScreen.SetActive(false);
+                Debug.Log("Bitte einen Saveslot vorher löschen und diese Nachrricht dem Nutzer anzeigen");
+            }
    }
 
-    private IEnumerator ShowLoading()
-    {
-        loadingScreen.SetActive(true);
-        carSkins.SetActive(false);
-        yield return null;
-    }
     public void QuitGame()
     {
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
@@ -112,4 +99,33 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    private void Update()
+    {
+        if (newGame)
+        {
+            newGame = false;
+            try
+            {
+                saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
+                Debug.Log("Success");
+            }
+            catch
+            {
+                Debug.Log("Not working");
+            }
+            SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
+            saveManager.setSlotDataScene(slotData);
+            saveData.addToSaveSlots(slotData);    //Save the new Save Slot to JSON
+            PlayerPrefs.SetInt("NotAvalibleSlots", PlayerPrefs.GetInt("NotAvalibleSlots") + 1);
+            try
+            {
+                eegData.Disconnect();
+            }
+            catch
+            {
+                Debug.Log("Not Disconnected");
+            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
 }
