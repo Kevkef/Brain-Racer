@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     private float startAirResistance = 0.1f;
     public GameObject loadingScreen;
     public GameObject carSkins;
+    public GameObject saveSlotMessage;
 
     private bool newGame;
     private SlotData slotData;
@@ -65,24 +66,24 @@ public class MainMenu : MonoBehaviour
             if(PlayerPrefs.GetInt("NotAvalibleSlots") < 10){
                 loadingScreen.SetActive(true);
                 carSkins.SetActive(false);
-            slotData = new SlotData
-            {
-                title = DateTime.Now.ToString()
-            };
-            eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
-            new Thread(() =>
+                slotData = new SlotData
                 {
-                    Thread.CurrentThread.IsBackground = true;
-                    slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
-                    slotData.world = null;
-                    newGame = true;
-            }).Start();
-            cars.SetActive(false);   
+                    title = DateTime.Now.ToString()
+                };
+                eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
+                new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                        slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
+                        slotData.world = null;
+                        newGame = true;
+                }).Start();
+                cars.SetActive(false);   
             }
             else{
-                carSkins.SetActive(true);
+                carSkins.SetActive(false);
                 loadingScreen.SetActive(false);
-                Debug.Log("Bitte einen Saveslot vorher löschen und diese Nachrricht dem Nutzer anzeigen");
+                saveSlotMessage.SetActive(true);
             }
    }
 
