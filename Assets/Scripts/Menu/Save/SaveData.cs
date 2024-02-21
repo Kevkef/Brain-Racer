@@ -33,9 +33,14 @@ public class SaveData : MonoBehaviour
         saveSlotNumber = 0;
         while(saveSlots.slotData[saveSlotNumber].title != ""){
             saveSlotNumber++;
+            if(saveSlotNumber == 10){
+                break;
+            }
         }
+        if(saveSlotNumber<= 9){
         saveSlots.slotData[saveSlotNumber] = slotData;
         SaveToJson();
+        }
     }
     public void deleteFromSaveSlots(int btnNr){
         //Delete a spezified Slot from JSON data
