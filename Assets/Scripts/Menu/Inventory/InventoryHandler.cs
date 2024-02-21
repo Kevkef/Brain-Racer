@@ -18,6 +18,7 @@ public class InventoryHandler : MonoBehaviour
     SubDisplay subDisplayCars;
     Image image;
     AudioManager audioManager;
+    Color lightYellow = new Color(255,245, 203, 255);
     void OnEnable()
     {
         audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
@@ -64,7 +65,7 @@ public class InventoryHandler : MonoBehaviour
         if(specification != "Minigames"){
             try{
             int deselect = PlayerPrefs.GetInt("Selected"+ specification);
-            InventoryPanelsOO[deselect].GetComponent<Button>().image.color = Color.white;
+            InventoryPanelsOO[deselect].GetComponent<Button>().image.color = lightYellow;
             }
             catch{}
             PlayerPrefs.SetInt("Selected" + specification, btnNr);
@@ -73,7 +74,7 @@ public class InventoryHandler : MonoBehaviour
         else{
             if(InventoryPanelsOO[btnNr].GetComponent<Button>().image.color == Color.yellow)
             {
-                InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.white;
+                InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = lightYellow;
                 PlayerPrefs.SetInt("Mathmode",0);
             }
             else{
