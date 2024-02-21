@@ -42,13 +42,15 @@ public class UpgradeHandler : MonoBehaviour
         PlayerPrefs.SetInt("LevelAirResistance", save1); 
         PlayerPrefs.SetInt("LevelAcceleration", save2); 
         PlayerPrefs.SetInt("LevelTankCapacity", save3);
+        refreshAll();
+        Debug.Log(PlayerPrefs.GetFloat("MaxSpeed"));
+    }
+    private void refreshAll(){
         show("MaxSpeed", costMaxSpeed, levelMaxSpeed ,coinMaxSpeed, btnMaxSpeed, statMaxSpeed);
         show("AirResistance",costAirResistance,levelAirResistance, coinAirResistance, btnAirResistance, statAirResistance);
         show("Acceleration", costAcceleration, levelAcceleration, coinAcceleration, btnAcceleration, statAcceleration);
         show("TankCapacity", costTankCapacity, levelTankCapacity, coinTankCapacity, btnTankCapacity, statTankCapacity);
-        Debug.Log(PlayerPrefs.GetFloat("MaxSpeed"));
     }
-
     private void Awake(){
         save0 = PlayerPrefs.GetInt("LevelMaxSpeed");
         save1 = PlayerPrefs.GetInt("LevelAirResistance");
@@ -77,7 +79,7 @@ public class UpgradeHandler : MonoBehaviour
         }
         shopHandler = GameObject.Find("Shop").GetComponent<ShopHandler>();
         shopHandler.UpdateCoins();
-        
+        refreshAll();
     }
 
     private void show(string spezification, int[] cost, TMP_Text level, TMP_Text coin, Button btn, float[] stat){

@@ -30,9 +30,11 @@ public class SubHandler : MonoBehaviour
     public void PurchaseCoins(int btnNr){
         shopHandler.PurchaseCoins(btnNr, shopItemSkinSO, specification);
         shopHandler.ShowPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification, currency);
+        CheckPurchaseable();
     }
     public void PurchasePoints(int btnNr){
         shopHandler.PurchasePoints(btnNr, shopItemSkinSO, specification);
         shopHandler.ShowPanel(shopItemSkinSO, shopPanelsSkinOO ,shopPanelsSkin, specification, currency);
+        CheckPurchaseable();
     }
 }
