@@ -25,6 +25,7 @@ public class EEGData : MonoBehaviour
     private int connectionID;
     private int latestAttentionValue;
     private NativeThinkGear.DataType datatype = NativeThinkGear.DataType.TG_DATA_ATTENTION;
+    string comPortName = "\\\\.\\COM6";
 
     void Start()
     {
@@ -100,6 +101,16 @@ public class EEGData : MonoBehaviour
     }
     public bool Connect()
     {
+        /*if(!PlayerPrefs.HasKey("ComPort"))
+        {
+            forcePort();
+            return true;
+        } else
+        {
+            comPortName = "\\\\.\\COM" + PlayerPrefs.GetInt("ComPort").ToString();
+            Debug.Log("Connected with: " + comPortName);
+        }*/
+        comPortName = "\\\\.\\COM4";
         int errCode = 0;
         NativeThinkGear thinkgear = new NativeThinkGear();
 
@@ -117,7 +128,6 @@ public class EEGData : MonoBehaviour
         }
 
         /* Attempt to connect the connection ID handle to serial port "COM5" (edit: changed to 4 based on my configurations)*/
-        string comPortName = "\\\\.\\COM4";
 
         errCode = NativeThinkGear.TG_Connect(connectionID,
                       comPortName,
@@ -186,5 +196,20 @@ public class EEGData : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    public void forcePort()
+    {
+        for (int port = 1; port < 11; port++)
+        {
+            comPortName = "\\\\.\\COM" + port;
+            PlayerPrefs.SetInt("ComPort", port);
+            if (Connect())
+            {
+                return;
+            }
+        }
+        Debug.LogError("Critical Error while connecting to EEG!");
+        //comPortName = "\\\\.\\COM4";
     }
 }

@@ -27,7 +27,7 @@ public class CarMovement : MonoBehaviour
         //4 testing only
         PlayerPrefs.SetFloat("AirResistance",0.1f);
         PlayerPrefs.SetFloat("Acceleration",0.12f);
-        PlayerPrefs.SetInt("MaxSpeed", 100);
+        PlayerPrefs.SetInt("MaxSpeed", 50);
         PlayerPrefs.SetInt("TankCapacity",20);
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 

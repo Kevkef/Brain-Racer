@@ -37,9 +37,10 @@ public class SaveData : MonoBehaviour
                 break;
             }
         }
-        if(saveSlotNumber<= 9){
-        saveSlots.slotData[saveSlotNumber] = slotData;
-        SaveToJson();
+        if (saveSlotNumber <= 9)
+        {
+            saveSlots.slotData[saveSlotNumber] = slotData;
+            SaveToJson();
         }
     }
     public void deleteFromSaveSlots(int btnNr){

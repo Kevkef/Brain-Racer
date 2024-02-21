@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,24 +22,29 @@ public class TerrainGroup : MonoBehaviour
     {
         if(car.transform.position.x > 500 * (indexTerrain - 1) - 100 || waiting)
         {
-            Debug.Log("next Terrain");
             nextTerrain();
         }
     }
 
     void nextTerrain()
     {
-        GameObject newterrain = Instantiate(terrain);
-        newterrain.transform.parent = this.gameObject.transform;
-        if (newterrain.GetComponent<TerrainScript>().generateMap(indexTerrain))
-        {
-            indexTerrain++;
-            waiting = false;
+        SlotData slotData = SaveManager.slotDataScene;
+        if (slotData.mapData.Count >= indexTerrain * 20) {
+            GameObject newterrain = Instantiate(terrain);
+            newterrain.transform.parent = this.gameObject.transform;
+            if (newterrain.GetComponent<TerrainScript>().generateMap(indexTerrain))
+            {
+                indexTerrain++;
+                waiting = false;
+            }
+            else
+            {
+                Destroy(newterrain);
+                waiting = true;
+            }
         }
-        else
-        {
-            Destroy(newterrain);
-            waiting = true;
+        else {
+            UIOverlay.instance.pauseGame(true, false);
         }
     }
 
