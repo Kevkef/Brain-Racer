@@ -16,7 +16,7 @@ public class Prewarm : MonoBehaviour
         GameObject model = GameObject.Find("Model");
         Destroy(model);
         print(PlayerPrefs.GetInt("SelectedSkinCars") + model.name);
-        GameObject newModel = (GameObject) PrefabUtility.InstantiatePrefab(bodymodels[PlayerPrefs.GetInt("SelectedSkinCars")]);
+        GameObject newModel = (GameObject)UnityEngine.Object.Instantiate(bodymodels[PlayerPrefs.GetInt("SelectedSkinCars")]);
         newModel.transform.parent = car.transform;
         newModel.transform.position = car.transform.position;
     }
