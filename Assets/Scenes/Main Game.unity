@@ -2936,6 +2936,7 @@ MonoBehaviour:
   endTime: {fileID: 157322281}
   endPoints: {fileID: 1242930487}
   endCoins: {fileID: 89381206}
+  audioClip: {fileID: 8300000, guid: 5c06dd5f979d68d43af4d7345180bb93, type: 3}
 --- !u!114 &995638620
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,10 +18,10 @@ public class MainMenu : MonoBehaviour
     SaveManager saveManager;
     EEGData eegData;
     public GameObject cars;
-     private float startAcceleration= 0.1f;
-    private int startTankCapacity = 5;
-    private int startMaxSpeed = 4;
-    private float startAirResistance = 0.1f;
+    private float startAcceleration= 0.115f;
+    private int startTankCapacity = 14;
+    private int startMaxSpeed = 8;
+    private float startAirResistance = 0.0985f;
     public GameObject loadingScreen;
     public GameObject carSkins;
     public GameObject saveSlotMessage;

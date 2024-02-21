@@ -21,14 +21,14 @@ public class UpgradeHandler : MonoBehaviour
     public Button btnAirResistance;
     public Button btnAcceleration;
     public Button btnTankCapacity;
-    private int[] costMaxSpeed= {10, 20,30,40,50,60,70,80,90,100};
-    private int[] costAirResistance= {10, 20,30,40,50,60,70,80,90,100};
-    private int[] costAcceleration= {10, 20,30,40,50,60,70,80,90,100};
-    private int[] costTankCapacity= {10, 20,30,40,50,60,70,80,90,100};
-    private float[] statMaxSpeed= {4,10, 20,30,40,50,60,70,80,90,100};
-    private float[] statAirResistance= {0,1f,10, 20,30,40,50,60,70,80,90,100};
-    private float[] statAcceleration= {0,1f,10, 20,30,40,50,60,70,80,90,100};
-    private float[] statTankCapacity= {5,10, 20,30,40,50,60,70,80,90,100};
+    private int[] costMaxSpeed= {10, 20,30,40,50,60,70,80,90,100, 0};
+    private int[] costAirResistance= {10, 20,30,40,50,60,70,80,90,100, 0};
+    private int[] costAcceleration= {10, 20,30,40,50,60,70,80,90,100, 0};
+    private int[] costTankCapacity= {10, 20,30,40,50,60,70,80,90,100, 0};
+    private float[] statMaxSpeed= {8, 15, 22, 29, 36, 43, 50, 57, 64, 71, 78};
+    private float[] statAirResistance= {0.115f, 0.116f, 0.117f, 0.118f, 0.119f, 0.12f, 0.1201f,0.1202f, 0.1203f, 0.1204f, 0.1205f};
+    private float[] statAcceleration= {0.0985f, 0.099f, 0.0995f, 0.1f , 0.105f, 0.11f, 0.115f, 0.12f, 0.125f, 0.13f, 0.135f};
+    private float[] statTankCapacity= {14, 16, 18, 20, 22, 24, 26, 28, 30,32, 34};
     ShopHandler shopHandler;
     int save0 = 0;
     int save1 = 0;
@@ -38,6 +38,7 @@ public class UpgradeHandler : MonoBehaviour
         boughtEverything.SetActive(false);
     }
     private void Start(){
+        
         PlayerPrefs.SetInt("LevelMaxSpeed", save0);
         PlayerPrefs.SetInt("LevelAirResistance", save1); 
         PlayerPrefs.SetInt("LevelAcceleration", save2); 
@@ -58,29 +59,26 @@ public class UpgradeHandler : MonoBehaviour
     public void upgrade(String specification){
         if(PlayerPrefs.GetInt("Coins") >= PlayerPrefs.GetInt("Level" +specification)*10+10){
             Debug.Log(PlayerPrefs.GetInt("Level" + specification)*10+10);
-        PlayerPrefs.SetInt("Level" +specification,PlayerPrefs.GetInt("Level" +specification)+1);
-        PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") -PlayerPrefs.GetInt("Cost"+specification));
-        switch(specification){
-            case "MaxSpeed": 
+            PlayerPrefs.SetInt("Level" +specification,PlayerPrefs.GetInt("Level" +specification)+1);
+          PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") -PlayerPrefs.GetInt("Cost"+specification));
+        }
+          switch(specification){
+              case "MaxSpeed": 
                 show(specification, costMaxSpeed, levelMaxSpeed ,coinMaxSpeed, btnMaxSpeed, statMaxSpeed);
                 break;
-            case "AirResistance": 
-                show(specification,costAirResistance,levelAirResistance, coinAirResistance, btnAirResistance, statAirResistance);
-                break;
-            case "Acceleration": 
-                show(specification, costAcceleration, levelAcceleration, coinAcceleration, btnAcceleration, statAcceleration);
-                break;
-            case "TankCapacity": 
-                show(specification, costTankCapacity, levelTankCapacity, coinTankCapacity, btnTankCapacity, statTankCapacity);
-                break;
+                case "AirResistance": 
+                    show(specification,costAirResistance,levelAirResistance, coinAirResistance, btnAirResistance, statAirResistance);
+                    break;
+                case "Acceleration": 
+                    show(specification, costAcceleration, levelAcceleration, coinAcceleration, btnAcceleration, statAcceleration);
+                    break;
+                case "TankCapacity": 
+                    show(specification, costTankCapacity, levelTankCapacity, coinTankCapacity, btnTankCapacity, statTankCapacity);
+                    break;
         }
         shopHandler = GameObject.Find("Shop").GetComponent<ShopHandler>();
         shopHandler.UpdateCoins();
-        Debug.Log(PlayerPrefs.GetFloat("MaxSpeed"));
-        }
-        else{
-            Debug.Log("No money"+ PlayerPrefs.GetInt("Coins"));
-        }
+        
     }
 
     private void show(string spezification, int[] cost, TMP_Text level, TMP_Text coin, Button btn, float[] stat){
@@ -88,9 +86,15 @@ public class UpgradeHandler : MonoBehaviour
         Debug.Log( PlayerPrefs.GetInt("Level" + spezification).ToString());
         level.text = PlayerPrefs.GetInt("Level" + spezification).ToString() + "/10";
         coin.text = PlayerPrefs.GetInt("Cost"+ spezification).ToString();
+        Debug.Log(PlayerPrefs.GetInt("Level" + spezification).ToString());
         PlayerPrefs.SetFloat(spezification, stat[PlayerPrefs.GetInt("Level" + spezification)]);
+        if(PlayerPrefs.GetInt("Coins") < PlayerPrefs.GetInt("Level" +spezification)*10+10){
+             btn.interactable = false;
+             coin.text = PlayerPrefs.GetInt("Cost"+ spezification).ToString() +"\n" +"Not enough coins";
+        }
         if(PlayerPrefs.GetInt("Level"+spezification) == 10){
-            btn.enabled = false;
+            btn.interactable = false;
+            coin.text = "Fully upgraded";
         }
     }
 }

@@ -37,7 +37,8 @@ public class UIOverlay : MonoBehaviour
     public TMP_Text endTime;
     public TMP_Text endPoints;
     public TMP_Text endCoins;
-
+    public AudioClip audioClip;
+    AudioManager audioManager;
     private int CoinAmount;
     private bool pause;
     // Start is called before the first frame update
@@ -54,6 +55,7 @@ public class UIOverlay : MonoBehaviour
         {
             mathmode.SetActive(false);
         }
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void addCoin()
@@ -67,6 +69,7 @@ public class UIOverlay : MonoBehaviour
     public void showEndScreen(float averageAttention, int peakAttention, int floorAttention, float time, int points, int coins)
     {
         endScreen.SetActive(true);
+        audioManager.PlaySFX(audioClip);
         endAttentionavg.text = averageAttention.ToString() + "%";
         endAttentionpeak.text = peakAttention.ToString() + "%";
         endAttentionlow.text = floorAttention.ToString() + "%";
