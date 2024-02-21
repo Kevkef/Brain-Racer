@@ -38,7 +38,6 @@ public class UpgradeHandler : MonoBehaviour
         boughtEverything.SetActive(false);
     }
     private void Start(){
-        
         PlayerPrefs.SetInt("LevelMaxSpeed", save0);
         PlayerPrefs.SetInt("LevelAirResistance", save1); 
         PlayerPrefs.SetInt("LevelAcceleration", save2); 
@@ -87,7 +86,12 @@ public class UpgradeHandler : MonoBehaviour
         level.text = PlayerPrefs.GetInt("Level" + spezification).ToString() + "/10";
         coin.text = PlayerPrefs.GetInt("Cost"+ spezification).ToString();
         Debug.Log(PlayerPrefs.GetInt("Level" + spezification).ToString());
+        if(spezification =="AirResistance"|| spezification == "Acceleration"){
         PlayerPrefs.SetFloat(spezification, stat[PlayerPrefs.GetInt("Level" + spezification)]);
+        }
+        else {
+            PlayerPrefs.SetInt(spezification, (int)stat[PlayerPrefs.GetInt("Level" + spezification)]);
+        }
         if(PlayerPrefs.GetInt("Coins") < PlayerPrefs.GetInt("Level" +spezification)*10+10){
              btn.interactable = false;
              coin.text = PlayerPrefs.GetInt("Cost"+ spezification).ToString() +"\n" +"Not enough coins";

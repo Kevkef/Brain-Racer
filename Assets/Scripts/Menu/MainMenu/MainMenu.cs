@@ -25,31 +25,35 @@ public class MainMenu : MonoBehaviour
     public GameObject loadingScreen;
     public GameObject carSkins;
     public GameObject saveSlotMessage;
+    private int speedStat = 8;
+    private float airStat = 0.115f;
+    private float accStat = 0.0985f;
+    private int tankStat = 14;
 
     private bool newGame;
     private SlotData slotData;
     private void Start(){
         newGame = false;
         audioManager.StopEngine();
-        setPlayerPrefsFloat("Acceleration", startAcceleration);
-        setPlayerPrefsInt("TankCapacity", startTankCapacity);
-        setPlayerPrefsInt("MaxSpeed", startMaxSpeed);
-        setPlayerPrefsFloat("AirResistance", startAirResistance);
+        PlayerPrefs.SetInt("MaxSpeed", speedStat);
+        PlayerPrefs.SetFloat("AirResistance", airStat); 
+        PlayerPrefs.SetFloat("Acceleration", accStat); 
+        PlayerPrefs.SetInt("TankCapacity", tankStat);
         setPlayerPrefsInt("SkinCars-1", 1);
         setPlayerPrefsInt("SkinCoins-1", 1);
         setPlayerPrefsInt("Audio-1", 1);
     }
-    private void setPlayerPrefsFloat(string stat, float startValue){
-        if(PlayerPrefs.GetFloat(stat) == 0){
-            PlayerPrefs.SetFloat(stat, startValue);
-        }
-    }
+    
     private void setPlayerPrefsInt(string stat, int startValue){
         if(PlayerPrefs.GetInt(stat) == 0){
             PlayerPrefs.SetInt(stat, startValue);
         }
     }
     private void Awake(){
+        speedStat = PlayerPrefs.GetInt("MaxSpeed");
+        airStat = PlayerPrefs.GetFloat("AirResistance");
+        accStat = PlayerPrefs.GetFloat("Acceleration");
+        tankStat = PlayerPrefs.GetInt("TankCapacity");
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
         try{
