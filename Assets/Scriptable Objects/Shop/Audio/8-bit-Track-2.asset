@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Upbeat
   description: 8 Bit Track 2
-  baseCost: 0
+  baseCost: 30
   look: {fileID: 0}
   audioClip: {fileID: 8300000, guid: fc5af015011ea3745b7f78ea1dd1049f, type: 3}

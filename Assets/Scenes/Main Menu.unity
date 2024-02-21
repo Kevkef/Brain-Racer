@@ -548,6 +548,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1187430116320921761, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187430116320921761, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -750,6 +754,18 @@ PrefabInstance:
     - target: {fileID: 7495492572080486595, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534212314888889633, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
+      propertyPath: m_Color.b
+      value: 0.52198297
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534212314888889633, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
+      propertyPath: m_Color.g
+      value: 0.61229706
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534212314888889633, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9622642
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3472,7 +3488,7 @@ PrefabInstance:
     - target: {fileID: 3761917578154223857, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 11a0f5b7a1ae48049a2a7fc935dd4583, type: 3}
+      objectReference: {fileID: 21300000, guid: 68fc65a6f785275478dc15fa94885930, type: 3}
     - target: {fileID: 3969912068002023701, guid: 24af1f6161bfcab429862f53897c39e3, type: 3}
       propertyPath: m_Layer
       value: 1
@@ -4909,6 +4925,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1187430116320921761, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187430116320921761, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -4974,11 +4994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1800988197851494678, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
       propertyPath: m_fontSize
-      value: 20
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1800988197851494678, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
       propertyPath: m_fontSizeBase
-      value: 20
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4217430363932511681, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
       propertyPath: m_Pivot.x
@@ -5083,6 +5103,10 @@ PrefabInstance:
     - target: {fileID: 5509233117453582062, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813642197054968016, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6721038795718152203, guid: 5fe593a47d546ef40a466776807cab64, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -8272,6 +8296,7 @@ MonoBehaviour:
   cars: {fileID: 476294717}
   loadingScreen: {fileID: 405683218}
   carSkins: {fileID: 476294717}
+  saveSlotMessage: {fileID: 0}
 --- !u!114 &849342479
 MonoBehaviour:
   m_ObjectHideFlags: 0
