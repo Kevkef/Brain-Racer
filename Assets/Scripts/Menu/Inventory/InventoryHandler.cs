@@ -18,6 +18,8 @@ public class InventoryHandler : MonoBehaviour
     SubDisplay subDisplayCars;
     Image image;
     AudioManager audioManager;
+    public AudioClip audioClip;
+    public AudioClip selectedAudioClip;
     Color lightOrange = new Color(255,245, 203, 255);
     void OnEnable()
     {
@@ -26,6 +28,7 @@ public class InventoryHandler : MonoBehaviour
         changeLayer(carSprite, 0);
         subDisplayCoins = coinSprite.GetComponent<SubDisplay>();
         subDisplayCars = carSprite.GetComponent<SubDisplay>();
+        audioManager.PlaySFX(audioClip);
     }
     public void showPanel(InventoryItemSO[] InventoryItemSO, GameObject[] InventoryPanelsOO, InventoryTemplate[] InventoryTemplate, string specification){
          for(int i = 0; i< InventoryItemSO.Length; i++){
@@ -63,6 +66,7 @@ public class InventoryHandler : MonoBehaviour
     { 
         //change color of selected Inventory field 
         if(specification != "Minigames"){
+            audioManager.PlaySFX(selectedAudioClip);
             try{
             int deselect = PlayerPrefs.GetInt("Selected"+ specification);
             InventoryPanelsOO[deselect].GetComponent<Button>().image.color = lightOrange;
@@ -79,6 +83,7 @@ public class InventoryHandler : MonoBehaviour
             }
             else{
                 PlayerPrefs.SetInt("Mathmode",1);
+                audioManager.PlaySFX(selectedAudioClip);
                 InventoryPanelsOO[btnNr].GetComponent<Button>().image.color = Color.yellow;
             }
         }

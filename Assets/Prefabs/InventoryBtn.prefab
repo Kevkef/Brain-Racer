@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 236321121924166952}
   - component: {fileID: 1842401323332710614}
   - component: {fileID: 3029740251611930955}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: InventoryBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.89111996, b: 0.8254717, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 0.8901961, b: 0.8235294, a: 1}
     m_HighlightedColor: {r: 0.990566, g: 0.9507485, b: 0.76161444, a: 1}
-    m_PressedColor: {r: 0.754717, g: 0.70928866, b: 0.66571736, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 1, g: 0.8901961, b: 0.8235294, a: 1}
+    m_SelectedColor: {r: 1, g: 0.8901961, b: 0.8235294, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 890733288244766313}
   - component: {fileID: 4872535392087609918}
   - component: {fileID: 8717790423934116843}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

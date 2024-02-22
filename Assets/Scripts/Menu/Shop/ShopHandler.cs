@@ -15,6 +15,8 @@ public class ShopHandler : MonoBehaviour
     public TMP_Text costCoins;
     public TMP_Text costPoints;
     public GameObject boughtEverything;
+    public AudioManager audioManager;
+    public AudioClip audioClip;
     int noActive;
     // Start is called before the first frame update
     void Start()
@@ -71,6 +73,7 @@ public class ShopHandler : MonoBehaviour
             PlayerPrefs.SetInt("Coins", coins);
             PlayerPrefs.SetInt(submenu+ btnNr.ToString(), 1);
             UpdateCoins();
+            audioManager.PlaySFX(audioClip);
         }
     }
     public void PurchasePoints(int btnNr, ShopItemSO[] shopItemSO, String submenu){
@@ -79,6 +82,7 @@ public class ShopHandler : MonoBehaviour
             PlayerPrefs.SetInt("Points", points);
             PlayerPrefs.SetInt(submenu+ btnNr.ToString(), 1);
             UpdatePoints();
+            audioManager.PlaySFX(audioClip);
         }
     }
     public void CheckPurchaseable(ShopItemSO[] shopItemSO, Button[] myPurchaseBtns, String currency){

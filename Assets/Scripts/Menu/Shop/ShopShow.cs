@@ -19,6 +19,8 @@ public class ShopShow : MonoBehaviour
     public TMP_Text coinsTMP;
     public TMP_Text audioTMP;
     public TMP_Text minigamesTMP;
+    public AudioManager audioManager;
+    public AudioClip audioClip;
 
     private void Show(TMP_Text TextComponent, GameObject gameObject)
     {
@@ -61,6 +63,7 @@ public class ShopShow : MonoBehaviour
         click(minigamesTMP, skinsTMP, minigamesItems, skinsItems, audioTMP, audioItems, upgradeTMP, upgradeItems);
     }
     private void click(TMP_Text showComponent, TMP_Text sleepComponent0, GameObject showObject, GameObject sleepObject0, TMP_Text sleepComponent1, GameObject sleepObject1,TMP_Text sleepComponent2, GameObject sleepObject2){
+        audioManager.PlaySFX(audioClip);
         Show(showComponent, showObject);
         Sleep(sleepComponent0, sleepObject0);
         Sleep(sleepComponent1, sleepObject1);
