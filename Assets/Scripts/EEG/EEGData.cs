@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EEGData : MonoBehaviour
@@ -41,9 +42,37 @@ public class EEGData : MonoBehaviour
         }
     }
 
-    void Update()
+    public void updateDatatype()
     {
-        if (autoread)
+        int type = PlayerPrefs.GetInt("Datatype");
+        if (type == 0)
+        {
+            datatype = NativeThinkGear.DataType.TG_DATA_ATTENTION;
+        }
+        else if (type == 1)
+        {
+            datatype = NativeThinkGear.DataType.TG_DATA_MEDITATION;
+        }
+    }
+
+    public void startAutoRead()
+    {
+        int errCode = 0;
+        //errCode = NativeThinkGear.TG_EnableAutoRead(connectionID, 1);
+        if (errCode == 0)
+        {
+            Debug.Log("Autoread enabled");
+            autoread = true;
+        }
+        new Thread(() =>
+        {
+            autoReadThread();
+        }).Start();
+    }
+
+    private void autoReadThread()
+    {
+        while (autoread)
         {
             int errCode = 0;
             //errCode = NativeThinkGear.MWM15_setFilterType(connectionID, NativeThinkGear.FilterType.MWM15_FILTER_TYPE_60HZ);
@@ -70,29 +99,6 @@ public class EEGData : MonoBehaviour
         }
     }
 
-    public void updateDatatype()
-    {
-        int type = PlayerPrefs.GetInt("Datatype");
-        if(type == 0)
-        {
-            datatype = NativeThinkGear.DataType.TG_DATA_ATTENTION;
-        } else if(type == 1)
-        {
-            datatype = NativeThinkGear.DataType.TG_DATA_MEDITATION;
-        }
-    }
-
-    public void startAutoRead()
-    {
-        int errCode = 0;
-        //errCode = NativeThinkGear.TG_EnableAutoRead(connectionID, 1);
-        if (errCode == 0)
-        {
-            Debug.Log("Autoread enabled");
-            autoread = true;
-        }
-    }
-
     public void stopAutoRead()
     {
         //NativeThinkGear.TG_EnableAutoRead(connectionID, 0);
@@ -101,16 +107,9 @@ public class EEGData : MonoBehaviour
     }
     public bool Connect()
     {
-        /*if(!PlayerPrefs.HasKey("ComPort"))
-        {
-            forcePort();
-            return true;
-        } else
-        {
-            comPortName = "\\\\.\\COM" + PlayerPrefs.GetInt("ComPort").ToString();
-            Debug.Log("Connected with: " + comPortName);
-        }*/
-        comPortName = "\\\\.\\COM4";
+        comPortName = "\\\\.\\COM" + PlayerPrefs.GetInt("ComPort").ToString();
+        Debug.Log("Connected with: " + comPortName);
+        comPortName = "\\\\.\\COM4"; //bei Fertigstellung der Einstellungen löschen!
         int errCode = 0;
         NativeThinkGear thinkgear = new NativeThinkGear();
 
@@ -198,7 +197,7 @@ public class EEGData : MonoBehaviour
         return true;
     }
 
-    public void forcePort()
+    /*public void forcePort()
     {
         for (int port = 1; port < 11; port++)
         {
@@ -206,10 +205,18 @@ public class EEGData : MonoBehaviour
             PlayerPrefs.SetInt("ComPort", port);
             if (Connect())
             {
-                return;
+                new Thread(() =>
+                {
+                    nextAttentionValue = EEGData.instance.nextAttentionValue();
+                }).Start();
+                if (NativeThinkGear.TG_ReadPackets(connectionID, 1) != -2)
+                {
+                  return;
+                }
+                Disconnect();
             }
         }
         Debug.LogError("Critical Error while connecting to EEG!");
-        //comPortName = "\\\\.\\COM4";
-    }
+        //Bsp.: comPortName = "\\\\.\\COM4";
+    }*/
 }

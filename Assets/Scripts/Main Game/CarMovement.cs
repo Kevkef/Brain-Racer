@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class CarMovement : MonoBehaviour
@@ -25,14 +26,14 @@ public class CarMovement : MonoBehaviour
     void Start()
     {
         //4 testing only
-        PlayerPrefs.SetFloat("AirResistance",0.1f);
-        PlayerPrefs.SetFloat("Acceleration",0.12f);
+        PlayerPrefs.SetFloat("AirResistance", 0.1f);
+        PlayerPrefs.SetFloat("Acceleration", 0.12f);
         PlayerPrefs.SetInt("MaxSpeed", 50);
-        PlayerPrefs.SetInt("TankCapacity",20);
+        PlayerPrefs.SetInt("TankCapacity", 20);
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         nextAttentionValue = 0;
-// TODO: add Error handling
+        // TODO: add Error handling
         EEGData.instance.Connect();
         EEGData.instance.startAutoRead();
         fuel = PlayerPrefs.GetInt("TankCapacity");
@@ -79,17 +80,19 @@ public class CarMovement : MonoBehaviour
                 gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(concentration, 0));
                 eM.rateOverTime = (5.0f * concentration);
             }
-            if(fuel < 0.0f)
+            if (fuel < 0.0f)
             {
                 eM.rateOverTime = 0.0f;
                 GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>().StopEngine();
             }
-        } else
+        }
+        else
         {
             if (Input.GetKey("a") || Input.GetKey("left"))
             {
                 gameObject.transform.Rotate(0.0f, 0.0f, 0.1f * rotationMultiplier, Space.Self);
-            } else if (Input.GetKey("d") || Input.GetKey("right"))
+            }
+            else if (Input.GetKey("d") || Input.GetKey("right"))
             {
                 gameObject.transform.Rotate(0.0f, 0.0f, -0.1f * rotationMultiplier, Space.Self);
             }
@@ -102,7 +105,7 @@ public class CarMovement : MonoBehaviour
 
         //EndConditions
 
-        if(fuel <= -5.0f && !hasEnded) //-5 to have 5 seconds spare
+        if (fuel <= -5.0f && !hasEnded) //-5 to have 5 seconds spare
         {
             GameObject.Find("GameManager").GetComponent<Stats>().setConcentrationPoints((int)((attentionvalues.Sum() / attentionvalues.Count) * (Time.time - starttime) * 0.001));
             GameObject.Find("GameManager").GetComponent<Stats>().save();
@@ -114,20 +117,21 @@ public class CarMovement : MonoBehaviour
             int coins = GameObject.Find("GameManager").GetComponent<Stats>().getCurrCoins();
             foreach (int i in attentionvalues)
             {
-                if(peakA < i)
+                if (peakA < i)
                 {
                     peakA = i;
                 }
-                if(lowA > i)
+                if (lowA > i)
                 {
                     lowA = i;
                 }
             }
+            EEGData.instance.stopAutoRead();
             UIOverlay.instance.showEndScreen(averageA, peakA, lowA, time, points, coins);
             hasEnded = true;
         }
 
-        
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -147,7 +151,7 @@ public class CarMovement : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 3)
+        if (collision.gameObject.layer == 3)
         {
             grounded = false;
             gameObject.GetComponent<Rigidbody2D>().totalForce.Set(0f, 0f);
