@@ -46,10 +46,7 @@ public class CarMovement : MonoBehaviour
     private void Update()
     {
         previousAttentionValue = nextAttentionValue;
-        new Thread(() =>
-        {
-            nextAttentionValue = EEGData.instance.nextAttentionValue();
-        }).Start();
+        nextAttentionValue = EEGData.instance.nextAttentionValue();
         if (nextAttentionValue == 0)
         {
             UIOverlay.instance.pauseGame(true, true);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EEGData : MonoBehaviour
@@ -41,9 +42,37 @@ public class EEGData : MonoBehaviour
         }
     }
 
-    void Update()
+    public void updateDatatype()
     {
-        if (autoread)
+        int type = PlayerPrefs.GetInt("Datatype");
+        if (type == 0)
+        {
+            datatype = NativeThinkGear.DataType.TG_DATA_ATTENTION;
+        }
+        else if (type == 1)
+        {
+            datatype = NativeThinkGear.DataType.TG_DATA_MEDITATION;
+        }
+    }
+
+    public void startAutoRead()
+    {
+        int errCode = 0;
+        //errCode = NativeThinkGear.TG_EnableAutoRead(connectionID, 1);
+        if (errCode == 0)
+        {
+            Debug.Log("Autoread enabled");
+            autoread = true;
+        }
+        new Thread(() =>
+        {
+            autoReadThread();
+        }).Start();
+    }
+
+    private void autoReadThread()
+    {
+        while (autoread)
         {
             int errCode = 0;
             //errCode = NativeThinkGear.MWM15_setFilterType(connectionID, NativeThinkGear.FilterType.MWM15_FILTER_TYPE_60HZ);
@@ -67,30 +96,6 @@ public class EEGData : MonoBehaviour
                 } /* end "If attention value has been updated..." */
 
             } /* end "If a Packet of data was read..." */
-        }
-    }
-
-    public void updateDatatype()
-    {
-        int type = PlayerPrefs.GetInt("Datatype");
-        if (type == 0)
-        {
-            datatype = NativeThinkGear.DataType.TG_DATA_ATTENTION;
-        }
-        else if (type == 1)
-        {
-            datatype = NativeThinkGear.DataType.TG_DATA_MEDITATION;
-        }
-    }
-
-    public void startAutoRead()
-    {
-        int errCode = 0;
-        //errCode = NativeThinkGear.TG_EnableAutoRead(connectionID, 1);
-        if (errCode == 0)
-        {
-            Debug.Log("Autoread enabled");
-            autoread = true;
         }
     }
 
