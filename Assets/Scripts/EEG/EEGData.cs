@@ -73,10 +73,11 @@ public class EEGData : MonoBehaviour
     public void updateDatatype()
     {
         int type = PlayerPrefs.GetInt("Datatype");
-        if(type == 0)
+        if (type == 0)
         {
             datatype = NativeThinkGear.DataType.TG_DATA_ATTENTION;
-        } else if(type == 1)
+        }
+        else if (type == 1)
         {
             datatype = NativeThinkGear.DataType.TG_DATA_MEDITATION;
         }
@@ -101,16 +102,9 @@ public class EEGData : MonoBehaviour
     }
     public bool Connect()
     {
-        /*if(!PlayerPrefs.HasKey("ComPort"))
-        {
-            forcePort();
-            return true;
-        } else
-        {
-            comPortName = "\\\\.\\COM" + PlayerPrefs.GetInt("ComPort").ToString();
-            Debug.Log("Connected with: " + comPortName);
-        }*/
-        comPortName = "\\\\.\\COM4";
+        comPortName = "\\\\.\\COM" + PlayerPrefs.GetInt("ComPort").ToString();
+        Debug.Log("Connected with: " + comPortName);
+        comPortName = "\\\\.\\COM4"; //bei Fertigstellung der Einstellungen löschen!
         int errCode = 0;
         NativeThinkGear thinkgear = new NativeThinkGear();
 
@@ -198,7 +192,7 @@ public class EEGData : MonoBehaviour
         return true;
     }
 
-    public void forcePort()
+    /*public void forcePort()
     {
         for (int port = 1; port < 11; port++)
         {
@@ -206,10 +200,18 @@ public class EEGData : MonoBehaviour
             PlayerPrefs.SetInt("ComPort", port);
             if (Connect())
             {
-                return;
+                new Thread(() =>
+                {
+                    nextAttentionValue = EEGData.instance.nextAttentionValue();
+                }).Start();
+                if (NativeThinkGear.TG_ReadPackets(connectionID, 1) != -2)
+                {
+                  return;
+                }
+                Disconnect();
             }
         }
         Debug.LogError("Critical Error while connecting to EEG!");
-        //comPortName = "\\\\.\\COM4";
-    }
+        //Bsp.: comPortName = "\\\\.\\COM4";
+    }*/
 }
