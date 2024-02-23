@@ -9,16 +9,25 @@ public class OptionHandler : MonoBehaviour
     public GameObject MainMenu;
     public  GameObject Shop;
     public GameObject Save;
-    
+    public GameObject COMValue;
     public Toggle toggleMeditation;
     public Toggle toggleAttention;
-
+    private static OptionHandler instance;
     private int level;
 
     void Start(){
         if(PlayerPrefs.GetInt("Datatype") == 1){
             toggleMeditation.isOn = true;
             toggleAttention.isOn = false;
+        }
+    }
+    private void Awake(){
+       if (instance != null && instance != this) {
+            Destroy(gameObject);
+        }
+        else {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
         }
     }
     public void SetLevel(int canvasNr){
@@ -52,6 +61,8 @@ public class OptionHandler : MonoBehaviour
             PlayerPrefs.SetInt("Datatype",0);
             Debug.Log("Test2");
        }
-
+    }
+    public void setCOM(){
+        PlayerPrefs.GetInt("ComPort",COMValue.GetComponent<Dropdown>().value);
     }
 }

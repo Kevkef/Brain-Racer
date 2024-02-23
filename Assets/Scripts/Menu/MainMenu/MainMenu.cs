@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
     private float airStat = 0.115f;
     private float accStat = 0.0985f;
     private int tankStat = 14;
+    private int COMStat = 4;
 
     private bool newGame;
     private SlotData slotData;
@@ -35,6 +36,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("AirResistance", airStat); 
         PlayerPrefs.SetFloat("Acceleration", accStat); 
         PlayerPrefs.SetInt("TankCapacity", tankStat);
+        PlayerPrefs.SetInt("ComPort", COMStat);
         setPlayerPrefsInt("SkinCars-1", 1);
         setPlayerPrefsInt("SkinCoins-1", 1);
         setPlayerPrefsInt("Audio-1", 1);
@@ -50,6 +52,7 @@ public class MainMenu : MonoBehaviour
         airStat = PlayerPrefs.GetFloat("AirResistance");
         accStat = PlayerPrefs.GetFloat("Acceleration");
         tankStat = PlayerPrefs.GetInt("TankCapacity");
+        COMStat = PlayerPrefs.GetInt("ComPort", COMStat);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
         try{
