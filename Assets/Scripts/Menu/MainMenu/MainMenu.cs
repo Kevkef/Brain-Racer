@@ -37,6 +37,7 @@ public class MainMenu : MonoBehaviour
     private void Start(){
         parentOptionHandler = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
         parentOptionHandler.AddListenerToBtn(optionButton);
+        parentOptionHandler.setGameObject(GameObject.Find("MainMenu"));
         newGame = false;
         audioManager.StopEngine();
         PlayerPrefs.SetInt("MaxSpeed", speedStat);

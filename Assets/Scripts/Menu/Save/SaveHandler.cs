@@ -23,11 +23,14 @@ public class SaveHandler : MonoBehaviour
         ShowPanel();
          parentOptionHandler = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
         parentOptionHandler.AddListenerToBtn(optionButton);
+         parentOptionHandler.setGameObject(GameObject.Find("Save"));
+        
     }
 
     public SaveSlots GetSaveSlots(){
         SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
         SaveSlots saveSlots = saveData.LoadFromJson();
+        
         return saveSlots;
     }
   

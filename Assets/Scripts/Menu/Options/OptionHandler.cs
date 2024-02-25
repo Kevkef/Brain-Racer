@@ -7,9 +7,7 @@ using UnityEngine.UI;
 
 public class OptionHandler : MonoBehaviour
 {
-    public GameObject MainMenu;
-    public  GameObject Shop;
-    public GameObject Save;
+    GameObject retreatObject;
     public GameObject COMValue;
     public Toggle toggleMeditation;
     public Toggle toggleAttention;
@@ -33,21 +31,6 @@ public class OptionHandler : MonoBehaviour
     }
     public void SetLevel(int canvasNr){
         level = canvasNr;
-    }
-    public void closeOptions(){
-        //open the canvas where Options was called from
-        if(level == 0){
-            MainMenu.SetActive(true);
-        }
-        else if(level == 1){
-            Save.SetActive(true);
-        }
-        else if(level == 2){
-            Shop.SetActive(true);
-        }
-        else {
-            Time.timeScale = 1.0f;
-        }
     }
      public void changeDatatype(){
        if(PlayerPrefs.GetInt("Datatype") == 0){

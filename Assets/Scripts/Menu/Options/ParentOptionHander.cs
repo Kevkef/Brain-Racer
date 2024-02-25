@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ParentOptionHandler : MonoBehaviour
 {
+    GameObject retreatObject;
     private static ParentOptionHandler instance;
     public GameObject options;
     // Start is called before the first frame update
@@ -49,5 +50,11 @@ public class ParentOptionHandler : MonoBehaviour
     {
         
     }
-
+    public void setGameObject(GameObject gameObject){
+        retreatObject = gameObject;
+    }
+    public void closeOptions(){
+        //open the canvas where Options was called from
+        retreatObject.SetActive(true);
+    }
 }

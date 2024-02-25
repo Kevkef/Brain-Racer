@@ -25,6 +25,7 @@ public class ShopHandler : MonoBehaviour
     {
         parentOptionHandler = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
         parentOptionHandler.AddListenerToBtn(optionButton);
+        parentOptionHandler.setGameObject(GameObject.Find("Shop"));
         coins = PlayerPrefs.GetInt("Coins");
         points = PlayerPrefs.GetInt("Points");
     }
