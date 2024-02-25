@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 using System.Threading;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class MainMenu : MonoBehaviour
     public GameObject carSkins;
     public GameObject saveSlotMessage;
     public GameObject eegWarning;
+    public Button optionButton;
+    ParentOptionHandler parentOptionHandler;
     private int speedStat = 8;
     private float airStat = 0.115f;
     private float accStat = 0.0985f;
@@ -32,6 +35,8 @@ public class MainMenu : MonoBehaviour
     private SlotData slotData;
     private Boolean isConnected;
     private void Start(){
+        parentOptionHandler = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
+        parentOptionHandler.AddListenerToBtn(optionButton);
         newGame = false;
         audioManager.StopEngine();
         PlayerPrefs.SetInt("MaxSpeed", speedStat);
@@ -83,6 +88,7 @@ public class MainMenu : MonoBehaviour
                 {
                     title = DateTime.Now.ToString()
                 };
+                parentOptionHandler.RemoveListenerFromBtn(optionButton);
                 eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
                 new Thread(() =>
                     {

@@ -17,10 +17,14 @@ public class ShopHandler : MonoBehaviour
     public GameObject boughtEverything;
     public AudioManager audioManager;
     public AudioClip audioClip;
+    ParentOptionHandler parentOptionHandler;
+    public Button optionButton;
     int noActive;
     // Start is called before the first frame update
     void Start()
     {
+        parentOptionHandler = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
+        parentOptionHandler.AddListenerToBtn(optionButton);
         coins = PlayerPrefs.GetInt("Coins");
         points = PlayerPrefs.GetInt("Points");
     }

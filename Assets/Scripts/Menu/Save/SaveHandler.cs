@@ -14,12 +14,15 @@ public class SaveHandler : MonoBehaviour
     public GameObject[] savePanelsOO; 
     public SaveTemplate[] saveTemplate;
     public GameObject noSaveSlotPanel;
-   
+    ParentOptionHandler parentOptionHandler;
+    public Button optionButton;
     EEGData eegData;
     Boolean noSaveSlot;
     void Start()
     {
         ShowPanel();
+         parentOptionHandler = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
+        parentOptionHandler.AddListenerToBtn(optionButton);
     }
 
     public SaveSlots GetSaveSlots(){

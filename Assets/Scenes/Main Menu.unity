@@ -2661,6 +2661,7 @@ MonoBehaviour:
   - {fileID: 58732251}
   - {fileID: 1836367349}
   noSaveSlotPanel: {fileID: 432836358}
+  optionButton: {fileID: 903849169}
 --- !u!1 &195312205
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,18 +3334,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1443687887}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1260470380}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlaySFX
@@ -9634,6 +9623,7 @@ MonoBehaviour:
   carSkins: {fileID: 476294717}
   saveSlotMessage: {fileID: 369400569}
   eegWarning: {fileID: 315973739}
+  optionButton: {fileID: 1826544984}
 --- !u!114 &849342479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10740,18 +10730,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1443687887}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 193747846}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -21610,18 +21588,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1443687887}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 849342476}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -23541,6 +23507,7 @@ MonoBehaviour:
   boughtEverything: {fileID: 115363662}
   audioManager: {fileID: 1260470380}
   audioClip: {fileID: 8300000, guid: 7c908190ea5e40049ab40d76f97a2b2c, type: 3}
+  optionButton: {fileID: 263156894}
 --- !u!114 &1905264186
 MonoBehaviour:
   m_ObjectHideFlags: 0

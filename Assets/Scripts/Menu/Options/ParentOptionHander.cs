@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ParentOptionHandler : MonoBehaviour
 {
@@ -10,7 +11,12 @@ public class ParentOptionHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+    }
+    public void AddListenerToBtn(Button btn){
+        btn.onClick.AddListener(ActivateOptions);
+    }
+    public void RemoveListenerFromBtn(Button btn){
+          btn.onClick.RemoveListener(ActivateOptions);
     }
     private void Awake(){
        if (instance != null && instance != this) {
@@ -21,15 +27,15 @@ public class ParentOptionHandler : MonoBehaviour
             instance = this;
         }
     }
-    public void activateOptions()
+    public void ActivateOptions()
     {
         options.SetActive(true);
     }
-    public void deactivateOptions()
+    public void DeactivateOptions()
     {
         options.SetActive(false);
     }
-    public Boolean isOptionActive()
+    public Boolean IsOptionActive()
     {
         if(options.activeInHierarchy == true){
             return true;
@@ -43,4 +49,5 @@ public class ParentOptionHandler : MonoBehaviour
     {
         
     }
+
 }
