@@ -62,7 +62,7 @@ public class MainMenu : MonoBehaviour
         else {
             Debug.Log("Not Connected");
             eegWarning.SetActive(true);
-       }
+        }
     }
 
     public void PlayNewGame()
