@@ -109,7 +109,7 @@ public class EEGData : MonoBehaviour
     {
         comPortName = "\\\\.\\COM" + PlayerPrefs.GetInt("ComPort").ToString();
         Debug.Log("Connected with: " + comPortName);
-        comPortName = "\\\\.\\COM4"; //bei Fertigstellung der Einstellungen löschen!
+        //comPortName = "\\\\.\\COM4"; //bei Fertigstellung der Einstellungen löschen!
         int errCode = 0;
         NativeThinkGear thinkgear = new NativeThinkGear();
 

@@ -20,6 +20,7 @@ public class OptionHandler : MonoBehaviour
             toggleMeditation.isOn = true;
             toggleAttention.isOn = false;
         }
+        COMValue.GetComponent<TMP_Dropdown>().value = (PlayerPrefs.GetInt("ComPort") - 3);
     }
     private void Awake(){
        if (instance != null && instance != this) {
@@ -63,6 +64,8 @@ public class OptionHandler : MonoBehaviour
        }
     }
     public void setCOM(){
-        PlayerPrefs.GetInt("ComPort",COMValue.GetComponent<Dropdown>().value);
+        PlayerPrefs.SetInt("ComPort",(COMValue.GetComponent<TMP_Dropdown>().value + 3));
+        EEGData.instance.Disconnect();
+        EEGData.instance.Connect();
     }
 }
