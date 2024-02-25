@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,7 +14,6 @@ public class OptionHandler : MonoBehaviour
     public Toggle toggleMeditation;
     public Toggle toggleAttention;
     public GameObject eegWarning;
-    private static OptionHandler instance;
     private int level;
 
     void Start(){
@@ -29,15 +29,6 @@ public class OptionHandler : MonoBehaviour
         else
         {
             eegWarning.SetActive(true);
-        }
-    }
-    private void Awake(){
-       if (instance != null && instance != this) {
-            Destroy(gameObject);
-        }
-        else {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
         }
     }
     public void SetLevel(int canvasNr){
@@ -84,5 +75,10 @@ public class OptionHandler : MonoBehaviour
             Debug.Log("Not Connected");
             eegWarning.SetActive(true);
         }
+    }
+
+    public static implicit operator OptionHandler(ParentOptionHandler v)
+    {
+        throw new NotImplementedException();
     }
 }

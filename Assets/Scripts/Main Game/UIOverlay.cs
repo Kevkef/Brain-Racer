@@ -128,14 +128,14 @@ public class UIOverlay : MonoBehaviour
         }
     }
     public void optionsGame(){
-       GameObject optionObject = GameObject.Find("Options");
-         if(optionObject.activeInHierarchy == false){
-            optionObject.SetActive(false);
-            Time.timeScale = 1.0f;
+         ParentOptionHandler optionParent = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
+         if(optionParent.isActive() == false){
+            optionParent.activateOptions();
+            Time.timeScale = 0.0f;
         }
         else{
-            optionObject.SetActive(true);
-            Time.timeScale = 0.0f;
+            optionParent.deactivateOptions();
+            Time.timeScale = 1.0f;
         }
     }
 }
