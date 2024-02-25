@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
 
     private bool newGame;
     private SlotData slotData;
+    private Boolean isConnected;
     private void Start(){
         newGame = false;
         audioManager.StopEngine();
@@ -58,17 +59,24 @@ public class MainMenu : MonoBehaviour
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
         if(eegData.Connect()) {
             eegWarning.SetActive(false);
+            isConnected = true;
         }
         else {
-            Debug.Log("Not Connected");
             eegWarning.SetActive(true);
+            isConnected = false;
+       }
+       if(eegWarning.activeInHierarchy == true){
+            carSkins.SetActive(false);
+       }
+       else {
+            carSkins.SetActive(true);
        }
     }
 
     public void PlayNewGame()
     {
         //Create a Saveslot for the new Game if  there are less then 10 saves
-            if(PlayerPrefs.GetInt("NotAvalibleSlots") < 10){
+            if(PlayerPrefs.GetInt("NotAvalibleSlots") < 10 && isConnected == true){
                 loadingScreen.SetActive(true);
                 carSkins.SetActive(false);
                 slotData = new SlotData
@@ -85,10 +93,15 @@ public class MainMenu : MonoBehaviour
                 }).Start();
                 cars.SetActive(false);   
             }
-            else{
+            else if (PlayerPrefs.GetInt("NotAvalibleSlots") == 10){
                 carSkins.SetActive(false);
                 loadingScreen.SetActive(false);
                 saveSlotMessage.SetActive(true);
+            }
+            else if(isConnected == false){
+                carSkins.SetActive(false);
+                loadingScreen.SetActive(false);
+                eegWarning.SetActive(true);
             }
    }
 
@@ -98,8 +111,10 @@ public class MainMenu : MonoBehaviour
         
         try{
             eegData.Disconnect();
+            isConnected = false;
         }
         catch{
+            isConnected = true;
             Debug.Log("Not Disconnected");
        }
         Application.Quit();

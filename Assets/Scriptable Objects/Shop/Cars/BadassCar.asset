@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BadassCar
   m_EditorClassIdentifier: 
   title: Badass Car
-  description: Your brai   should be cooking lookig at this.
+  description: Your brain should be cooking lookig at this.
   baseCost: 70
   look: {fileID: 21300000, guid: 604b4cd481ba91941bf1b21c71790756, type: 3}

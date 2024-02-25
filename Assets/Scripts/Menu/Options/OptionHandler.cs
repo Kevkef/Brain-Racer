@@ -22,6 +22,14 @@ public class OptionHandler : MonoBehaviour
             toggleAttention.isOn = false;
         }
         COMValue.GetComponent<TMP_Dropdown>().value = (PlayerPrefs.GetInt("ComPort") - 3);
+         if (EEGData.instance.Connect())
+        {
+            eegWarning.SetActive(false);
+        }
+        else
+        {
+            eegWarning.SetActive(true);
+        }
     }
     private void Awake(){
        if (instance != null && instance != this) {
@@ -47,7 +55,7 @@ public class OptionHandler : MonoBehaviour
             Shop.SetActive(true);
         }
         else {
-            Debug.Log("Error while closing options");
+            Time.timeScale = 1.0f;
         }
     }
      public void changeDatatype(){

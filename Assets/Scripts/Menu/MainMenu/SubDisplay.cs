@@ -10,7 +10,7 @@ public class SubDisplay : MonoBehaviour
     public string specification;
     public GameObject display;
     public void Start(){
-      displayHandler = GameObject.Find("Display").GetComponent<DisplayHandler>();
+      displayHandler = GameObject.Find("Change").GetComponent<DisplayHandler>();
       displayHandler.setDisplay(sprites,specification,display);
     }
 }

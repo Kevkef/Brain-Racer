@@ -127,4 +127,15 @@ public class UIOverlay : MonoBehaviour
             }
         }
     }
+    public void optionsGame(){
+       GameObject optionObject = GameObject.Find("Options");
+         if(optionObject.activeInHierarchy == false){
+            optionObject.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+        else{
+            optionObject.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+    }
 }
