@@ -76,9 +76,4 @@ public class OptionHandler : MonoBehaviour
             eegWarning.SetActive(true);
         }
     }
-
-    public static implicit operator OptionHandler(ParentOptionHandler v)
-    {
-        throw new NotImplementedException();
-    }
 }

@@ -129,7 +129,7 @@ public class UIOverlay : MonoBehaviour
     }
     public void optionsGame(){
          ParentOptionHandler optionParent = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
-         if(optionParent.isActive() == false){
+         if(optionParent.isOptionActive() == false){
             optionParent.activateOptions();
             Time.timeScale = 0.0f;
         }
