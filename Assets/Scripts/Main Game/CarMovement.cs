@@ -19,6 +19,7 @@ public class CarMovement : MonoBehaviour
     private int nextAttentionValue;
     private int previousAttentionValue;
     private bool hasEnded = false;
+    private bool paused = false;
     public AudioClip audioClip;
     AudioManager audioManager;
     private ParticleSystem particleSys;
@@ -26,10 +27,10 @@ public class CarMovement : MonoBehaviour
     void Start()
     {
         //4 testing only
-        PlayerPrefs.SetFloat("AirResistance", 0.1f);
-        PlayerPrefs.SetFloat("Acceleration", 0.12f);
-        PlayerPrefs.SetInt("MaxSpeed", 50);
-        PlayerPrefs.SetInt("TankCapacity", 20);
+        //PlayerPrefs.SetFloat("AirResistance", 0.1f);
+        //PlayerPrefs.SetFloat("Acceleration", 0.12f);
+        //PlayerPrefs.SetInt("MaxSpeed", 50);
+        //PlayerPrefs.SetInt("TankCapacity", 20);
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         nextAttentionValue = 0;
@@ -50,10 +51,15 @@ public class CarMovement : MonoBehaviour
         if (nextAttentionValue == 0)
         {
             UIOverlay.instance.pauseGame(true, true);
+            paused = true;
         }
         else
         {
-            UIOverlay.instance.pauseGame(false);
+            if (paused)
+            {
+                UIOverlay.instance.pauseGame(false);
+                paused = false;
+            }
             if (nextAttentionValue != previousAttentionValue)
             {
                 GameObject.Find("SaveManager").GetComponent<SaveData>().updateSaveSlotdataMap(nextAttentionValue);

@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour
     public GameObject loadingScreen;
     public GameObject carSkins;
     public GameObject saveSlotMessage;
+    public GameObject eegWarning;
     private int speedStat = 8;
     private float airStat = 0.115f;
     private float accStat = 0.0985f;
@@ -55,11 +56,12 @@ public class MainMenu : MonoBehaviour
         COMStat = PlayerPrefs.GetInt("ComPort", COMStat);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
-        try{
-            eegData.Connect();
+        if(eegData.Connect()) {
+            eegWarning.SetActive(false);
         }
-        catch{
+        else {
             Debug.Log("Not Connected");
+            eegWarning.SetActive(true);
        }
     }
 

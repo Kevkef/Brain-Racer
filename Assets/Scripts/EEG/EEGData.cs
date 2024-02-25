@@ -108,7 +108,6 @@ public class EEGData : MonoBehaviour
     public bool Connect()
     {
         comPortName = "\\\\.\\COM" + PlayerPrefs.GetInt("ComPort").ToString();
-        Debug.Log("Connected with: " + comPortName);
         //comPortName = "\\\\.\\COM4"; //bei Fertigstellung der Einstellungen löschen!
         int errCode = 0;
         NativeThinkGear thinkgear = new NativeThinkGear();
@@ -127,6 +126,7 @@ public class EEGData : MonoBehaviour
         }
 
         /* Attempt to connect the connection ID handle to serial port "COM5" (edit: changed to 4 based on my configurations)*/
+        Debug.Log("Connecting with: " + comPortName);
 
         errCode = NativeThinkGear.TG_Connect(connectionID,
                       comPortName,
@@ -145,8 +145,17 @@ public class EEGData : MonoBehaviour
         return latestAttentionValue;
     }
 
+    int goal = 0;
+    int read = 0;
+    public string getReadPacketsProgress()
+    {
+        string r = "Step " + read + " out of " + goal + " done";
+        return r;
+    }
+
     public int[] readAttentionValues(int amount)
     {
+        goal = amount;
         int errCode = 0;
         /* Read 10 ThinkGear Packets from the connection, 1 Packet at a time */
         int packetsRead = 0;
@@ -170,6 +179,7 @@ public class EEGData : MonoBehaviour
                     {
                         results[packetsRead] = attention;
                         Debug.Log("Packets Read: " + packetsRead);
+                        read = packetsRead;
                         packetsRead++;
                     }
 

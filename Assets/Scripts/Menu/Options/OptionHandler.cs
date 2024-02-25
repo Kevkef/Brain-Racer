@@ -12,6 +12,7 @@ public class OptionHandler : MonoBehaviour
     public GameObject COMValue;
     public Toggle toggleMeditation;
     public Toggle toggleAttention;
+    public GameObject eegWarning;
     private static OptionHandler instance;
     private int level;
 
@@ -66,6 +67,14 @@ public class OptionHandler : MonoBehaviour
     public void setCOM(){
         PlayerPrefs.SetInt("ComPort",(COMValue.GetComponent<TMP_Dropdown>().value + 3));
         EEGData.instance.Disconnect();
-        EEGData.instance.Connect();
+        if (EEGData.instance.Connect())
+        {
+            eegWarning.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Not Connected");
+            eegWarning.SetActive(true);
+        }
     }
 }

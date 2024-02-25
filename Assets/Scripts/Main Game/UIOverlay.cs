@@ -90,7 +90,7 @@ public class UIOverlay : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown("p"))
+        if (Input.GetKeyDown("p") || Input.GetKeyDown(KeyCode.Escape))
         {
             if (pause)
             {
