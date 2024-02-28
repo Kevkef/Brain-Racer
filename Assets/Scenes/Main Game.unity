@@ -3065,6 +3065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoinAmounttxt: {fileID: 730772173}
+  ui: {fileID: 995638618}
   endScreen: {fileID: 1001765991}
   winScreen: {fileID: 0}
   loseScreen: {fileID: 272702647}

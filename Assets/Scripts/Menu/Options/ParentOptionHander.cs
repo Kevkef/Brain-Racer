@@ -52,6 +52,8 @@ public class ParentOptionHandler : MonoBehaviour
     }
     public void setGameObject(GameObject gameObject){
         retreatObject = gameObject;
+        Debug.Log("WHY");
+        Debug.Log(retreatObject);
     }
     public void closeOptions(){
         //open the canvas where Options was called from

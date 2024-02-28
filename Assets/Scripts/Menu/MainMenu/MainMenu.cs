@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     public GameObject saveSlotMessage;
     public GameObject eegWarning;
     public Button optionButton;
+    public GameObject mainMenu;
     ParentOptionHandler parentOptionHandler;
     private int speedStat = 8;
     private float airStat = 0.115f;
@@ -37,7 +38,6 @@ public class MainMenu : MonoBehaviour
     private void Start(){
         parentOptionHandler = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
         parentOptionHandler.AddListenerToBtn(optionButton);
-        parentOptionHandler.setGameObject(GameObject.Find("MainMenu"));
         newGame = false;
         audioManager.StopEngine();
         PlayerPrefs.SetInt("MaxSpeed", speedStat);
@@ -48,6 +48,10 @@ public class MainMenu : MonoBehaviour
         setPlayerPrefsInt("SkinCars-1", 1);
         setPlayerPrefsInt("SkinCoins-1", 1);
         setPlayerPrefsInt("Audio-1", 1);
+    }
+    public void setRetreat(){
+
+        parentOptionHandler.setGameObject(gameObject);
     }
     
     private void setPlayerPrefsInt(string stat, int startValue){

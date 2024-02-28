@@ -15,8 +15,9 @@ public class ShopHandler : MonoBehaviour
     public TMP_Text costCoins;
     public TMP_Text costPoints;
     public GameObject boughtEverything;
-    public AudioManager audioManager;
+    AudioManager audioManager;
     public AudioClip audioClip;
+    public GameObject shop;
     ParentOptionHandler parentOptionHandler;
     public Button optionButton;
     int noActive;
@@ -25,9 +26,12 @@ public class ShopHandler : MonoBehaviour
     {
         parentOptionHandler = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
         parentOptionHandler.AddListenerToBtn(optionButton);
-        parentOptionHandler.setGameObject(GameObject.Find("Shop"));
         coins = PlayerPrefs.GetInt("Coins");
         points = PlayerPrefs.GetInt("Points");
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+    public void setRetreat(){
+           parentOptionHandler.setGameObject(shop);
     }
     public void ShowPanel(ShopItemSO[] shopItemSO, GameObject[] shopPanelsOO, ShopTemplate[] shopTemplate, string specification, string currency){
         noActive = 0;
