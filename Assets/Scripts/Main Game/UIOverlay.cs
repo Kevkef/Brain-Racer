@@ -22,6 +22,7 @@ public class UIOverlay : MonoBehaviour
     }
     #endregion
     public TMP_Text CoinAmounttxt;
+    public GameObject ui;
     public GameObject endScreen;
     public GameObject winScreen;
     public GameObject loseScreen;
@@ -39,6 +40,7 @@ public class UIOverlay : MonoBehaviour
     public TMP_Text endCoins;
     public AudioClip audioClip;
     AudioManager audioManager;
+    ParentOptionHandler parentOptionHandler;
     private int CoinAmount;
     private bool pause;
     // Start is called before the first frame update
@@ -55,9 +57,10 @@ public class UIOverlay : MonoBehaviour
         {
             mathmode.SetActive(false);
         }
+        parentOptionHandler = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
+        parentOptionHandler.setGameObject(GameObject.Find("UI"));
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
-
     public void addCoin()
     {
         CoinAmount++;
@@ -129,6 +132,7 @@ public class UIOverlay : MonoBehaviour
     }
     public void optionsGame(){
          ParentOptionHandler optionParent = GameObject.Find("ParentOption").GetComponent<ParentOptionHandler>();
+         parentOptionHandler.setGameObject(ui);
          if(optionParent.IsOptionActive() == false){
             optionParent.ActivateOptions();
             Time.timeScale = 0.0f;
