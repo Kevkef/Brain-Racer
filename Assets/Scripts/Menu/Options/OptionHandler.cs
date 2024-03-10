@@ -62,6 +62,7 @@ public class OptionHandler : MonoBehaviour
             PlayerPrefs.SetInt("Datatype",0);
             Debug.Log("Test2");
        }
+        EEGData.instance.updateDatatype();
     }
     public void setCOM(){
         PlayerPrefs.SetInt("ComPort",(COMValue.GetComponent<TMP_Dropdown>().value + 3));

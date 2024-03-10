@@ -61,12 +61,7 @@ public class SaveHandler : MonoBehaviour
         eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
         SaveData saveData = GameObject.Find("SaveManager").GetComponent<SaveData>();
         saveData.saveSlotNumber = i;
-        try{
-            eegData.Disconnect();
-        }
-        catch{
-            Debug.Log("Not Disconnected");
-       }
+        //eegData.Disconnect();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

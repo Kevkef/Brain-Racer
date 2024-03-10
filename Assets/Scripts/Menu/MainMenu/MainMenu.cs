@@ -61,8 +61,7 @@ public class MainMenu : MonoBehaviour
         tankStat = PlayerPrefs.GetInt("TankCapacity");
         COMStat = PlayerPrefs.GetInt("ComPort", COMStat);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
-        if(eegData.Connect()) {
+        if(EEGData.instance.Connect()) {
             eegWarning.SetActive(false);
             isConnected = true;
         }
@@ -89,11 +88,10 @@ public class MainMenu : MonoBehaviour
                     title = DateTime.Now.ToString()
                 };
                 parentOptionHandler.RemoveListenerFromBtn(optionButton);
-                eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
                 new Thread(() =>
                     {
                         Thread.CurrentThread.IsBackground = true;
-                        slotData.mapData = eegData.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
+                        slotData.mapData = EEGData.instance.readAttentionValues(20).ToList(); //Get Data from EEG and save it as map info
                         slotData.world = null;
                         newGame = true;
                 }).Start();
@@ -112,11 +110,9 @@ public class MainMenu : MonoBehaviour
    }
 
     public void QuitGame()
-    {
-        eegData = GameObject.Find("EEGManager").GetComponent<EEGData>();
-        
+    {        
         try{
-            eegData.Disconnect();
+            EEGData.instance.Disconnect();
             isConnected = false;
         }
         catch{
@@ -144,14 +140,14 @@ public class MainMenu : MonoBehaviour
             saveManager.setSlotDataScene(slotData);
             saveData.addToSaveSlots(slotData);    //Save the new Save Slot to JSON
             PlayerPrefs.SetInt("NotAvalibleSlots", PlayerPrefs.GetInt("NotAvalibleSlots") + 1);
-            try
+            /*try
             {
                 eegData.Disconnect();
             }
             catch
             {
                 Debug.Log("Not Disconnected");
-            }
+            } */
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

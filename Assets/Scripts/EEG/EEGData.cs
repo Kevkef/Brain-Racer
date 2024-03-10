@@ -13,12 +13,15 @@ public class EEGData : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
         {
-            Debug.Log("Warning, several EEGData found!");
-            return;
+            Destroy(gameObject);
         }
-        instance = this;
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
     }
     #endregion
 
@@ -105,8 +108,14 @@ public class EEGData : MonoBehaviour
         autoread = false;
         Debug.Log("Autoread disabled");
     }
+
+    private bool connected = false;
     public bool Connect()
     {
+        if (connected)
+        {
+            return true;
+        }
         comPortName = "\\\\.\\COM" + PlayerPrefs.GetInt("ComPort").ToString();
         //comPortName = "\\\\.\\COM4"; //bei Fertigstellung der Einstellungen löschen!
         int errCode = 0;
@@ -137,6 +146,7 @@ public class EEGData : MonoBehaviour
             Debug.Log("ERROR: TG_Connect() returned: " + errCode);
             return false;
         }
+        connected = true;
         return true;
     }
 
@@ -204,6 +214,7 @@ public class EEGData : MonoBehaviour
             Debug.Log("Error accured: " + e.ToString());
             return false;
         }
+        connected = false;
         return true;
     }
 
